@@ -144,7 +144,7 @@ void loop(){
 	if((input_value & BTN) == BTN){
   de:	18 9b       	sbis	0x03, 0	; 3
   e0:	2e c0       	rjmp	.+92     	; 0x13e <loop+0x90>
-		for(count=0; count < 1000000; count++){
+		for(count=0; count < 500000; count++){
   e2:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <count>
   e6:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <count+0x1>
   ea:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <count+0x2>
@@ -163,7 +163,7 @@ void loop(){
 	
 	// for(count = 0; count < 10000; count++);	// AVR 시간 측정(발진기의 펄스이용), 0x2710 == 10,000(10진수), 10ms
 	if((input_value & BTN) == BTN){
-		for(count=0; count < 1000000; count++){
+		for(count=0; count < 500000; count++){
   fe:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <count>
  102:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <count+0x1>
  106:	a0 91 05 01 	lds	r26, 0x0105	; 0x800105 <count+0x2>
@@ -179,9 +179,9 @@ void loop(){
  128:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <count+0x1>
  12c:	a0 91 05 01 	lds	r26, 0x0105	; 0x800105 <count+0x2>
  130:	b0 91 06 01 	lds	r27, 0x0106	; 0x800106 <count+0x3>
- 134:	80 34       	cpi	r24, 0x40	; 64
- 136:	92 44       	sbci	r25, 0x42	; 66
- 138:	af 40       	sbci	r26, 0x0F	; 15
+ 134:	80 32       	cpi	r24, 0x20	; 32
+ 136:	91 4a       	sbci	r25, 0xA1	; 161
+ 138:	a7 40       	sbci	r26, 0x07	; 7
  13a:	b1 05       	cpc	r27, r1
  13c:	d8 f2       	brcs	.-74     	; 0xf4 <loop+0x46>
  13e:	08 95       	ret

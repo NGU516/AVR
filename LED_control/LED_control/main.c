@@ -1,4 +1,4 @@
-#define F_CPU 16000000UL	// 16MHz,크리스탈 클럭 주파수를 지정해주어야 올바른 시간 사용 가능
+#define F_CPU 16000000UL	// 16MHz,크리스탈 주파수를 지정해주어야 올바른 시간 사용 가능
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -26,7 +26,7 @@ void loop(){
 	
 	// for(count = 0; count < 10000; count++);	// AVR 시간 측정(발진기의 펄스이용), 0x2710 == 10,000(10진수), 10ms
 	if((input_value & BTN) == BTN){
-		for(count=0; count < 1000000; count++){
+		for(count=0; count < 500000; count++){		// 약 1초
 			if((input_value & BTN) == BTN){		// BTN 누를 시
 				PORTB = 0x00;
 				while((input_value & BTN));	// BTN 지속, 떼기 전까지
