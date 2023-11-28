@@ -3,31 +3,29 @@ LED_control.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000002  00800100  00000122  000001b6  2**0
+  0 .data         00000002  00800100  0000014e  000001e2  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000122  00000000  00000000  00000094  2**1
+  1 .text         0000014e  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000001  00800102  00800102  000001b8  2**0
+  2 .bss          00000005  00800102  00800102  000001e4  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000001b8  2**0
+  3 .comment      00000030  00000000  00000000  000001e4  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001e8  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000214  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000030  00000000  00000000  00000228  2**0
+  5 .debug_aranges 00000030  00000000  00000000  00000254  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000007c8  00000000  00000000  00000258  2**0
+  6 .debug_info   0000070a  00000000  00000000  00000284  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000006cd  00000000  00000000  00000a20  2**0
+  7 .debug_abbrev 0000063e  00000000  00000000  0000098e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002b4  00000000  00000000  000010ed  2**0
+  8 .debug_line   00000254  00000000  00000000  00000fcc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000044  00000000  00000000  000013a4  2**2
+  9 .debug_frame  00000044  00000000  00000000  00001220  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003b4  00000000  00000000  000013e8  2**0
+ 10 .debug_str    00000369  00000000  00000000  00001264  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000090  00000000  00000000  0000179c  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000020  00000000  00000000  0000182c  2**0
+ 11 .debug_ranges 00000020  00000000  00000000  000015cd  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,7 +70,7 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e2 e2       	ldi	r30, 0x22	; 34
+  7a:	ee e4       	ldi	r30, 0x4E	; 78
   7c:	f1 e0       	ldi	r31, 0x01	; 1
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
@@ -91,17 +89,17 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a3 30       	cpi	r26, 0x03	; 3
+  94:	a7 30       	cpi	r26, 0x07	; 7
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 8a 00 	call	0x114	; 0x114 <main>
-  9e:	0c 94 8f 00 	jmp	0x11e	; 0x11e <_exit>
+  9a:	0e 94 a0 00 	call	0x140	; 0x140 <main>
+  9e:	0c 94 a5 00 	jmp	0x14a	; 0x14a <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000a6 <setup>:
-unsigned int count = 0;	// 0~65,536
+unsigned long count = 0;
 unsigned char pattern_table[2] = {LED | RED | BLUE, GRENN | BLUE};
 unsigned char index = 0;	// 배열 요소 접근 변수
 	
@@ -116,88 +114,95 @@ void setup(){
 000000ae <loop>:
 }
 void loop(){
-	PORTB |= 0xFF;
-  ae:	25 b1       	in	r18, 0x05	; 5
-  b0:	2f ef       	ldi	r18, 0xFF	; 255
-  b2:	25 b9       	out	0x05, r18	; 5
+	PORTB = 0xFF;
+  ae:	2f ef       	ldi	r18, 0xFF	; 255
+  b0:	25 b9       	out	0x05, r18	; 5
 	PORTB &= ~(pattern_table[(index++) & 0x01]);	// (index++)&0x배열의 개수(16진수), 순차적으로 인덱스의 요소만 and 연산으로 나옴
-  b4:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <__data_end>
-  b8:	31 e0       	ldi	r19, 0x01	; 1
-  ba:	32 0f       	add	r19, r18
-  bc:	30 93 02 01 	sts	0x0102, r19	; 0x800102 <__data_end>
-  c0:	82 2f       	mov	r24, r18
-  c2:	81 70       	andi	r24, 0x01	; 1
-  c4:	90 e0       	ldi	r25, 0x00	; 0
-  c6:	fc 01       	movw	r30, r24
-  c8:	e0 50       	subi	r30, 0x00	; 0
-  ca:	ff 4f       	sbci	r31, 0xFF	; 255
-  cc:	80 81       	ld	r24, Z
-  ce:	90 e0       	ldi	r25, 0x00	; 0
-  d0:	80 95       	com	r24
-  d2:	90 95       	com	r25
-  d4:	95 b1       	in	r25, 0x05	; 5
-  d6:	89 23       	and	r24, r25
-  d8:	85 b9       	out	0x05, r24	; 5
+  b2:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <__data_end>
+  b6:	31 e0       	ldi	r19, 0x01	; 1
+  b8:	32 0f       	add	r19, r18
+  ba:	30 93 02 01 	sts	0x0102, r19	; 0x800102 <__data_end>
+  be:	82 2f       	mov	r24, r18
+  c0:	81 70       	andi	r24, 0x01	; 1
+  c2:	90 e0       	ldi	r25, 0x00	; 0
+  c4:	fc 01       	movw	r30, r24
+  c6:	e0 50       	subi	r30, 0x00	; 0
+  c8:	ff 4f       	sbci	r31, 0xFF	; 255
+  ca:	80 81       	ld	r24, Z
+  cc:	90 e0       	ldi	r25, 0x00	; 0
+  ce:	80 95       	com	r24
+  d0:	90 95       	com	r25
+  d2:	95 b1       	in	r25, 0x05	; 5
+  d4:	89 23       	and	r24, r25
+  d6:	85 b9       	out	0x05, r24	; 5
 	PORTB &= ~(BTN);	// BTN만 0으로 바꾸기
-  da:	85 b1       	in	r24, 0x05	; 5
-  dc:	8e 7f       	andi	r24, 0xFE	; 254
-  de:	85 b9       	out	0x05, r24	; 5
+  d8:	85 b1       	in	r24, 0x05	; 5
+  da:	8e 7f       	andi	r24, 0xFE	; 254
+  dc:	85 b9       	out	0x05, r24	; 5
+	
 	// for(count = 0; count < 10000; count++);	// AVR 시간 측정(발진기의 펄스이용), 0x2710 == 10,000(10진수), 10ms
 	if((input_value & BTN) == BTN){
-  e0:	18 9b       	sbis	0x03, 0	; 3
-  e2:	0e c0       	rjmp	.+28     	; 0x100 <loop+0x52>
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
-  e4:	2f ef       	ldi	r18, 0xFF	; 255
-  e6:	81 ee       	ldi	r24, 0xE1	; 225
-  e8:	94 e0       	ldi	r25, 0x04	; 4
-  ea:	21 50       	subi	r18, 0x01	; 1
-  ec:	80 40       	sbci	r24, 0x00	; 0
-  ee:	90 40       	sbci	r25, 0x00	; 0
-  f0:	e1 f7       	brne	.-8      	; 0xea <loop+0x3c>
-  f2:	00 c0       	rjmp	.+0      	; 0xf4 <loop+0x46>
-  f4:	00 00       	nop
-		_delay_ms(100);
+  de:	18 9b       	sbis	0x03, 0	; 3
+  e0:	2e c0       	rjmp	.+92     	; 0x13e <loop+0x90>
+		for(count=0; count < 1000000; count++){
+  e2:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <count>
+  e6:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <count+0x1>
+  ea:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <count+0x2>
+  ee:	10 92 06 01 	sts	0x0106, r1	; 0x800106 <count+0x3>
+  f2:	18 c0       	rjmp	.+48     	; 0x124 <loop+0x76>
 			if((input_value & BTN) == BTN){		// BTN 누를 시
-  f6:	18 9b       	sbis	0x03, 0	; 3
-  f8:	03 c0       	rjmp	.+6      	; 0x100 <loop+0x52>
+  f4:	18 9b       	sbis	0x03, 0	; 3
+  f6:	03 c0       	rjmp	.+6      	; 0xfe <loop+0x50>
 				PORTB = 0x00;
-  fa:	15 b8       	out	0x05, r1	; 5
+  f8:	15 b8       	out	0x05, r1	; 5
 				while((input_value & BTN));	// BTN 지속, 떼기 전까지
-  fc:	18 99       	sbic	0x03, 0	; 3
-  fe:	fe cf       	rjmp	.-4      	; 0xfc <loop+0x4e>
- 100:	2f ef       	ldi	r18, 0xFF	; 255
- 102:	87 ea       	ldi	r24, 0xA7	; 167
- 104:	91 e6       	ldi	r25, 0x61	; 97
- 106:	21 50       	subi	r18, 0x01	; 1
- 108:	80 40       	sbci	r24, 0x00	; 0
- 10a:	90 40       	sbci	r25, 0x00	; 0
- 10c:	e1 f7       	brne	.-8      	; 0x106 <loop+0x58>
- 10e:	00 c0       	rjmp	.+0      	; 0x110 <loop+0x62>
- 110:	00 00       	nop
- 112:	08 95       	ret
+  fa:	18 99       	sbic	0x03, 0	; 3
+  fc:	fe cf       	rjmp	.-4      	; 0xfa <loop+0x4c>
+	PORTB &= ~(pattern_table[(index++) & 0x01]);	// (index++)&0x배열의 개수(16진수), 순차적으로 인덱스의 요소만 and 연산으로 나옴
+	PORTB &= ~(BTN);	// BTN만 0으로 바꾸기
+	
+	// for(count = 0; count < 10000; count++);	// AVR 시간 측정(발진기의 펄스이용), 0x2710 == 10,000(10진수), 10ms
+	if((input_value & BTN) == BTN){
+		for(count=0; count < 1000000; count++){
+  fe:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <count>
+ 102:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <count+0x1>
+ 106:	a0 91 05 01 	lds	r26, 0x0105	; 0x800105 <count+0x2>
+ 10a:	b0 91 06 01 	lds	r27, 0x0106	; 0x800106 <count+0x3>
+ 10e:	01 96       	adiw	r24, 0x01	; 1
+ 110:	a1 1d       	adc	r26, r1
+ 112:	b1 1d       	adc	r27, r1
+ 114:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <count>
+ 118:	90 93 04 01 	sts	0x0104, r25	; 0x800104 <count+0x1>
+ 11c:	a0 93 05 01 	sts	0x0105, r26	; 0x800105 <count+0x2>
+ 120:	b0 93 06 01 	sts	0x0106, r27	; 0x800106 <count+0x3>
+ 124:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <count>
+ 128:	90 91 04 01 	lds	r25, 0x0104	; 0x800104 <count+0x1>
+ 12c:	a0 91 05 01 	lds	r26, 0x0105	; 0x800105 <count+0x2>
+ 130:	b0 91 06 01 	lds	r27, 0x0106	; 0x800106 <count+0x3>
+ 134:	80 34       	cpi	r24, 0x40	; 64
+ 136:	92 44       	sbci	r25, 0x42	; 66
+ 138:	af 40       	sbci	r26, 0x0F	; 15
+ 13a:	b1 05       	cpc	r27, r1
+ 13c:	d8 f2       	brcs	.-74     	; 0xf4 <loop+0x46>
+ 13e:	08 95       	ret
 
-00000114 <main>:
+00000140 <main>:
 	
 }
 
 int main(void)
 {
 	setup();
- 114:	0e 94 53 00 	call	0xa6	; 0xa6 <setup>
+ 140:	0e 94 53 00 	call	0xa6	; 0xa6 <setup>
 	
     while (1) 
     {
 		loop();
- 118:	0e 94 57 00 	call	0xae	; 0xae <loop>
- 11c:	fd cf       	rjmp	.-6      	; 0x118 <main+0x4>
+ 144:	0e 94 57 00 	call	0xae	; 0xae <loop>
+ 148:	fd cf       	rjmp	.-6      	; 0x144 <main+0x4>
 
-0000011e <_exit>:
- 11e:	f8 94       	cli
+0000014a <_exit>:
+ 14a:	f8 94       	cli
 
-00000120 <__stop_program>:
- 120:	ff cf       	rjmp	.-2      	; 0x120 <__stop_program>
+0000014c <__stop_program>:
+ 14c:	ff cf       	rjmp	.-2      	; 0x14c <__stop_program>
