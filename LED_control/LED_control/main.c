@@ -1,3 +1,5 @@
+// 버튼을 누를 때 마다 LED패턴이 바뀜
+
 #define F_CPU 16000000UL	// 16MHz,크리스탈 주파수를 지정해주어야 올바른 시간 사용 가능
 
 #include <avr/io.h>
@@ -20,8 +22,6 @@ void setup(){
 	PORTB = 0x00;
 }
 void loop(){
-	PORTB = 0xFF;
-	PORTB &= ~(pattern_table[(index++) & 0x01]);	// (index++)&0x배열의 개수(16진수), 순차적으로 인덱스의 요소만 and 연산으로 나옴
 	PORTB &= ~(BTN);	// BTN만 0으로 바꾸기
 	
 	// for(count = 0; count < 10000; count++);	// AVR 시간 측정(발진기의 펄스이용), 0x2710 == 10,000(10진수), 10ms
@@ -30,6 +30,7 @@ void loop(){
 			if((input_value & BTN) == BTN){		// BTN 누를 시
 				PORTB = 0x00;
 				while((input_value & BTN));	// BTN 지속, 떼기 전까지
+				PORTB = (pattern_table[(index++) & 0x01]);	// (index++)&0x배열의 개수(16진수), 순차적으로 인덱스의 요소만 and 연산으로 나옴
 			}
 		}
 	}
