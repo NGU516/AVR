@@ -1,0 +1,425 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/cdm/Desktop/AVR_Linux_Compiler/",100,0,2,.Ltext0
+   8               		.stabs	"/home/cdm/Desktop/AVR/Serial/Serial/main.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=r(0,2);0;127;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"short _Fract:t(0,17)=r(0,1);1;0;",128,0,0,0
+  29               		.stabs	"_Fract:t(0,18)=r(0,1);2;0;",128,0,0,0
+  30               		.stabs	"long _Fract:t(0,19)=r(0,1);4;0;",128,0,0,0
+  31               		.stabs	"long long _Fract:t(0,20)=r(0,1);8;0;",128,0,0,0
+  32               		.stabs	"unsigned short _Fract:t(0,21)=r(0,1);1;0;",128,0,0,0
+  33               		.stabs	"unsigned _Fract:t(0,22)=r(0,1);2;0;",128,0,0,0
+  34               		.stabs	"unsigned long _Fract:t(0,23)=r(0,1);4;0;",128,0,0,0
+  35               		.stabs	"unsigned long long _Fract:t(0,24)=r(0,1);8;0;",128,0,0,0
+  36               		.stabs	"_Sat short _Fract:t(0,25)=r(0,1);1;0;",128,0,0,0
+  37               		.stabs	"_Sat _Fract:t(0,26)=r(0,1);2;0;",128,0,0,0
+  38               		.stabs	"_Sat long _Fract:t(0,27)=r(0,1);4;0;",128,0,0,0
+  39               		.stabs	"_Sat long long _Fract:t(0,28)=r(0,1);8;0;",128,0,0,0
+  40               		.stabs	"_Sat unsigned short _Fract:t(0,29)=r(0,1);1;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned _Fract:t(0,30)=r(0,1);2;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned long _Fract:t(0,31)=r(0,1);4;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long long _Fract:t(0,32)=r(0,1);8;0;",128,0,0,0
+  44               		.stabs	"short _Accum:t(0,33)=r(0,1);2;0;",128,0,0,0
+  45               		.stabs	"_Accum:t(0,34)=r(0,1);4;0;",128,0,0,0
+  46               		.stabs	"long _Accum:t(0,35)=r(0,1);8;0;",128,0,0,0
+  47               		.stabs	"long long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"unsigned short _Accum:t(0,37)=r(0,1);2;0;",128,0,0,0
+  49               		.stabs	"unsigned _Accum:t(0,38)=r(0,1);4;0;",128,0,0,0
+  50               		.stabs	"unsigned long _Accum:t(0,39)=r(0,1);8;0;",128,0,0,0
+  51               		.stabs	"unsigned long long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"_Sat short _Accum:t(0,41)=r(0,1);2;0;",128,0,0,0
+  53               		.stabs	"_Sat _Accum:t(0,42)=r(0,1);4;0;",128,0,0,0
+  54               		.stabs	"_Sat long _Accum:t(0,43)=r(0,1);8;0;",128,0,0,0
+  55               		.stabs	"_Sat long long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat unsigned short _Accum:t(0,45)=r(0,1);2;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned _Accum:t(0,46)=r(0,1);4;0;",128,0,0,0
+  58               		.stabs	"_Sat unsigned long _Accum:t(0,47)=r(0,1);8;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"void:t(0,49)=(0,49)",128,0,0,0
+  61               		.stabs	"/usr/lib/avr/include/avr/interrupt.h",130,0,0,0
+  62               		.stabs	"/usr/lib/avr/include/avr/io.h",130,0,0,0
+  63               		.stabs	"/usr/lib/avr/include/avr/sfr_defs.h",130,0,0,0
+  64               		.stabs	"/usr/lib/avr/include/inttypes.h",130,0,0,0
+  65               		.stabs	"/usr/lib/gcc/avr/5.4.0/include/stdint.h",130,0,0,0
+  66               		.stabs	"/usr/lib/avr/include/stdint.h",130,0,0,0
+  67               		.stabs	"int8_t:t(6,1)=(0,12)",128,0,125,0
+  68               		.stabs	"uint8_t:t(6,2)=(0,13)",128,0,126,0
+  69               		.stabs	"int16_t:t(6,3)=(0,1)",128,0,127,0
+  70               		.stabs	"uint16_t:t(6,4)=(0,4)",128,0,128,0
+  71               		.stabs	"int32_t:t(6,5)=(0,3)",128,0,129,0
+  72               		.stabs	"uint32_t:t(6,6)=(0,5)",128,0,130,0
+  73               		.stabs	"int64_t:t(6,7)=(0,8)",128,0,132,0
+  74               		.stabs	"uint64_t:t(6,8)=(0,9)",128,0,133,0
+  75               		.stabs	"intptr_t:t(6,9)=(6,3)",128,0,146,0
+  76               		.stabs	"uintptr_t:t(6,10)=(6,4)",128,0,151,0
+  77               		.stabs	"int_least8_t:t(6,11)=(6,1)",128,0,163,0
+  78               		.stabs	"uint_least8_t:t(6,12)=(6,2)",128,0,168,0
+  79               		.stabs	"int_least16_t:t(6,13)=(6,3)",128,0,173,0
+  80               		.stabs	"uint_least16_t:t(6,14)=(6,4)",128,0,178,0
+  81               		.stabs	"int_least32_t:t(6,15)=(6,5)",128,0,183,0
+  82               		.stabs	"uint_least32_t:t(6,16)=(6,6)",128,0,188,0
+  83               		.stabs	"int_least64_t:t(6,17)=(6,7)",128,0,196,0
+  84               		.stabs	"uint_least64_t:t(6,18)=(6,8)",128,0,203,0
+  85               		.stabs	"int_fast8_t:t(6,19)=(6,1)",128,0,217,0
+  86               		.stabs	"uint_fast8_t:t(6,20)=(6,2)",128,0,222,0
+  87               		.stabs	"int_fast16_t:t(6,21)=(6,3)",128,0,227,0
+  88               		.stabs	"uint_fast16_t:t(6,22)=(6,4)",128,0,232,0
+  89               		.stabs	"int_fast32_t:t(6,23)=(6,5)",128,0,237,0
+  90               		.stabs	"uint_fast32_t:t(6,24)=(6,6)",128,0,242,0
+  91               		.stabs	"int_fast64_t:t(6,25)=(6,7)",128,0,250,0
+  92               		.stabs	"uint_fast64_t:t(6,26)=(6,8)",128,0,257,0
+  93               		.stabs	"intmax_t:t(6,27)=(6,7)",128,0,277,0
+  94               		.stabs	"uintmax_t:t(6,28)=(6,8)",128,0,282,0
+  95               		.stabn	162,0,0,0
+  96               		.stabn	162,0,0,0
+  97               		.stabs	"int_farptr_t:t(4,1)=(6,5)",128,0,77,0
+  98               		.stabs	"uint_farptr_t:t(4,2)=(6,6)",128,0,81,0
+  99               		.stabn	162,0,0,0
+ 100               		.stabn	162,0,0,0
+ 101               		.stabs	"/usr/lib/avr/include/avr/fuse.h",130,0,0,0
+ 102               		.stabs	"__fuse_t:t(7,1)=(7,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabn	162,0,0,0
+ 105               		.stabn	162,0,0,0
+ 106               		.stabs	"setup:F(0,49)",36,0,5,setup
+ 107               	.global	setup
+ 108               		.type	setup, @function
+ 109               	setup:
+ 110               		.stabd	46,0,0
+   1:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** #define F_CPU 16000000UL
+   2:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** #include <avr/interrupt.h>
+   3:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** #include <avr/io.h>
+   4:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+   5:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** void setup() {
+ 111               		.stabn	68,0,5,.LM0-.LFBB1
+ 112               	.LM0:
+ 113               	.LFBB1:
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116               	/* stack size = 0 */
+ 117               	.L__stack_usage = 0
+   6:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	DDRB = 0xFF;    // IO 입출력 설정
+ 118               		.stabn	68,0,6,.LM1-.LFBB1
+ 119               	.LM1:
+ 120 0000 8FEF      		ldi r24,lo8(-1)
+ 121 0002 84B9      		out 0x4,r24
+   7:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	PORTB = 0xFF;   // LED 초기화
+ 122               		.stabn	68,0,7,.LM2-.LFBB1
+ 123               	.LM2:
+ 124 0004 85B9      		out 0x5,r24
+   8:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+   9:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	DDRD = 0x02;    // PD0 = RXD 로 입력 설정, PD1 = TXD 로 출력 설정
+ 125               		.stabn	68,0,9,.LM3-.LFBB1
+ 126               	.LM3:
+ 127 0006 92E0      		ldi r25,lo8(2)
+ 128 0008 9AB9      		out 0xa,r25
+  10:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	PORTD = 0xFF;   // 포트 초기화
+ 129               		.stabn	68,0,10,.LM4-.LFBB1
+ 130               	.LM4:
+ 131 000a 8BB9      		out 0xb,r24
+ 132 000c 0895      		ret
+ 133               		.size	setup, .-setup
+ 134               	.Lscope1:
+ 135               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 136               		.stabd	78,0,0
+ 137               		.stabs	"USART0_init:F(0,49)",36,0,14,USART0_init
+ 138               	.global	USART0_init
+ 139               		.type	USART0_init, @function
+ 140               	USART0_init:
+ 141               		.stabd	46,0,0
+  11:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** }
+  12:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  13:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  14:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** void USART0_init(void){
+ 142               		.stabn	68,0,14,.LM5-.LFBB2
+ 143               	.LM5:
+ 144               	.LFBB2:
+ 145               	/* prologue: function */
+ 146               	/* frame size = 0 */
+ 147               	/* stack size = 0 */
+ 148               	.L__stack_usage = 0
+  15:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	UBRR0H = 0x00;	// USART Baud Rate Register High, 9600 baud rate
+ 149               		.stabn	68,0,15,.LM6-.LFBB2
+ 150               	.LM6:
+ 151 000e 1092 C500 		sts 197,__zero_reg__
+  16:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	UBRR0L = 103;	// USART Baud Rate Register Low, 9600 baud rate
+ 152               		.stabn	68,0,16,.LM7-.LFBB2
+ 153               	.LM7:
+ 154 0012 87E6      		ldi r24,lo8(103)
+ 155 0014 8093 C400 		sts 196,r24
+  17:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	
+  18:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	UCSR0A = 0x20;	// 0b00100000, USART Data Reister Empty, 초기화시 비어있음.
+ 156               		.stabn	68,0,18,.LM8-.LFBB2
+ 157               	.LM8:
+ 158 0018 80E2      		ldi r24,lo8(32)
+ 159 001a 8093 C000 		sts 192,r24
+  19:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	UCSR0B = 0x18;	// 0b00011000, RXEN TXEN '1' 설정 및 UCSZ02 '0' 설정
+ 160               		.stabn	68,0,19,.LM9-.LFBB2
+ 161               	.LM9:
+ 162 001e 88E1      		ldi r24,lo8(24)
+ 163 0020 8093 C100 		sts 193,r24
+  20:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	UCSR0C = 0x06;	// 0b00000110, UCSZ01, UCSZ00 '1' 설정
+ 164               		.stabn	68,0,20,.LM10-.LFBB2
+ 165               	.LM10:
+ 166 0024 86E0      		ldi r24,lo8(6)
+ 167 0026 8093 C200 		sts 194,r24
+ 168 002a 0895      		ret
+ 169               		.size	USART0_init, .-USART0_init
+ 170               	.Lscope2:
+ 171               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 172               		.stabd	78,0,0
+ 173               		.stabs	"USART0_send:F(0,49)",36,0,24,USART0_send
+ 174               		.stabs	"Data:P(0,13)",64,0,24,24
+ 175               	.global	USART0_send
+ 176               		.type	USART0_send, @function
+ 177               	USART0_send:
+ 178               		.stabd	46,0,0
+  21:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	///////////// 한 번에 8bit를 보내야 함 {UCSZ02, UCSZ01, UCSZ00} = {0, 1, 1} 설정, 쓰게
+  22:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** }
+  23:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  24:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** void USART0_send(unsigned char Data){
+ 179               		.stabn	68,0,24,.LM11-.LFBB3
+ 180               	.LM11:
+ 181               	.LFBB3:
+ 182               	/* prologue: function */
+ 183               	/* frame size = 0 */
+ 184               	/* stack size = 0 */
+ 185               	.L__stack_usage = 0
+ 186               	.L4:
+  25:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	while(!( UCSR0A & (1<<UDRE0)) );
+ 187               		.stabn	68,0,25,.LM12-.LFBB3
+ 188               	.LM12:
+ 189 002c 9091 C000 		lds r25,192
+ 190 0030 95FF      		sbrs r25,5
+ 191 0032 00C0      		rjmp .L4
+ 192               	.L8:
+  26:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	while(!(UCSR0A & 0x20));
+ 193               		.stabn	68,0,26,.LM13-.LFBB3
+ 194               	.LM13:
+ 195 0034 9091 C000 		lds r25,192
+ 196 0038 95FF      		sbrs r25,5
+ 197 003a 00C0      		rjmp .L8
+  27:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	UDR0 = Data;
+ 198               		.stabn	68,0,27,.LM14-.LFBB3
+ 199               	.LM14:
+ 200 003c 8093 C600 		sts 198,r24
+ 201 0040 0895      		ret
+ 202               		.size	USART0_send, .-USART0_send
+ 203               	.Lscope3:
+ 204               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 205               		.stabd	78,0,0
+ 206               		.stabs	"Timer1_init:F(0,49)",36,0,30,Timer1_init
+ 207               	.global	Timer1_init
+ 208               		.type	Timer1_init, @function
+ 209               	Timer1_init:
+ 210               		.stabd	46,0,0
+  28:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** }
+  29:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  30:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** void Timer1_init() {
+ 211               		.stabn	68,0,30,.LM15-.LFBB4
+ 212               	.LM15:
+ 213               	.LFBB4:
+ 214               	/* prologue: function */
+ 215               	/* frame size = 0 */
+ 216               	/* stack size = 0 */
+ 217               	.L__stack_usage = 0
+  31:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	TCCR1A = 0x00;        // WGM11, WGM10 -> 0
+ 218               		.stabn	68,0,31,.LM16-.LFBB4
+ 219               	.LM16:
+ 220 0042 1092 8000 		sts 128,__zero_reg__
+  32:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);  // WGM13, WGM12 -> 0100 (CTC 모드), CS12, CS
+ 221               		.stabn	68,0,32,.LM17-.LFBB4
+ 222               	.LM17:
+ 223 0046 8BE0      		ldi r24,lo8(11)
+ 224 0048 8093 8100 		sts 129,r24
+  33:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	OCR1A = 0x3e8;        // 0x09C4 = 2500 1ms, 16MHz / 64 / 2500 = 10Hz, 10ms 주기
+ 225               		.stabn	68,0,33,.LM18-.LFBB4
+ 226               	.LM18:
+ 227 004c 88EE      		ldi r24,lo8(-24)
+ 228 004e 93E0      		ldi r25,lo8(3)
+ 229 0050 9093 8900 		sts 136+1,r25
+ 230 0054 8093 8800 		sts 136,r24
+ 231 0058 0895      		ret
+ 232               		.size	Timer1_init, .-Timer1_init
+ 233               	.Lscope4:
+ 234               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 235               		.stabd	78,0,0
+ 236               		.stabs	"Timer1_10ms_delay:F(0,49)",36,0,36,Timer1_10ms_delay
+ 237               	.global	Timer1_10ms_delay
+ 238               		.type	Timer1_10ms_delay, @function
+ 239               	Timer1_10ms_delay:
+ 240               		.stabd	46,0,0
+  34:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** }
+  35:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  36:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** void Timer1_10ms_delay() {
+ 241               		.stabn	68,0,36,.LM19-.LFBB5
+ 242               	.LM19:
+ 243               	.LFBB5:
+ 244               	/* prologue: function */
+ 245               	/* frame size = 0 */
+ 246               	/* stack size = 0 */
+ 247               	.L__stack_usage = 0
+ 248               	.L14:
+  37:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	while (!(TIFR1 & (1 << OCF1A)));
+ 249               		.stabn	68,0,37,.LM20-.LFBB5
+ 250               	.LM20:
+ 251 005a B19B      		sbis 0x16,1
+ 252 005c 00C0      		rjmp .L14
+  38:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	TIFR1 |= (1 << OCF1A);  // Output Compare Flag 초기화
+ 253               		.stabn	68,0,38,.LM21-.LFBB5
+ 254               	.LM21:
+ 255 005e B19A      		sbi 0x16,1
+ 256 0060 0895      		ret
+ 257               		.size	Timer1_10ms_delay, .-Timer1_10ms_delay
+ 258               	.Lscope5:
+ 259               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 260               		.stabd	78,0,0
+ 261               		.stabs	"Timer1_1s_delay:F(0,49)",36,0,41,Timer1_1s_delay
+ 262               	.global	Timer1_1s_delay
+ 263               		.type	Timer1_1s_delay, @function
+ 264               	Timer1_1s_delay:
+ 265               		.stabd	46,0,0
+  39:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** }
+  40:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  41:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** void Timer1_1s_delay(){
+ 266               		.stabn	68,0,41,.LM22-.LFBB6
+ 267               	.LM22:
+ 268               	.LFBB6:
+ 269               	/* prologue: function */
+ 270               	/* frame size = 0 */
+ 271               	/* stack size = 0 */
+ 272               	.L__stack_usage = 0
+ 273               		.stabn	68,0,41,.LM23-.LFBB6
+ 274               	.LM23:
+ 275 0062 84E6      		ldi r24,lo8(100)
+ 276               	.L18:
+  42:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	unsigned char count = 0;
+  43:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	
+  44:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	count = 100;
+  45:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	while(count){
+  46:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		while (!(TIFR1 & (1 << OCF1A)));
+ 277               		.stabn	68,0,46,.LM24-.LFBB6
+ 278               	.LM24:
+ 279 0064 B19B      		sbis 0x16,1
+ 280 0066 00C0      		rjmp .L18
+  47:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		TIFR1 |= (1 << OCF1A);  // Output Compare Flag 초기화
+ 281               		.stabn	68,0,47,.LM25-.LFBB6
+ 282               	.LM25:
+ 283 0068 B19A      		sbi 0x16,1
+ 284 006a 8150      		subi r24,lo8(-(-1))
+  45:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		while (!(TIFR1 & (1 << OCF1A)));
+ 285               		.stabn	68,0,45,.LM26-.LFBB6
+ 286               	.LM26:
+ 287 006c 01F4      		brne .L18
+ 288               	/* epilogue start */
+  48:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		count--;
+  49:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	}
+  50:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** }
+ 289               		.stabn	68,0,50,.LM27-.LFBB6
+ 290               	.LM27:
+ 291 006e 0895      		ret
+ 292               		.size	Timer1_1s_delay, .-Timer1_1s_delay
+ 293               	.Lscope6:
+ 294               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 295               		.stabd	78,0,0
+ 296               		.section	.text.startup,"ax",@progbits
+ 297               		.stabs	"main:F(0,1)",36,0,53,main
+ 298               	.global	main
+ 299               		.type	main, @function
+ 300               	main:
+ 301               		.stabd	46,0,0
+  51:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 
+  52:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** //////////////////////////////////////////////////////////////////////////
+  53:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** int main(){
+ 302               		.stabn	68,0,53,.LM28-.LFBB7
+ 303               	.LM28:
+ 304               	.LFBB7:
+ 305               	/* prologue: function */
+ 306               	/* frame size = 0 */
+ 307               	/* stack size = 0 */
+ 308               	.L__stack_usage = 0
+  54:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	//sei();
+  55:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	unsigned char Data;		// 전송할 문자를 저장하는 버퍼
+  56:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	
+  57:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	setup();
+ 309               		.stabn	68,0,57,.LM29-.LFBB7
+ 310               	.LM29:
+ 311 0000 0E94 0000 		call setup
+  58:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	USART0_init();
+ 312               		.stabn	68,0,58,.LM30-.LFBB7
+ 313               	.LM30:
+ 314 0004 0E94 0000 		call USART0_init
+  59:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	Timer1_init();
+ 315               		.stabn	68,0,59,.LM31-.LFBB7
+ 316               	.LM31:
+ 317 0008 0E94 0000 		call Timer1_init
+ 318               	.L25:
+  60:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	Timer1_1s_delay();
+ 319               		.stabn	68,0,60,.LM32-.LFBB7
+ 320               	.LM32:
+ 321 000c 0E94 0000 		call Timer1_1s_delay
+  61:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	
+  62:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 	while(1){
+  63:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		Data = 'A';
+  64:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		PORTB |= 0x00100000; // LED On
+ 322               		.stabn	68,0,64,.LM33-.LFBB7
+ 323               	.LM33:
+ 324 0010 85B1      		in r24,0x5
+ 325 0012 85B9      		out 0x5,r24
+  65:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		USART0_send(Data);
+ 326               		.stabn	68,0,65,.LM34-.LFBB7
+ 327               	.LM34:
+ 328 0014 81E4      		ldi r24,lo8(65)
+ 329 0016 0E94 0000 		call USART0_send
+  66:/home/cdm/Desktop/AVR/Serial/Serial/main.c **** 		PORTB &= ~0x00100000; // LED Off
+ 330               		.stabn	68,0,66,.LM35-.LFBB7
+ 331               	.LM35:
+ 332 001a 85B1      		in r24,0x5
+ 333 001c 85B9      		out 0x5,r24
+ 334 001e 00C0      		rjmp .L25
+ 335               		.size	main, .-main
+ 336               	.Lscope7:
+ 337               		.stabs	"",36,0,0,.Lscope7-.LFBB7
+ 338               		.stabd	78,0,0
+ 339               		.text
+ 340               		.stabs	"",100,0,0,.Letext0
+ 341               	.Letext0:
+ 342               		.ident	"GCC: (GNU) 5.4.0"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccJM7C7p.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccJM7C7p.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccJM7C7p.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccJM7C7p.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccJM7C7p.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccJM7C7p.s:109    .text:0000000000000000 setup
+     /tmp/ccJM7C7p.s:140    .text:000000000000000e USART0_init
+     /tmp/ccJM7C7p.s:177    .text:000000000000002c USART0_send
+     /tmp/ccJM7C7p.s:209    .text:0000000000000042 Timer1_init
+     /tmp/ccJM7C7p.s:239    .text:000000000000005a Timer1_10ms_delay
+     /tmp/ccJM7C7p.s:264    .text:0000000000000062 Timer1_1s_delay
+     /tmp/ccJM7C7p.s:300    .text.startup:0000000000000000 main
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,334 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/cdm/Desktop/AVR_Linux_Compiler/",100,0,2,.Ltext0
+   8               		.stabs	"/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=r(0,2);0;127;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"short _Fract:t(0,17)=r(0,1);1;0;",128,0,0,0
+  29               		.stabs	"_Fract:t(0,18)=r(0,1);2;0;",128,0,0,0
+  30               		.stabs	"long _Fract:t(0,19)=r(0,1);4;0;",128,0,0,0
+  31               		.stabs	"long long _Fract:t(0,20)=r(0,1);8;0;",128,0,0,0
+  32               		.stabs	"unsigned short _Fract:t(0,21)=r(0,1);1;0;",128,0,0,0
+  33               		.stabs	"unsigned _Fract:t(0,22)=r(0,1);2;0;",128,0,0,0
+  34               		.stabs	"unsigned long _Fract:t(0,23)=r(0,1);4;0;",128,0,0,0
+  35               		.stabs	"unsigned long long _Fract:t(0,24)=r(0,1);8;0;",128,0,0,0
+  36               		.stabs	"_Sat short _Fract:t(0,25)=r(0,1);1;0;",128,0,0,0
+  37               		.stabs	"_Sat _Fract:t(0,26)=r(0,1);2;0;",128,0,0,0
+  38               		.stabs	"_Sat long _Fract:t(0,27)=r(0,1);4;0;",128,0,0,0
+  39               		.stabs	"_Sat long long _Fract:t(0,28)=r(0,1);8;0;",128,0,0,0
+  40               		.stabs	"_Sat unsigned short _Fract:t(0,29)=r(0,1);1;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned _Fract:t(0,30)=r(0,1);2;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned long _Fract:t(0,31)=r(0,1);4;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long long _Fract:t(0,32)=r(0,1);8;0;",128,0,0,0
+  44               		.stabs	"short _Accum:t(0,33)=r(0,1);2;0;",128,0,0,0
+  45               		.stabs	"_Accum:t(0,34)=r(0,1);4;0;",128,0,0,0
+  46               		.stabs	"long _Accum:t(0,35)=r(0,1);8;0;",128,0,0,0
+  47               		.stabs	"long long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"unsigned short _Accum:t(0,37)=r(0,1);2;0;",128,0,0,0
+  49               		.stabs	"unsigned _Accum:t(0,38)=r(0,1);4;0;",128,0,0,0
+  50               		.stabs	"unsigned long _Accum:t(0,39)=r(0,1);8;0;",128,0,0,0
+  51               		.stabs	"unsigned long long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"_Sat short _Accum:t(0,41)=r(0,1);2;0;",128,0,0,0
+  53               		.stabs	"_Sat _Accum:t(0,42)=r(0,1);4;0;",128,0,0,0
+  54               		.stabs	"_Sat long _Accum:t(0,43)=r(0,1);8;0;",128,0,0,0
+  55               		.stabs	"_Sat long long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat unsigned short _Accum:t(0,45)=r(0,1);2;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned _Accum:t(0,46)=r(0,1);4;0;",128,0,0,0
+  58               		.stabs	"_Sat unsigned long _Accum:t(0,47)=r(0,1);8;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"void:t(0,49)=(0,49)",128,0,0,0
+  61               		.stabs	"/usr/lib/avr/include/avr/io.h",130,0,0,0
+  62               		.stabs	"/usr/lib/avr/include/avr/sfr_defs.h",130,0,0,0
+  63               		.stabs	"/usr/lib/avr/include/inttypes.h",130,0,0,0
+  64               		.stabs	"/usr/lib/gcc/avr/5.4.0/include/stdint.h",130,0,0,0
+  65               		.stabs	"/usr/lib/avr/include/stdint.h",130,0,0,0
+  66               		.stabs	"int8_t:t(5,1)=(0,12)",128,0,125,0
+  67               		.stabs	"uint8_t:t(5,2)=(0,13)",128,0,126,0
+  68               		.stabs	"int16_t:t(5,3)=(0,1)",128,0,127,0
+  69               		.stabs	"uint16_t:t(5,4)=(0,4)",128,0,128,0
+  70               		.stabs	"int32_t:t(5,5)=(0,3)",128,0,129,0
+  71               		.stabs	"uint32_t:t(5,6)=(0,5)",128,0,130,0
+  72               		.stabs	"int64_t:t(5,7)=(0,8)",128,0,132,0
+  73               		.stabs	"uint64_t:t(5,8)=(0,9)",128,0,133,0
+  74               		.stabs	"intptr_t:t(5,9)=(5,3)",128,0,146,0
+  75               		.stabs	"uintptr_t:t(5,10)=(5,4)",128,0,151,0
+  76               		.stabs	"int_least8_t:t(5,11)=(5,1)",128,0,163,0
+  77               		.stabs	"uint_least8_t:t(5,12)=(5,2)",128,0,168,0
+  78               		.stabs	"int_least16_t:t(5,13)=(5,3)",128,0,173,0
+  79               		.stabs	"uint_least16_t:t(5,14)=(5,4)",128,0,178,0
+  80               		.stabs	"int_least32_t:t(5,15)=(5,5)",128,0,183,0
+  81               		.stabs	"uint_least32_t:t(5,16)=(5,6)",128,0,188,0
+  82               		.stabs	"int_least64_t:t(5,17)=(5,7)",128,0,196,0
+  83               		.stabs	"uint_least64_t:t(5,18)=(5,8)",128,0,203,0
+  84               		.stabs	"int_fast8_t:t(5,19)=(5,1)",128,0,217,0
+  85               		.stabs	"uint_fast8_t:t(5,20)=(5,2)",128,0,222,0
+  86               		.stabs	"int_fast16_t:t(5,21)=(5,3)",128,0,227,0
+  87               		.stabs	"uint_fast16_t:t(5,22)=(5,4)",128,0,232,0
+  88               		.stabs	"int_fast32_t:t(5,23)=(5,5)",128,0,237,0
+  89               		.stabs	"uint_fast32_t:t(5,24)=(5,6)",128,0,242,0
+  90               		.stabs	"int_fast64_t:t(5,25)=(5,7)",128,0,250,0
+  91               		.stabs	"uint_fast64_t:t(5,26)=(5,8)",128,0,257,0
+  92               		.stabs	"intmax_t:t(5,27)=(5,7)",128,0,277,0
+  93               		.stabs	"uintmax_t:t(5,28)=(5,8)",128,0,282,0
+  94               		.stabn	162,0,0,0
+  95               		.stabn	162,0,0,0
+  96               		.stabs	"int_farptr_t:t(3,1)=(5,5)",128,0,77,0
+  97               		.stabs	"uint_farptr_t:t(3,2)=(5,6)",128,0,81,0
+  98               		.stabn	162,0,0,0
+  99               		.stabn	162,0,0,0
+ 100               		.stabs	"/usr/lib/avr/include/avr/fuse.h",130,0,0,0
+ 101               		.stabs	"__fuse_t:t(6,1)=(6,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 102               		.stabn	162,0,0,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabs	"setup:F(0,49)",36,0,21,setup
+ 105               	.global	setup
+ 106               		.type	setup, @function
+ 107               	setup:
+ 108               		.stabd	46,0,0
+   1:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** #define F_CPU 16000000UL
+   2:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** #include <avr/io.h>
+   3:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** #include <util/delay.h>
+   4:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+   5:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // 16bit Timer1
+   6:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // CTC(Clear Timer on Compare)
+   7:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // TCCR1B의 WGM(Waveform Generation Mode)12, CTC설정 비트 0100(13,12,11,10)
+   8:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+   9:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // TCCR1B의 CS12,11,10 제어
+  10:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // 8분주 -> 010
+  11:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  12:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // OCR1A(Output Compare Register)
+  13:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  14:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** // TIFR1 2번 비트 OCF1A flag
+  15:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  16:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void setup();
+  17:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void Timer1_init();
+  18:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void Timer1_10ms_delay();
+  19:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void Timer1_1s_delay();
+  20:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  21:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void setup(){
+ 109               		.stabn	68,0,21,.LM0-.LFBB1
+ 110               	.LM0:
+ 111               	.LFBB1:
+ 112               	/* prologue: function */
+ 113               	/* frame size = 0 */
+ 114               	/* stack size = 0 */
+ 115               	.L__stack_usage = 0
+  22:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	DDRB = 0xFF;
+ 116               		.stabn	68,0,22,.LM1-.LFBB1
+ 117               	.LM1:
+ 118 0000 8FEF      		ldi r24,lo8(-1)
+ 119 0002 84B9      		out 0x4,r24
+  23:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	PORTB = 0xFF;
+ 120               		.stabn	68,0,23,.LM2-.LFBB1
+ 121               	.LM2:
+ 122 0004 85B9      		out 0x5,r24
+ 123 0006 0895      		ret
+ 124               		.size	setup, .-setup
+ 125               	.Lscope1:
+ 126               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 127               		.stabd	78,0,0
+ 128               		.stabs	"Timer1_init:F(0,49)",36,0,26,Timer1_init
+ 129               	.global	Timer1_init
+ 130               		.type	Timer1_init, @function
+ 131               	Timer1_init:
+ 132               		.stabd	46,0,0
+  24:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** }
+  25:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  26:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void Timer1_init() {
+ 133               		.stabn	68,0,26,.LM3-.LFBB2
+ 134               	.LM3:
+ 135               	.LFBB2:
+ 136               	/* prologue: function */
+ 137               	/* frame size = 0 */
+ 138               	/* stack size = 0 */
+ 139               	.L__stack_usage = 0
+  27:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	TCCR1A = 0x00;        // WGM11, WGM10 -> 0
+ 140               		.stabn	68,0,27,.LM4-.LFBB2
+ 141               	.LM4:
+ 142 0008 1092 8000 		sts 128,__zero_reg__
+  28:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);  // WGM13, WGM12 -> 0100 (CTC 모드)
+ 143               		.stabn	68,0,28,.LM5-.LFBB2
+ 144               	.LM5:
+ 145 000c 8BE0      		ldi r24,lo8(11)
+ 146 000e 8093 8100 		sts 129,r24
+  29:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 														// CS12, CS11, CS10 -> 011 (분주비 64)
+  30:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	OCR1A = 0x09C4;        // 0x09C4 = 2500 1ms, 16MHz / 64 / 2500 = 10Hz, 10ms 주기
+ 147               		.stabn	68,0,30,.LM6-.LFBB2
+ 148               	.LM6:
+ 149 0012 84EC      		ldi r24,lo8(-60)
+ 150 0014 99E0      		ldi r25,lo8(9)
+ 151 0016 9093 8900 		sts 136+1,r25
+ 152 001a 8093 8800 		sts 136,r24
+ 153 001e 0895      		ret
+ 154               		.size	Timer1_init, .-Timer1_init
+ 155               	.Lscope2:
+ 156               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 157               		.stabd	78,0,0
+ 158               		.stabs	"Timer1_10ms_delay:F(0,49)",36,0,33,Timer1_10ms_delay
+ 159               	.global	Timer1_10ms_delay
+ 160               		.type	Timer1_10ms_delay, @function
+ 161               	Timer1_10ms_delay:
+ 162               		.stabd	46,0,0
+  31:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** }
+  32:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  33:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void Timer1_10ms_delay() {
+ 163               		.stabn	68,0,33,.LM7-.LFBB3
+ 164               	.LM7:
+ 165               	.LFBB3:
+ 166               	/* prologue: function */
+ 167               	/* frame size = 0 */
+ 168               	/* stack size = 0 */
+ 169               	.L__stack_usage = 0
+ 170               	.L4:
+  34:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	while (!(TIFR1 & (1 << OCF1A)));
+ 171               		.stabn	68,0,34,.LM8-.LFBB3
+ 172               	.LM8:
+ 173 0020 B19B      		sbis 0x16,1
+ 174 0022 00C0      		rjmp .L4
+  35:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	TIFR1 |= (1 << OCF1A);  // Output Compare Flag 초기화
+ 175               		.stabn	68,0,35,.LM9-.LFBB3
+ 176               	.LM9:
+ 177 0024 B19A      		sbi 0x16,1
+ 178 0026 0895      		ret
+ 179               		.size	Timer1_10ms_delay, .-Timer1_10ms_delay
+ 180               	.Lscope3:
+ 181               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 182               		.stabd	78,0,0
+ 183               		.stabs	"Timer1_1s_delay:F(0,49)",36,0,38,Timer1_1s_delay
+ 184               	.global	Timer1_1s_delay
+ 185               		.type	Timer1_1s_delay, @function
+ 186               	Timer1_1s_delay:
+ 187               		.stabd	46,0,0
+  36:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** }
+  37:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  38:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void Timer1_1s_delay(){
+ 188               		.stabn	68,0,38,.LM10-.LFBB4
+ 189               	.LM10:
+ 190               	.LFBB4:
+ 191               	/* prologue: function */
+ 192               	/* frame size = 0 */
+ 193               	/* stack size = 0 */
+ 194               	.L__stack_usage = 0
+ 195               		.stabn	68,0,38,.LM11-.LFBB4
+ 196               	.LM11:
+ 197 0028 84E6      		ldi r24,lo8(100)
+ 198               	.L9:
+  39:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	unsigned char count = 0;
+  40:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	
+  41:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	count = 100;
+  42:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	while(count){
+  43:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		while (!(TIFR1 & (1 << OCF1A)));
+ 199               		.stabn	68,0,43,.LM12-.LFBB4
+ 200               	.LM12:
+ 201 002a B19B      		sbis 0x16,1
+ 202 002c 00C0      		rjmp .L9
+  44:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		TIFR1 |= (1 << OCF1A);  // Output Compare Flag 초기화
+ 203               		.stabn	68,0,44,.LM13-.LFBB4
+ 204               	.LM13:
+ 205 002e B19A      		sbi 0x16,1
+ 206 0030 8150      		subi r24,lo8(-(-1))
+  42:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		while (!(TIFR1 & (1 << OCF1A)));
+ 207               		.stabn	68,0,42,.LM14-.LFBB4
+ 208               	.LM14:
+ 209 0032 01F4      		brne .L9
+ 210               	/* epilogue start */
+  45:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		count--;
+  46:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 	}
+  47:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** }
+ 211               		.stabn	68,0,47,.LM15-.LFBB4
+ 212               	.LM15:
+ 213 0034 0895      		ret
+ 214               		.size	Timer1_1s_delay, .-Timer1_1s_delay
+ 215               	.Lscope4:
+ 216               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 217               		.stabd	78,0,0
+ 218               		.section	.text.startup,"ax",@progbits
+ 219               		.stabs	"main:F(0,49)",36,0,49,main
+ 220               	.global	main
+ 221               		.type	main, @function
+ 222               	main:
+ 223               		.stabd	46,0,0
+  48:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 
+  49:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** void main(){
+ 224               		.stabn	68,0,49,.LM16-.LFBB5
+ 225               	.LM16:
+ 226               	.LFBB5:
+ 227               	/* prologue: function */
+ 228               	/* frame size = 0 */
+ 229               	/* stack size = 0 */
+ 230               	.L__stack_usage = 0
+  50:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		setup();
+ 231               		.stabn	68,0,50,.LM17-.LFBB5
+ 232               	.LM17:
+ 233 0000 0E94 0000 		call setup
+  51:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		Timer1_init();
+ 234               		.stabn	68,0,51,.LM18-.LFBB5
+ 235               	.LM18:
+ 236 0004 0E94 0000 		call Timer1_init
+  52:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		
+  53:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 		while(1){
+  54:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 			PORTB = 0xFF;
+ 237               		.stabn	68,0,54,.LM19-.LFBB5
+ 238               	.LM19:
+ 239 0008 CFEF      		ldi r28,lo8(-1)
+ 240               	.L15:
+ 241               		.stabn	68,0,54,.LM20-.LFBB5
+ 242               	.LM20:
+ 243 000a C5B9      		out 0x5,r28
+  55:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 			Timer1_1s_delay();
+ 244               		.stabn	68,0,55,.LM21-.LFBB5
+ 245               	.LM21:
+ 246 000c 0E94 0000 		call Timer1_1s_delay
+  56:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 			
+  57:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 			PORTB = 0x00;
+ 247               		.stabn	68,0,57,.LM22-.LFBB5
+ 248               	.LM22:
+ 249 0010 15B8      		out 0x5,__zero_reg__
+  58:/home/cdm/Desktop/AVR/Timer_compare/Timer_compare/main.c **** 			Timer1_1s_delay();
+ 250               		.stabn	68,0,58,.LM23-.LFBB5
+ 251               	.LM23:
+ 252 0012 0E94 0000 		call Timer1_1s_delay
+ 253 0016 00C0      		rjmp .L15
+ 254               		.size	main, .-main
+ 255               	.Lscope5:
+ 256               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 257               		.stabd	78,0,0
+ 258               		.text
+ 259               		.stabs	"",100,0,0,.Letext0
+ 260               	.Letext0:
+ 261               		.ident	"GCC: (GNU) 5.4.0"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccuBuDSI.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccuBuDSI.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccuBuDSI.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccuBuDSI.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccuBuDSI.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccuBuDSI.s:107    .text:0000000000000000 setup
+     /tmp/ccuBuDSI.s:131    .text:0000000000000008 Timer1_init
+     /tmp/ccuBuDSI.s:161    .text:0000000000000020 Timer1_10ms_delay
+     /tmp/ccuBuDSI.s:186    .text:0000000000000028 Timer1_1s_delay
+     /tmp/ccuBuDSI.s:222    .text.startup:0000000000000000 main
+
+NO UNDEFINED SYMBOLS
