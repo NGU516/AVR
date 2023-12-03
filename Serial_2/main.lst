@@ -4,7 +4,7 @@
    4               	__SREG__ = 0x3f
    5               	__tmp_reg__ = 0
    6               	__zero_reg__ = 1
-   7               		.stabs	"/home/cdm/Desktop/AVR_Linux_Compiler/",100,0,2,.Ltext0
+   7               		.stabs	"/home/cdm/Desktop/",100,0,2,.Ltext0
    8               		.stabs	"/home/cdm/Desktop/AVR/Serial_2/main.c",100,0,2,.Ltext0
    9               		.text
   10               	.Ltext0:
@@ -551,19 +551,19 @@
  440               		.ident	"GCC: (GNU) 5.4.0"
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccw7BXKn.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccw7BXKn.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccw7BXKn.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccw7BXKn.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccw7BXKn.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccw7BXKn.s:107    .text:0000000000000000 setup
-     /tmp/ccw7BXKn.s:138    .text:000000000000000e USART0_init
-     /tmp/ccw7BXKn.s:175    .text:000000000000002c USART0_send
-     /tmp/ccw7BXKn.s:207    .text:0000000000000042 USART0_read
-     /tmp/ccw7BXKn.s:235    .text:0000000000000050 Timer1_init
-     /tmp/ccw7BXKn.s:265    .text:0000000000000068 Timer1_10ms_delay
-     /tmp/ccw7BXKn.s:290    .text:0000000000000070 Timer1_100ms_delay
-     /tmp/ccw7BXKn.s:325    .text:000000000000007e Timer1_1s_delay
-     /tmp/ccw7BXKn.s:361    .text.startup:0000000000000000 main
+     /tmp/ccquU9Xd.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccquU9Xd.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccquU9Xd.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccquU9Xd.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccquU9Xd.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccquU9Xd.s:107    .text:0000000000000000 setup
+     /tmp/ccquU9Xd.s:138    .text:000000000000000e USART0_init
+     /tmp/ccquU9Xd.s:175    .text:000000000000002c USART0_send
+     /tmp/ccquU9Xd.s:207    .text:0000000000000042 USART0_read
+     /tmp/ccquU9Xd.s:235    .text:0000000000000050 Timer1_init
+     /tmp/ccquU9Xd.s:265    .text:0000000000000068 Timer1_10ms_delay
+     /tmp/ccquU9Xd.s:290    .text:0000000000000070 Timer1_100ms_delay
+     /tmp/ccquU9Xd.s:325    .text:000000000000007e Timer1_1s_delay
+     /tmp/ccquU9Xd.s:361    .text.startup:0000000000000000 main
 
 NO UNDEFINED SYMBOLS

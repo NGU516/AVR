@@ -1,0 +1,619 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/cdm/Desktop/",100,0,2,.Ltext0
+   8               		.stabs	"/home/cdm/Desktop/AVR/Interrupt/main.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=r(0,2);0;127;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"short _Fract:t(0,17)=r(0,1);1;0;",128,0,0,0
+  29               		.stabs	"_Fract:t(0,18)=r(0,1);2;0;",128,0,0,0
+  30               		.stabs	"long _Fract:t(0,19)=r(0,1);4;0;",128,0,0,0
+  31               		.stabs	"long long _Fract:t(0,20)=r(0,1);8;0;",128,0,0,0
+  32               		.stabs	"unsigned short _Fract:t(0,21)=r(0,1);1;0;",128,0,0,0
+  33               		.stabs	"unsigned _Fract:t(0,22)=r(0,1);2;0;",128,0,0,0
+  34               		.stabs	"unsigned long _Fract:t(0,23)=r(0,1);4;0;",128,0,0,0
+  35               		.stabs	"unsigned long long _Fract:t(0,24)=r(0,1);8;0;",128,0,0,0
+  36               		.stabs	"_Sat short _Fract:t(0,25)=r(0,1);1;0;",128,0,0,0
+  37               		.stabs	"_Sat _Fract:t(0,26)=r(0,1);2;0;",128,0,0,0
+  38               		.stabs	"_Sat long _Fract:t(0,27)=r(0,1);4;0;",128,0,0,0
+  39               		.stabs	"_Sat long long _Fract:t(0,28)=r(0,1);8;0;",128,0,0,0
+  40               		.stabs	"_Sat unsigned short _Fract:t(0,29)=r(0,1);1;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned _Fract:t(0,30)=r(0,1);2;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned long _Fract:t(0,31)=r(0,1);4;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long long _Fract:t(0,32)=r(0,1);8;0;",128,0,0,0
+  44               		.stabs	"short _Accum:t(0,33)=r(0,1);2;0;",128,0,0,0
+  45               		.stabs	"_Accum:t(0,34)=r(0,1);4;0;",128,0,0,0
+  46               		.stabs	"long _Accum:t(0,35)=r(0,1);8;0;",128,0,0,0
+  47               		.stabs	"long long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"unsigned short _Accum:t(0,37)=r(0,1);2;0;",128,0,0,0
+  49               		.stabs	"unsigned _Accum:t(0,38)=r(0,1);4;0;",128,0,0,0
+  50               		.stabs	"unsigned long _Accum:t(0,39)=r(0,1);8;0;",128,0,0,0
+  51               		.stabs	"unsigned long long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"_Sat short _Accum:t(0,41)=r(0,1);2;0;",128,0,0,0
+  53               		.stabs	"_Sat _Accum:t(0,42)=r(0,1);4;0;",128,0,0,0
+  54               		.stabs	"_Sat long _Accum:t(0,43)=r(0,1);8;0;",128,0,0,0
+  55               		.stabs	"_Sat long long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat unsigned short _Accum:t(0,45)=r(0,1);2;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned _Accum:t(0,46)=r(0,1);4;0;",128,0,0,0
+  58               		.stabs	"_Sat unsigned long _Accum:t(0,47)=r(0,1);8;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"void:t(0,49)=(0,49)",128,0,0,0
+  61               		.stabs	"/usr/lib/avr/include/avr/io.h",130,0,0,0
+  62               		.stabs	"/usr/lib/avr/include/avr/sfr_defs.h",130,0,0,0
+  63               		.stabs	"/usr/lib/avr/include/inttypes.h",130,0,0,0
+  64               		.stabs	"/usr/lib/gcc/avr/5.4.0/include/stdint.h",130,0,0,0
+  65               		.stabs	"/usr/lib/avr/include/stdint.h",130,0,0,0
+  66               		.stabs	"int8_t:t(5,1)=(0,12)",128,0,125,0
+  67               		.stabs	"uint8_t:t(5,2)=(0,13)",128,0,126,0
+  68               		.stabs	"int16_t:t(5,3)=(0,1)",128,0,127,0
+  69               		.stabs	"uint16_t:t(5,4)=(0,4)",128,0,128,0
+  70               		.stabs	"int32_t:t(5,5)=(0,3)",128,0,129,0
+  71               		.stabs	"uint32_t:t(5,6)=(0,5)",128,0,130,0
+  72               		.stabs	"int64_t:t(5,7)=(0,8)",128,0,132,0
+  73               		.stabs	"uint64_t:t(5,8)=(0,9)",128,0,133,0
+  74               		.stabs	"intptr_t:t(5,9)=(5,3)",128,0,146,0
+  75               		.stabs	"uintptr_t:t(5,10)=(5,4)",128,0,151,0
+  76               		.stabs	"int_least8_t:t(5,11)=(5,1)",128,0,163,0
+  77               		.stabs	"uint_least8_t:t(5,12)=(5,2)",128,0,168,0
+  78               		.stabs	"int_least16_t:t(5,13)=(5,3)",128,0,173,0
+  79               		.stabs	"uint_least16_t:t(5,14)=(5,4)",128,0,178,0
+  80               		.stabs	"int_least32_t:t(5,15)=(5,5)",128,0,183,0
+  81               		.stabs	"uint_least32_t:t(5,16)=(5,6)",128,0,188,0
+  82               		.stabs	"int_least64_t:t(5,17)=(5,7)",128,0,196,0
+  83               		.stabs	"uint_least64_t:t(5,18)=(5,8)",128,0,203,0
+  84               		.stabs	"int_fast8_t:t(5,19)=(5,1)",128,0,217,0
+  85               		.stabs	"uint_fast8_t:t(5,20)=(5,2)",128,0,222,0
+  86               		.stabs	"int_fast16_t:t(5,21)=(5,3)",128,0,227,0
+  87               		.stabs	"uint_fast16_t:t(5,22)=(5,4)",128,0,232,0
+  88               		.stabs	"int_fast32_t:t(5,23)=(5,5)",128,0,237,0
+  89               		.stabs	"uint_fast32_t:t(5,24)=(5,6)",128,0,242,0
+  90               		.stabs	"int_fast64_t:t(5,25)=(5,7)",128,0,250,0
+  91               		.stabs	"uint_fast64_t:t(5,26)=(5,8)",128,0,257,0
+  92               		.stabs	"intmax_t:t(5,27)=(5,7)",128,0,277,0
+  93               		.stabs	"uintmax_t:t(5,28)=(5,8)",128,0,282,0
+  94               		.stabn	162,0,0,0
+  95               		.stabn	162,0,0,0
+  96               		.stabs	"int_farptr_t:t(3,1)=(5,5)",128,0,77,0
+  97               		.stabs	"uint_farptr_t:t(3,2)=(5,6)",128,0,81,0
+  98               		.stabn	162,0,0,0
+  99               		.stabn	162,0,0,0
+ 100               		.stabs	"/usr/lib/avr/include/avr/fuse.h",130,0,0,0
+ 101               		.stabs	"__fuse_t:t(6,1)=(6,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 102               		.stabn	162,0,0,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabs	"setup:F(0,49)",36,0,16,setup
+ 105               	.global	setup
+ 106               		.type	setup, @function
+ 107               	setup:
+ 108               		.stabd	46,0,0
+   1:/home/cdm/Desktop/AVR/Interrupt/main.c **** #ifndef F_CPU
+   2:/home/cdm/Desktop/AVR/Interrupt/main.c **** #define F_CPU 16000000UL
+   3:/home/cdm/Desktop/AVR/Interrupt/main.c **** #endif
+   4:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+   5:/home/cdm/Desktop/AVR/Interrupt/main.c **** #include <avr/io.h>
+   6:/home/cdm/Desktop/AVR/Interrupt/main.c **** #include <util/delay.h>
+   7:/home/cdm/Desktop/AVR/Interrupt/main.c **** #include <avr/interrupt.h>
+   8:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+   9:/home/cdm/Desktop/AVR/Interrupt/main.c **** #define BTN 0x01
+  10:/home/cdm/Desktop/AVR/Interrupt/main.c **** #define RED 0x02
+  11:/home/cdm/Desktop/AVR/Interrupt/main.c **** #define LED 0x20
+  12:/home/cdm/Desktop/AVR/Interrupt/main.c **** #define input_value PINB
+  13:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  14:/home/cdm/Desktop/AVR/Interrupt/main.c **** volatile unsigned char state = 0;
+  15:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  16:/home/cdm/Desktop/AVR/Interrupt/main.c **** void setup() {
+ 109               		.stabn	68,0,16,.LM0-.LFBB1
+ 110               	.LM0:
+ 111               	.LFBB1:
+ 112               	/* prologue: function */
+ 113               	/* frame size = 0 */
+ 114               	/* stack size = 0 */
+ 115               	.L__stack_usage = 0
+  17:/home/cdm/Desktop/AVR/Interrupt/main.c ****     DDRB = 0xFF;
+ 116               		.stabn	68,0,17,.LM1-.LFBB1
+ 117               	.LM1:
+ 118 0000 8FEF      		ldi r24,lo8(-1)
+ 119 0002 84B9      		out 0x4,r24
+  18:/home/cdm/Desktop/AVR/Interrupt/main.c ****     PORTB = 0xFF;
+ 120               		.stabn	68,0,18,.LM2-.LFBB1
+ 121               	.LM2:
+ 122 0004 85B9      		out 0x5,r24
+  19:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  20:/home/cdm/Desktop/AVR/Interrupt/main.c ****     DDRD = 0x04;
+ 123               		.stabn	68,0,20,.LM3-.LFBB1
+ 124               	.LM3:
+ 125 0006 84E0      		ldi r24,lo8(4)
+ 126 0008 8AB9      		out 0xa,r24
+ 127 000a 0895      		ret
+ 128               		.size	setup, .-setup
+ 129               	.Lscope1:
+ 130               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 131               		.stabd	78,0,0
+ 132               		.stabs	"Timer1_init:F(0,49)",36,0,23,Timer1_init
+ 133               	.global	Timer1_init
+ 134               		.type	Timer1_init, @function
+ 135               	Timer1_init:
+ 136               		.stabd	46,0,0
+  21:/home/cdm/Desktop/AVR/Interrupt/main.c **** }
+  22:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  23:/home/cdm/Desktop/AVR/Interrupt/main.c **** void Timer1_init() {
+ 137               		.stabn	68,0,23,.LM4-.LFBB2
+ 138               	.LM4:
+ 139               	.LFBB2:
+ 140               	/* prologue: function */
+ 141               	/* frame size = 0 */
+ 142               	/* stack size = 0 */
+ 143               	.L__stack_usage = 0
+  24:/home/cdm/Desktop/AVR/Interrupt/main.c ****     TCCR1A = 0x00;        // WGM11, WGM10 -> 0
+ 144               		.stabn	68,0,24,.LM5-.LFBB2
+ 145               	.LM5:
+ 146 000c 1092 8000 		sts 128,__zero_reg__
+  25:/home/cdm/Desktop/AVR/Interrupt/main.c ****     TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);  // WGM13, WGM12 -> 0100 (CTC 모드), CS12,
+ 147               		.stabn	68,0,25,.LM6-.LFBB2
+ 148               	.LM6:
+ 149 0010 8BE0      		ldi r24,lo8(11)
+ 150 0012 8093 8100 		sts 129,r24
+  26:/home/cdm/Desktop/AVR/Interrupt/main.c ****     OCR1A = 0x3e8;        // 0x09C4 = 2500 1ms, 16MHz / 64 / 2500 = 10Hz, 10ms 주기
+ 151               		.stabn	68,0,26,.LM7-.LFBB2
+ 152               	.LM7:
+ 153 0016 88EE      		ldi r24,lo8(-24)
+ 154 0018 93E0      		ldi r25,lo8(3)
+ 155 001a 9093 8900 		sts 136+1,r25
+ 156 001e 8093 8800 		sts 136,r24
+ 157 0022 0895      		ret
+ 158               		.size	Timer1_init, .-Timer1_init
+ 159               	.Lscope2:
+ 160               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 161               		.stabd	78,0,0
+ 162               		.stabs	"Timer1_1s_delay:F(0,49)",36,0,29,Timer1_1s_delay
+ 163               	.global	Timer1_1s_delay
+ 164               		.type	Timer1_1s_delay, @function
+ 165               	Timer1_1s_delay:
+ 166               		.stabd	46,0,0
+  27:/home/cdm/Desktop/AVR/Interrupt/main.c **** }
+  28:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  29:/home/cdm/Desktop/AVR/Interrupt/main.c **** void Timer1_1s_delay() {
+ 167               		.stabn	68,0,29,.LM8-.LFBB3
+ 168               	.LM8:
+ 169               	.LFBB3:
+ 170               	/* prologue: function */
+ 171               	/* frame size = 0 */
+ 172               	/* stack size = 0 */
+ 173               	.L__stack_usage = 0
+ 174               	.LBB8:
+ 175               	.LBB9:
+ 176               		.stabs	"/usr/lib/avr/include/util/delay.h",132,0,0,.Ltext1
+ 177               	.Ltext1:
+   1:/usr/lib/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/lib/avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/lib/avr/include/util/delay.h **** 
+   6:/usr/lib/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/lib/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/lib/avr/include/util/delay.h **** 
+   9:/usr/lib/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/lib/avr/include/util/delay.h **** 
+  12:/usr/lib/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/lib/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/lib/avr/include/util/delay.h ****      distribution.
+  16:/usr/lib/avr/include/util/delay.h **** 
+  17:/usr/lib/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/lib/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/lib/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/lib/avr/include/util/delay.h **** 
+  21:/usr/lib/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/lib/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/lib/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/lib/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/lib/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/lib/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/lib/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/lib/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/lib/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/lib/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/lib/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/lib/avr/include/util/delay.h **** 
+  33:/usr/lib/avr/include/util/delay.h **** /* $Id$ */
+  34:/usr/lib/avr/include/util/delay.h **** 
+  35:/usr/lib/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/lib/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/lib/avr/include/util/delay.h **** 
+  38:/usr/lib/avr/include/util/delay.h **** #ifndef __DOXYGEN__
+  39:/usr/lib/avr/include/util/delay.h **** #  ifndef __HAS_DELAY_CYCLES
+  40:/usr/lib/avr/include/util/delay.h **** #    define __HAS_DELAY_CYCLES 1
+  41:/usr/lib/avr/include/util/delay.h **** #  endif
+  42:/usr/lib/avr/include/util/delay.h **** #endif  /* __DOXYGEN__ */
+  43:/usr/lib/avr/include/util/delay.h **** 
+  44:/usr/lib/avr/include/util/delay.h **** #include <inttypes.h>
+  45:/usr/lib/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  46:/usr/lib/avr/include/util/delay.h **** #include <math.h>
+  47:/usr/lib/avr/include/util/delay.h **** 
+  48:/usr/lib/avr/include/util/delay.h **** /** \file */
+  49:/usr/lib/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  50:/usr/lib/avr/include/util/delay.h ****     \code
+  51:/usr/lib/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  52:/usr/lib/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  53:/usr/lib/avr/include/util/delay.h ****     #include <util/delay.h>
+  54:/usr/lib/avr/include/util/delay.h ****     \endcode
+  55:/usr/lib/avr/include/util/delay.h **** 
+  56:/usr/lib/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  57:/usr/lib/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  58:/usr/lib/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  59:/usr/lib/avr/include/util/delay.h ****     used.
+  60:/usr/lib/avr/include/util/delay.h **** 
+  61:/usr/lib/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  62:/usr/lib/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  63:/usr/lib/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  64:/usr/lib/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  65:/usr/lib/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  66:/usr/lib/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  67:/usr/lib/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  68:/usr/lib/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  69:/usr/lib/avr/include/util/delay.h **** 
+  70:/usr/lib/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  71:/usr/lib/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  72:/usr/lib/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  73:/usr/lib/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  74:/usr/lib/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  75:/usr/lib/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  76:/usr/lib/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  77:/usr/lib/avr/include/util/delay.h ****     routines linked into the application.
+  78:/usr/lib/avr/include/util/delay.h **** 
+  79:/usr/lib/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  80:/usr/lib/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  81:/usr/lib/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  82:/usr/lib/avr/include/util/delay.h **** 
+  83:/usr/lib/avr/include/util/delay.h **** */
+  84:/usr/lib/avr/include/util/delay.h **** 
+  85:/usr/lib/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  86:/usr/lib/avr/include/util/delay.h **** static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+  87:/usr/lib/avr/include/util/delay.h **** static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
+  88:/usr/lib/avr/include/util/delay.h **** #endif
+  89:/usr/lib/avr/include/util/delay.h **** 
+  90:/usr/lib/avr/include/util/delay.h **** #ifndef F_CPU
+  91:/usr/lib/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  92:/usr/lib/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  93:/usr/lib/avr/include/util/delay.h **** /** \ingroup util_delay
+  94:/usr/lib/avr/include/util/delay.h ****     \def F_CPU
+  95:/usr/lib/avr/include/util/delay.h ****     \brief CPU frequency in Hz
+  96:/usr/lib/avr/include/util/delay.h **** 
+  97:/usr/lib/avr/include/util/delay.h ****     The macro F_CPU specifies the CPU frequency to be considered by
+  98:/usr/lib/avr/include/util/delay.h ****     the delay macros.  This macro is normally supplied by the
+  99:/usr/lib/avr/include/util/delay.h ****     environment (e.g. from within a project header, or the project's
+ 100:/usr/lib/avr/include/util/delay.h ****     Makefile).  The value 1 MHz here is only provided as a "vanilla"
+ 101:/usr/lib/avr/include/util/delay.h ****     fallback if no such user-provided definition could be found.
+ 102:/usr/lib/avr/include/util/delay.h **** 
+ 103:/usr/lib/avr/include/util/delay.h ****     In terms of the delay functions, the CPU frequency can be given as
+ 104:/usr/lib/avr/include/util/delay.h ****     a floating-point constant (e.g. 3.6864E6 for 3.6864 MHz).
+ 105:/usr/lib/avr/include/util/delay.h ****     However, the macros in <util/setbaud.h> require it to be an
+ 106:/usr/lib/avr/include/util/delay.h ****     integer value.
+ 107:/usr/lib/avr/include/util/delay.h ****  */
+ 108:/usr/lib/avr/include/util/delay.h **** # define F_CPU 1000000UL
+ 109:/usr/lib/avr/include/util/delay.h **** #endif
+ 110:/usr/lib/avr/include/util/delay.h **** 
+ 111:/usr/lib/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+ 112:/usr/lib/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+ 113:/usr/lib/avr/include/util/delay.h **** #endif
+ 114:/usr/lib/avr/include/util/delay.h **** 
+ 115:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 116:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 117:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 118:/usr/lib/avr/include/util/delay.h **** #  include <math.h>
+ 119:/usr/lib/avr/include/util/delay.h **** #endif
+ 120:/usr/lib/avr/include/util/delay.h **** 
+ 121:/usr/lib/avr/include/util/delay.h **** /**
+ 122:/usr/lib/avr/include/util/delay.h ****    \ingroup util_delay
+ 123:/usr/lib/avr/include/util/delay.h **** 
+ 124:/usr/lib/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 125:/usr/lib/avr/include/util/delay.h **** 
+ 126:/usr/lib/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 127:/usr/lib/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 128:/usr/lib/avr/include/util/delay.h **** 
+ 129:/usr/lib/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 130:/usr/lib/avr/include/util/delay.h **** 
+ 131:/usr/lib/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 132:/usr/lib/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 133:/usr/lib/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 134:/usr/lib/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 135:/usr/lib/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 136:/usr/lib/avr/include/util/delay.h **** 
+ 137:/usr/lib/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 138:/usr/lib/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 139:/usr/lib/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 140:/usr/lib/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 141:/usr/lib/avr/include/util/delay.h **** 
+ 142:/usr/lib/avr/include/util/delay.h ****    Conversion of \c __ms into clock cycles may not always result in
+ 143:/usr/lib/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 144:/usr/lib/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __ms
+ 145:/usr/lib/avr/include/util/delay.h ****    microseconds of delay.
+ 146:/usr/lib/avr/include/util/delay.h **** 
+ 147:/usr/lib/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 148:/usr/lib/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 149:/usr/lib/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 150:/usr/lib/avr/include/util/delay.h ****    respectively.
+ 151:/usr/lib/avr/include/util/delay.h **** 
+ 152:/usr/lib/avr/include/util/delay.h ****    \note
+ 153:/usr/lib/avr/include/util/delay.h **** 
+ 154:/usr/lib/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 155:/usr/lib/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 156:/usr/lib/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 157:/usr/lib/avr/include/util/delay.h ****    with previous versions, the macro \c "__DELAY_BACKWARD_COMPATIBLE__"
+ 158:/usr/lib/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 159:/usr/lib/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 160:/usr/lib/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 161:/usr/lib/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 162:/usr/lib/avr/include/util/delay.h ****    not available to the compiler then.
+ 163:/usr/lib/avr/include/util/delay.h **** 
+ 164:/usr/lib/avr/include/util/delay.h ****  */
+ 165:/usr/lib/avr/include/util/delay.h **** void
+ 166:/usr/lib/avr/include/util/delay.h **** _delay_ms(double __ms)
+ 167:/usr/lib/avr/include/util/delay.h **** {
+ 168:/usr/lib/avr/include/util/delay.h **** 	double __tmp ;
+ 169:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 170:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 171:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 172:/usr/lib/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 173:/usr/lib/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 174:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 175:/usr/lib/avr/include/util/delay.h **** 
+ 176:/usr/lib/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 177:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 178:/usr/lib/avr/include/util/delay.h **** 
+ 179:/usr/lib/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 180:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 181:/usr/lib/avr/include/util/delay.h **** 
+ 182:/usr/lib/avr/include/util/delay.h **** 	#else
+ 183:/usr/lib/avr/include/util/delay.h **** 		//round up by default
+ 184:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 185:/usr/lib/avr/include/util/delay.h **** 	#endif
+ 186:/usr/lib/avr/include/util/delay.h **** 
+ 187:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 178               		.stabn	68,0,187,.LM9-.LFBB3
+ 179               	.LM9:
+ 180 0024 2FEF      		ldi r18,lo8(3199999)
+ 181 0026 83ED      		ldi r24,hi8(3199999)
+ 182 0028 90E3      		ldi r25,hlo8(3199999)
+ 183 002a 2150      	1:	subi r18,1
+ 184 002c 8040      		sbci r24,0
+ 185 002e 9040      		sbci r25,0
+ 186 0030 01F4      		brne 1b
+ 187 0032 00C0      		rjmp .
+ 188 0034 0000      		nop
+ 189 0036 0895      		ret
+ 190               	.LBE9:
+ 191               	.LBE8:
+ 192               		.size	Timer1_1s_delay, .-Timer1_1s_delay
+ 193               	.Lscope3:
+ 194               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 195               		.stabd	78,0,0
+ 196               		.stabs	"EXTINT_init:F(0,49)",36,0,35,EXTINT_init
+ 197               	.global	EXTINT_init
+ 198               		.type	EXTINT_init, @function
+ 199               	EXTINT_init:
+ 200               		.stabd	46,0,0
+ 201               		.stabs	"/home/cdm/Desktop/AVR/Interrupt/main.c",132,0,0,.Ltext2
+ 202               	.Ltext2:
+  30:/home/cdm/Desktop/AVR/Interrupt/main.c ****     _delay_ms(1000);  // 1초 지연
+  31:/home/cdm/Desktop/AVR/Interrupt/main.c **** }
+  32:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  33:/home/cdm/Desktop/AVR/Interrupt/main.c **** // ... (이전 코드는 변경되지 않음)
+  34:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  35:/home/cdm/Desktop/AVR/Interrupt/main.c **** void EXTINT_init() {     // External interrupt 초기화
+ 203               		.stabn	68,0,35,.LM10-.LFBB4
+ 204               	.LM10:
+ 205               	.LFBB4:
+ 206               	/* prologue: function */
+ 207               	/* frame size = 0 */
+ 208               	/* stack size = 0 */
+ 209               	.L__stack_usage = 0
+  36:/home/cdm/Desktop/AVR/Interrupt/main.c ****     EIMSK = 0x01;   // INTF0 허용
+ 210               		.stabn	68,0,36,.LM11-.LFBB4
+ 211               	.LM11:
+ 212 0038 81E0      		ldi r24,lo8(1)
+ 213 003a 8DBB      		out 0x1d,r24
+  37:/home/cdm/Desktop/AVR/Interrupt/main.c ****     EICRA = 0x02;   // falling edge 일 때 interrupt 발생
+ 214               		.stabn	68,0,37,.LM12-.LFBB4
+ 215               	.LM12:
+ 216 003c 82E0      		ldi r24,lo8(2)
+ 217 003e 8093 6900 		sts 105,r24
+ 218 0042 0895      		ret
+ 219               		.size	EXTINT_init, .-EXTINT_init
+ 220               	.Lscope4:
+ 221               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 222               		.stabd	78,0,0
+ 223               		.stabs	"__vector_1:F(0,49)",36,0,40,__vector_1
+ 224               	.global	__vector_1
+ 225               		.type	__vector_1, @function
+ 226               	__vector_1:
+ 227               		.stabd	46,0,0
+  38:/home/cdm/Desktop/AVR/Interrupt/main.c **** }
+  39:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  40:/home/cdm/Desktop/AVR/Interrupt/main.c **** ISR(INT0_vect) {        // INT0이 falling edge일 때 인터럽트 발생
+ 228               		.stabn	68,0,40,.LM13-.LFBB5
+ 229               	.LM13:
+ 230               	.LFBB5:
+ 231 0044 1F92      		push r1
+ 232 0046 0F92      		push r0
+ 233 0048 0FB6      		in r0,__SREG__
+ 234 004a 0F92      		push r0
+ 235 004c 1124      		clr __zero_reg__
+ 236 004e 8F93      		push r24
+ 237               	/* prologue: Signal */
+ 238               	/* frame size = 0 */
+ 239               	/* stack size = 4 */
+ 240               	.L__stack_usage = 4
+  41:/home/cdm/Desktop/AVR/Interrupt/main.c ****     state = 1;
+ 241               		.stabn	68,0,41,.LM14-.LFBB5
+ 242               	.LM14:
+ 243 0050 81E0      		ldi r24,lo8(1)
+ 244 0052 8093 0000 		sts state,r24
+ 245               	/* epilogue start */
+  42:/home/cdm/Desktop/AVR/Interrupt/main.c **** }
+ 246               		.stabn	68,0,42,.LM15-.LFBB5
+ 247               	.LM15:
+ 248 0056 8F91      		pop r24
+ 249 0058 0F90      		pop r0
+ 250 005a 0FBE      		out __SREG__,r0
+ 251 005c 0F90      		pop r0
+ 252 005e 1F90      		pop r1
+ 253 0060 1895      		reti
+ 254               		.size	__vector_1, .-__vector_1
+ 255               	.Lscope5:
+ 256               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 257               		.stabd	78,0,0
+ 258               		.section	.text.startup,"ax",@progbits
+ 259               		.stabs	"main:F(0,1)",36,0,44,main
+ 260               	.global	main
+ 261               		.type	main, @function
+ 262               	main:
+ 263               		.stabd	46,0,0
+  43:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  44:/home/cdm/Desktop/AVR/Interrupt/main.c **** int main() {
+ 264               		.stabn	68,0,44,.LM16-.LFBB6
+ 265               	.LM16:
+ 266               	.LFBB6:
+ 267               	/* prologue: function */
+ 268               	/* frame size = 0 */
+ 269               	/* stack size = 0 */
+ 270               	.L__stack_usage = 0
+  45:/home/cdm/Desktop/AVR/Interrupt/main.c ****     setup();    // PORT 초기화
+ 271               		.stabn	68,0,45,.LM17-.LFBB6
+ 272               	.LM17:
+ 273 0000 0E94 0000 		call setup
+  46:/home/cdm/Desktop/AVR/Interrupt/main.c ****     Timer1_init();      // 타이머 초기화
+ 274               		.stabn	68,0,46,.LM18-.LFBB6
+ 275               	.LM18:
+ 276 0004 0E94 0000 		call Timer1_init
+  47:/home/cdm/Desktop/AVR/Interrupt/main.c ****     EXTINT_init();
+ 277               		.stabn	68,0,47,.LM19-.LFBB6
+ 278               	.LM19:
+ 279 0008 0E94 0000 		call EXTINT_init
+  48:/home/cdm/Desktop/AVR/Interrupt/main.c ****     sei();      // 모든 interrupt 허용
+ 280               		.stabn	68,0,48,.LM20-.LFBB6
+ 281               	.LM20:
+ 282               	/* #APP */
+ 283               	 ;  48 "/home/cdm/Desktop/AVR/Interrupt/main.c" 1
+ 284 000c 7894      		sei
+ 285               	 ;  0 "" 2
+ 286               	/* #NOAPP */
+ 287               	.L9:
+  49:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  50:/home/cdm/Desktop/AVR/Interrupt/main.c ****     while (1) {
+  51:/home/cdm/Desktop/AVR/Interrupt/main.c ****         PORTB = 0x00;
+ 288               		.stabn	68,0,51,.LM21-.LFBB6
+ 289               	.LM21:
+ 290 000e 15B8      		out 0x5,__zero_reg__
+  52:/home/cdm/Desktop/AVR/Interrupt/main.c **** 
+  53:/home/cdm/Desktop/AVR/Interrupt/main.c ****         if ((input_value & BTN) == BTN) {  // 버튼이 눌렸을 때
+ 291               		.stabn	68,0,53,.LM22-.LFBB6
+ 292               	.LM22:
+ 293 0010 189B      		sbis 0x3,0
+ 294 0012 00C0      		rjmp .L7
+  54:/home/cdm/Desktop/AVR/Interrupt/main.c ****             PORTD |= (1 << PORTD2);  // PD2, INT0
+ 295               		.stabn	68,0,54,.LM23-.LFBB6
+ 296               	.LM23:
+ 297 0014 5A9A      		sbi 0xb,2
+  55:/home/cdm/Desktop/AVR/Interrupt/main.c ****             if(state == 1){
+ 298               		.stabn	68,0,55,.LM24-.LFBB6
+ 299               	.LM24:
+ 300 0016 8091 0000 		lds r24,state
+ 301 001a 8130      		cpi r24,lo8(1)
+ 302 001c 01F4      		brne .L8
+  56:/home/cdm/Desktop/AVR/Interrupt/main.c ****                 PORTB |= RED;  // RED만 켜기
+ 303               		.stabn	68,0,56,.LM25-.LFBB6
+ 304               	.LM25:
+ 305 001e 299A      		sbi 0x5,1
+ 306               	.LBB10:
+ 307               	.LBB11:
+ 308               	.LBB12:
+ 309               		.stabs	"/usr/lib/avr/include/util/delay.h",132,0,0,.Ltext3
+ 310               	.Ltext3:
+ 311               		.stabn	68,0,187,.LM26-.LFBB6
+ 312               	.LM26:
+ 313 0020 2FEF      		ldi r18,lo8(3199999)
+ 314 0022 83ED      		ldi r24,hi8(3199999)
+ 315 0024 90E3      		ldi r25,hlo8(3199999)
+ 316 0026 2150      	1:	subi r18,1
+ 317 0028 8040      		sbci r24,0
+ 318 002a 9040      		sbci r25,0
+ 319 002c 01F4      		brne 1b
+ 320 002e 00C0      		rjmp .
+ 321 0030 0000      		nop
+ 322               	.L8:
+ 323               	.LBE12:
+ 324               	.LBE11:
+ 325               	.LBE10:
+ 326               		.stabs	"/home/cdm/Desktop/AVR/Interrupt/main.c",132,0,0,.Ltext4
+ 327               	.Ltext4:
+  57:/home/cdm/Desktop/AVR/Interrupt/main.c ****             Timer1_1s_delay();
+  58:/home/cdm/Desktop/AVR/Interrupt/main.c ****             }
+  59:/home/cdm/Desktop/AVR/Interrupt/main.c ****             PORTD &= ~(1 << PORTD2);  // PD2, INT0 다시 LOW로 설정
+ 328               		.stabn	68,0,59,.LM27-.LFBB6
+ 329               	.LM27:
+ 330 0032 5A98      		cbi 0xb,2
+ 331               	.L7:
+  60:/home/cdm/Desktop/AVR/Interrupt/main.c ****         }
+  61:/home/cdm/Desktop/AVR/Interrupt/main.c ****         state = 0;  // 상태 초기화
+ 332               		.stabn	68,0,61,.LM28-.LFBB6
+ 333               	.LM28:
+ 334 0034 1092 0000 		sts state,__zero_reg__
+  62:/home/cdm/Desktop/AVR/Interrupt/main.c ****     }
+ 335               		.stabn	68,0,62,.LM29-.LFBB6
+ 336               	.LM29:
+ 337 0038 00C0      		rjmp .L9
+ 338               		.size	main, .-main
+ 339               	.Lscope6:
+ 340               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 341               		.stabd	78,0,0
+ 342               	.global	state
+ 343               		.section .bss
+ 344               		.type	state, @object
+ 345               		.size	state, 1
+ 346               	state:
+ 347 0000 00        		.zero	1
+ 348               		.stabs	"state:G(0,50)=B(0,13)",32,0,14,0
+ 349               		.text
+ 350               		.stabs	"",100,0,0,.Letext0
+ 351               	.Letext0:
+ 352               		.ident	"GCC: (GNU) 5.4.0"
+ 353               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccgRBbrS.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccgRBbrS.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccgRBbrS.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccgRBbrS.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccgRBbrS.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccgRBbrS.s:107    .text:0000000000000000 setup
+     /tmp/ccgRBbrS.s:135    .text:000000000000000c Timer1_init
+     /tmp/ccgRBbrS.s:165    .text:0000000000000024 Timer1_1s_delay
+     /tmp/ccgRBbrS.s:199    .text:0000000000000038 EXTINT_init
+     /tmp/ccgRBbrS.s:226    .text:0000000000000044 __vector_1
+     /tmp/ccgRBbrS.s:346    .bss:0000000000000000 state
+     /tmp/ccgRBbrS.s:262    .text.startup:0000000000000000 main
+
+UNDEFINED SYMBOLS
+__do_clear_bss
