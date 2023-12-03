@@ -30,8 +30,6 @@ void Timer1_1s_delay() {
     _delay_ms(1000);  // 1초 지연
 }
 
-// ... (이전 코드는 변경되지 않음)
-
 void EXTINT_init() {     // External interrupt 초기화
     EIMSK = 0x01;   // INTF0 허용
     EICRA = 0x02;   // falling edge 일 때 interrupt 발생
@@ -51,7 +49,7 @@ int main() {
         PORTB = 0x00;
 
         if ((input_value & BTN) == BTN) {  // 버튼이 눌렸을 때
-            PORTD |= (1 << PORTD2);  // PD2, INT0
+            PORTD |= (1 << PORTD2);  // PD2, INT0 인터럽트 발생
             if(state == 1){
                 PORTB |= RED;  // RED만 켜기
             Timer1_1s_delay();
