@@ -31,7 +31,7 @@ void USART0_send(unsigned char Data){
 void Timer1_init() {
 	TCCR1A = 0x00;        // WGM11, WGM10 -> 0
 	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);  // WGM13, WGM12 -> 0100 (CTC 모드), CS12, CS11, CS10 -> 011 (분주비 64)
-	OCR1A = 0x3e8;        // 0x09C4 = 2500 1ms, 16MHz / 64 / 2500 = 10Hz, 10ms 주기
+	OCR1A = 0x09C4;        // 0x09C4 = 2500 1ms, 16MHz / 64 / 2500 = 10Hz, 10ms 주기
 }
 
 void Timer1_10ms_delay() {
