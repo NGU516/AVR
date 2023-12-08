@@ -1,0 +1,999 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.stabs	"/home/cdm/Desktop/",100,0,2,.Ltext0
+   8               		.stabs	"/home/cdm/Desktop/AVR/Object_detection_serial/main.c",100,0,2,.Ltext0
+   9               		.text
+  10               	.Ltext0:
+  11               		.stabs	"gcc2_compiled.",60,0,0,0
+  12               		.stabs	"int:t(0,1)=r(0,1);-32768;32767;",128,0,0,0
+  13               		.stabs	"char:t(0,2)=r(0,2);0;127;",128,0,0,0
+  14               		.stabs	"long int:t(0,3)=@s32;r(0,3);020000000000;017777777777;",128,0,0,0
+  15               		.stabs	"unsigned int:t(0,4)=r(0,4);0;0177777;",128,0,0,0
+  16               		.stabs	"long unsigned int:t(0,5)=@s32;r(0,5);0;037777777777;",128,0,0,0
+  17               		.stabs	"__int128:t(0,6)=@s128;r(0,6);02000000000000000000000000000000000000000000;0177777777777777
+  18               		.stabs	"__int128 unsigned:t(0,7)=@s128;r(0,7);0;03777777777777777777777777777777777777777777;",128
+  19               		.stabs	"long long int:t(0,8)=@s64;r(0,8);01000000000000000000000;00777777777777777777777;",128,0,0
+  20               		.stabs	"long long unsigned int:t(0,9)=@s64;r(0,9);0;01777777777777777777777;",128,0,0,0
+  21               		.stabs	"short int:t(0,10)=r(0,10);-32768;32767;",128,0,0,0
+  22               		.stabs	"short unsigned int:t(0,11)=r(0,11);0;0177777;",128,0,0,0
+  23               		.stabs	"signed char:t(0,12)=@s8;r(0,12);-128;127;",128,0,0,0
+  24               		.stabs	"unsigned char:t(0,13)=@s8;r(0,13);0;255;",128,0,0,0
+  25               		.stabs	"float:t(0,14)=r(0,1);4;0;",128,0,0,0
+  26               		.stabs	"double:t(0,15)=r(0,1);4;0;",128,0,0,0
+  27               		.stabs	"long double:t(0,16)=r(0,1);4;0;",128,0,0,0
+  28               		.stabs	"short _Fract:t(0,17)=r(0,1);1;0;",128,0,0,0
+  29               		.stabs	"_Fract:t(0,18)=r(0,1);2;0;",128,0,0,0
+  30               		.stabs	"long _Fract:t(0,19)=r(0,1);4;0;",128,0,0,0
+  31               		.stabs	"long long _Fract:t(0,20)=r(0,1);8;0;",128,0,0,0
+  32               		.stabs	"unsigned short _Fract:t(0,21)=r(0,1);1;0;",128,0,0,0
+  33               		.stabs	"unsigned _Fract:t(0,22)=r(0,1);2;0;",128,0,0,0
+  34               		.stabs	"unsigned long _Fract:t(0,23)=r(0,1);4;0;",128,0,0,0
+  35               		.stabs	"unsigned long long _Fract:t(0,24)=r(0,1);8;0;",128,0,0,0
+  36               		.stabs	"_Sat short _Fract:t(0,25)=r(0,1);1;0;",128,0,0,0
+  37               		.stabs	"_Sat _Fract:t(0,26)=r(0,1);2;0;",128,0,0,0
+  38               		.stabs	"_Sat long _Fract:t(0,27)=r(0,1);4;0;",128,0,0,0
+  39               		.stabs	"_Sat long long _Fract:t(0,28)=r(0,1);8;0;",128,0,0,0
+  40               		.stabs	"_Sat unsigned short _Fract:t(0,29)=r(0,1);1;0;",128,0,0,0
+  41               		.stabs	"_Sat unsigned _Fract:t(0,30)=r(0,1);2;0;",128,0,0,0
+  42               		.stabs	"_Sat unsigned long _Fract:t(0,31)=r(0,1);4;0;",128,0,0,0
+  43               		.stabs	"_Sat unsigned long long _Fract:t(0,32)=r(0,1);8;0;",128,0,0,0
+  44               		.stabs	"short _Accum:t(0,33)=r(0,1);2;0;",128,0,0,0
+  45               		.stabs	"_Accum:t(0,34)=r(0,1);4;0;",128,0,0,0
+  46               		.stabs	"long _Accum:t(0,35)=r(0,1);8;0;",128,0,0,0
+  47               		.stabs	"long long _Accum:t(0,36)=r(0,1);8;0;",128,0,0,0
+  48               		.stabs	"unsigned short _Accum:t(0,37)=r(0,1);2;0;",128,0,0,0
+  49               		.stabs	"unsigned _Accum:t(0,38)=r(0,1);4;0;",128,0,0,0
+  50               		.stabs	"unsigned long _Accum:t(0,39)=r(0,1);8;0;",128,0,0,0
+  51               		.stabs	"unsigned long long _Accum:t(0,40)=r(0,1);8;0;",128,0,0,0
+  52               		.stabs	"_Sat short _Accum:t(0,41)=r(0,1);2;0;",128,0,0,0
+  53               		.stabs	"_Sat _Accum:t(0,42)=r(0,1);4;0;",128,0,0,0
+  54               		.stabs	"_Sat long _Accum:t(0,43)=r(0,1);8;0;",128,0,0,0
+  55               		.stabs	"_Sat long long _Accum:t(0,44)=r(0,1);8;0;",128,0,0,0
+  56               		.stabs	"_Sat unsigned short _Accum:t(0,45)=r(0,1);2;0;",128,0,0,0
+  57               		.stabs	"_Sat unsigned _Accum:t(0,46)=r(0,1);4;0;",128,0,0,0
+  58               		.stabs	"_Sat unsigned long _Accum:t(0,47)=r(0,1);8;0;",128,0,0,0
+  59               		.stabs	"_Sat unsigned long long _Accum:t(0,48)=r(0,1);8;0;",128,0,0,0
+  60               		.stabs	"void:t(0,49)=(0,49)",128,0,0,0
+  61               		.stabs	"/usr/lib/avr/include/avr/io.h",130,0,0,0
+  62               		.stabs	"/usr/lib/avr/include/avr/sfr_defs.h",130,0,0,0
+  63               		.stabs	"/usr/lib/avr/include/inttypes.h",130,0,0,0
+  64               		.stabs	"/usr/lib/gcc/avr/5.4.0/include/stdint.h",130,0,0,0
+  65               		.stabs	"/usr/lib/avr/include/stdint.h",130,0,0,0
+  66               		.stabs	"int8_t:t(5,1)=(0,12)",128,0,125,0
+  67               		.stabs	"uint8_t:t(5,2)=(0,13)",128,0,126,0
+  68               		.stabs	"int16_t:t(5,3)=(0,1)",128,0,127,0
+  69               		.stabs	"uint16_t:t(5,4)=(0,4)",128,0,128,0
+  70               		.stabs	"int32_t:t(5,5)=(0,3)",128,0,129,0
+  71               		.stabs	"uint32_t:t(5,6)=(0,5)",128,0,130,0
+  72               		.stabs	"int64_t:t(5,7)=(0,8)",128,0,132,0
+  73               		.stabs	"uint64_t:t(5,8)=(0,9)",128,0,133,0
+  74               		.stabs	"intptr_t:t(5,9)=(5,3)",128,0,146,0
+  75               		.stabs	"uintptr_t:t(5,10)=(5,4)",128,0,151,0
+  76               		.stabs	"int_least8_t:t(5,11)=(5,1)",128,0,163,0
+  77               		.stabs	"uint_least8_t:t(5,12)=(5,2)",128,0,168,0
+  78               		.stabs	"int_least16_t:t(5,13)=(5,3)",128,0,173,0
+  79               		.stabs	"uint_least16_t:t(5,14)=(5,4)",128,0,178,0
+  80               		.stabs	"int_least32_t:t(5,15)=(5,5)",128,0,183,0
+  81               		.stabs	"uint_least32_t:t(5,16)=(5,6)",128,0,188,0
+  82               		.stabs	"int_least64_t:t(5,17)=(5,7)",128,0,196,0
+  83               		.stabs	"uint_least64_t:t(5,18)=(5,8)",128,0,203,0
+  84               		.stabs	"int_fast8_t:t(5,19)=(5,1)",128,0,217,0
+  85               		.stabs	"uint_fast8_t:t(5,20)=(5,2)",128,0,222,0
+  86               		.stabs	"int_fast16_t:t(5,21)=(5,3)",128,0,227,0
+  87               		.stabs	"uint_fast16_t:t(5,22)=(5,4)",128,0,232,0
+  88               		.stabs	"int_fast32_t:t(5,23)=(5,5)",128,0,237,0
+  89               		.stabs	"uint_fast32_t:t(5,24)=(5,6)",128,0,242,0
+  90               		.stabs	"int_fast64_t:t(5,25)=(5,7)",128,0,250,0
+  91               		.stabs	"uint_fast64_t:t(5,26)=(5,8)",128,0,257,0
+  92               		.stabs	"intmax_t:t(5,27)=(5,7)",128,0,277,0
+  93               		.stabs	"uintmax_t:t(5,28)=(5,8)",128,0,282,0
+  94               		.stabn	162,0,0,0
+  95               		.stabn	162,0,0,0
+  96               		.stabs	"int_farptr_t:t(3,1)=(5,5)",128,0,77,0
+  97               		.stabs	"uint_farptr_t:t(3,2)=(5,6)",128,0,81,0
+  98               		.stabn	162,0,0,0
+  99               		.stabn	162,0,0,0
+ 100               		.stabs	"/usr/lib/avr/include/avr/fuse.h",130,0,0,0
+ 101               		.stabs	"__fuse_t:t(6,1)=(6,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
+ 102               		.stabn	162,0,0,0
+ 103               		.stabn	162,0,0,0
+ 104               		.stabs	"setup:F(0,49)",36,0,14,setup
+ 105               	.global	setup
+ 106               		.type	setup, @function
+ 107               	setup:
+ 108               		.stabd	46,0,0
+   1:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #include <avr/io.h>
+   2:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #include <util/delay.h>
+   3:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #include <avr/interrupt.h>
+   4:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #include <stdint.h>
+   5:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+   6:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #define RED   0x02   // D9, PB1
+   7:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #define GREEN 0x04   // D10, PB2
+   8:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #define BLUE  0x08   // D11, PB3
+   9:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** #define LED   0x20   // D13, PB5
+  10:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  11:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** volatile uint32_t Data = 0;        // 4BYTE 버퍼
+  12:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** volatile unsigned char Count_Data = 0; // 4개받으면 초기화
+  13:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  14:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void setup() {
+ 109               		.stabn	68,0,14,.LM0-.LFBB1
+ 110               	.LM0:
+ 111               	.LFBB1:
+ 112               	/* prologue: function */
+ 113               	/* frame size = 0 */
+ 114               	/* stack size = 0 */
+ 115               	.L__stack_usage = 0
+  15:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     DDRB = 0xFF;
+ 116               		.stabn	68,0,15,.LM1-.LFBB1
+ 117               	.LM1:
+ 118 0000 8FEF      		ldi r24,lo8(-1)
+ 119 0002 84B9      		out 0x4,r24
+  16:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     PORTB = 0x00;
+ 120               		.stabn	68,0,16,.LM2-.LFBB1
+ 121               	.LM2:
+ 122 0004 15B8      		out 0x5,__zero_reg__
+  17:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  18:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     DDRD = 0x02;  // PD0 = RXD 로 입력 설정, PD1 = TXD 로 출력 설정
+ 123               		.stabn	68,0,18,.LM3-.LFBB1
+ 124               	.LM3:
+ 125 0006 92E0      		ldi r25,lo8(2)
+ 126 0008 9AB9      		out 0xa,r25
+  19:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     PORTD = 0xFF; // 포트 초기화
+ 127               		.stabn	68,0,19,.LM4-.LFBB1
+ 128               	.LM4:
+ 129 000a 8BB9      		out 0xb,r24
+ 130 000c 0895      		ret
+ 131               		.size	setup, .-setup
+ 132               	.Lscope1:
+ 133               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 134               		.stabd	78,0,0
+ 135               		.stabs	"USART0_init:F(0,49)",36,0,22,USART0_init
+ 136               	.global	USART0_init
+ 137               		.type	USART0_init, @function
+ 138               	USART0_init:
+ 139               		.stabd	46,0,0
+  20:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+  21:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  22:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void USART0_init(void) {
+ 140               		.stabn	68,0,22,.LM5-.LFBB2
+ 141               	.LM5:
+ 142               	.LFBB2:
+ 143               	/* prologue: function */
+ 144               	/* frame size = 0 */
+ 145               	/* stack size = 0 */
+ 146               	.L__stack_usage = 0
+  23:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     UBRR0H = 0x00; // USART Baud Rate Register High, 9600 baud rate
+ 147               		.stabn	68,0,23,.LM6-.LFBB2
+ 148               	.LM6:
+ 149 000e 1092 C500 		sts 197,__zero_reg__
+  24:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     UBRR0L = 103;  // USART Baud Rate Register Low, 9600 baud rate
+ 150               		.stabn	68,0,24,.LM7-.LFBB2
+ 151               	.LM7:
+ 152 0012 87E6      		ldi r24,lo8(103)
+ 153 0014 8093 C400 		sts 196,r24
+  25:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  26:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     UCSR0A = 0x20;  // 0b00100000, USART Data Reister Empty, 초기화시 비어있음.
+ 154               		.stabn	68,0,26,.LM8-.LFBB2
+ 155               	.LM8:
+ 156 0018 80E2      		ldi r24,lo8(32)
+ 157 001a 8093 C000 		sts 192,r24
+  27:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     UCSR0B = (1 << RXEN0) | (1 << RXCIE0); // 수신 인터럽트 설정
+ 158               		.stabn	68,0,27,.LM9-.LFBB2
+ 159               	.LM9:
+ 160 001e 80E9      		ldi r24,lo8(-112)
+ 161 0020 8093 C100 		sts 193,r24
+  28:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8-bit 데이터 포맷
+ 162               		.stabn	68,0,28,.LM10-.LFBB2
+ 163               	.LM10:
+ 164 0024 86E0      		ldi r24,lo8(6)
+ 165 0026 8093 C200 		sts 194,r24
+ 166 002a 0895      		ret
+ 167               		.size	USART0_init, .-USART0_init
+ 168               	.Lscope2:
+ 169               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 170               		.stabd	78,0,0
+ 171               		.stabs	"USART0_send:F(0,49)",36,0,31,USART0_send
+ 172               	.global	USART0_send
+ 173               		.type	USART0_send, @function
+ 174               	USART0_send:
+ 175               		.stabd	46,0,0
+  29:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+  30:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  31:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void USART0_send(uint32_t Data) {
+ 176               		.stabn	68,0,31,.LM11-.LFBB3
+ 177               	.LM11:
+ 178               	.LFBB3:
+ 179               	/* prologue: function */
+ 180               	/* frame size = 0 */
+ 181               	/* stack size = 0 */
+ 182               	.L__stack_usage = 0
+ 183               	.L4:
+  32:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     while (!(UCSR0A & (1 << UDRE0)))
+ 184               		.stabn	68,0,32,.LM12-.LFBB3
+ 185               	.LM12:
+ 186 002c 8091 C000 		lds r24,192
+ 187 0030 85FF      		sbrs r24,5
+ 188 0032 00C0      		rjmp .L4
+  33:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         ; // 데이터가 빌 때까지 대기
+  34:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     UDR0 = Data;
+ 189               		.stabn	68,0,34,.LM13-.LFBB3
+ 190               	.LM13:
+ 191 0034 6093 C600 		sts 198,r22
+ 192 0038 0895      		ret
+ 193               		.size	USART0_send, .-USART0_send
+ 194               	.Lscope3:
+ 195               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 196               		.stabd	78,0,0
+ 197               		.stabs	"Timer1_init:F(0,49)",36,0,37,Timer1_init
+ 198               	.global	Timer1_init
+ 199               		.type	Timer1_init, @function
+ 200               	Timer1_init:
+ 201               		.stabd	46,0,0
+  35:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+  36:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  37:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void Timer1_init() {
+ 202               		.stabn	68,0,37,.LM14-.LFBB4
+ 203               	.LM14:
+ 204               	.LFBB4:
+ 205               	/* prologue: function */
+ 206               	/* frame size = 0 */
+ 207               	/* stack size = 0 */
+ 208               	.L__stack_usage = 0
+  38:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     TCCR1A = 0x00;                                    // WGM11, WGM10 -> 0
+ 209               		.stabn	68,0,38,.LM15-.LFBB4
+ 210               	.LM15:
+ 211 003a 1092 8000 		sts 128,__zero_reg__
+  39:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10); // WGM13, WGM12 -> 0100 (CTC 모드), CS12, 
+ 212               		.stabn	68,0,39,.LM16-.LFBB4
+ 213               	.LM16:
+ 214 003e 8BE0      		ldi r24,lo8(11)
+ 215 0040 8093 8100 		sts 129,r24
+  40:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     OCR1A = 0x09C4;                                    // 0x09C4 = 2500 1ms, 16MHz / 64 / 2500 = 10
+ 216               		.stabn	68,0,40,.LM17-.LFBB4
+ 217               	.LM17:
+ 218 0044 84EC      		ldi r24,lo8(-60)
+ 219 0046 99E0      		ldi r25,lo8(9)
+ 220 0048 9093 8900 		sts 136+1,r25
+ 221 004c 8093 8800 		sts 136,r24
+ 222 0050 0895      		ret
+ 223               		.size	Timer1_init, .-Timer1_init
+ 224               	.Lscope4:
+ 225               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 226               		.stabd	78,0,0
+ 227               		.stabs	"Timer1_10ms_delay:F(0,49)",36,0,43,Timer1_10ms_delay
+ 228               	.global	Timer1_10ms_delay
+ 229               		.type	Timer1_10ms_delay, @function
+ 230               	Timer1_10ms_delay:
+ 231               		.stabd	46,0,0
+  41:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+  42:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  43:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void Timer1_10ms_delay() {
+ 232               		.stabn	68,0,43,.LM18-.LFBB5
+ 233               	.LM18:
+ 234               	.LFBB5:
+ 235               	/* prologue: function */
+ 236               	/* frame size = 0 */
+ 237               	/* stack size = 0 */
+ 238               	.L__stack_usage = 0
+ 239               	.L10:
+  44:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     while (!(TIFR1 & (1 << OCF1A)))
+ 240               		.stabn	68,0,44,.LM19-.LFBB5
+ 241               	.LM19:
+ 242 0052 B19B      		sbis 0x16,1
+ 243 0054 00C0      		rjmp .L10
+  45:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         ;
+  46:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     TIFR1 |= (1 << OCF1A); // Output Compare Flag 초기화
+ 244               		.stabn	68,0,46,.LM20-.LFBB5
+ 245               	.LM20:
+ 246 0056 B19A      		sbi 0x16,1
+ 247 0058 0895      		ret
+ 248               		.size	Timer1_10ms_delay, .-Timer1_10ms_delay
+ 249               	.Lscope5:
+ 250               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 251               		.stabd	78,0,0
+ 252               		.stabs	"Timer1_100ms_delay:F(0,49)",36,0,49,Timer1_100ms_delay
+ 253               	.global	Timer1_100ms_delay
+ 254               		.type	Timer1_100ms_delay, @function
+ 255               	Timer1_100ms_delay:
+ 256               		.stabd	46,0,0
+  47:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+  48:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  49:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void Timer1_100ms_delay() {
+ 257               		.stabn	68,0,49,.LM21-.LFBB6
+ 258               	.LM21:
+ 259               	.LFBB6:
+ 260               	/* prologue: function */
+ 261               	/* frame size = 0 */
+ 262               	/* stack size = 0 */
+ 263               	.L__stack_usage = 0
+ 264               		.stabn	68,0,49,.LM22-.LFBB6
+ 265               	.LM22:
+ 266 005a 8AE0      		ldi r24,lo8(10)
+ 267               	.L14:
+  50:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     unsigned char count = 0;
+  51:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  52:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     count = 10;
+  53:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     while (count) {
+  54:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         while (!(TIFR1 & (1 << OCF1A)));
+ 268               		.stabn	68,0,54,.LM23-.LFBB6
+ 269               	.LM23:
+ 270 005c B19B      		sbis 0x16,1
+ 271 005e 00C0      		rjmp .L14
+  55:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         TIFR1 |= (1 << OCF1A); // Output Compare Flag 초기화
+ 272               		.stabn	68,0,55,.LM24-.LFBB6
+ 273               	.LM24:
+ 274 0060 B19A      		sbi 0x16,1
+ 275 0062 8150      		subi r24,lo8(-(-1))
+  53:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         while (!(TIFR1 & (1 << OCF1A)));
+ 276               		.stabn	68,0,53,.LM25-.LFBB6
+ 277               	.LM25:
+ 278 0064 01F4      		brne .L14
+ 279               	/* epilogue start */
+  56:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         count--;
+  57:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     }
+  58:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+ 280               		.stabn	68,0,58,.LM26-.LFBB6
+ 281               	.LM26:
+ 282 0066 0895      		ret
+ 283               		.size	Timer1_100ms_delay, .-Timer1_100ms_delay
+ 284               	.Lscope6:
+ 285               		.stabs	"",36,0,0,.Lscope6-.LFBB6
+ 286               		.stabd	78,0,0
+ 287               		.stabs	"Timer1_1s_delay:F(0,49)",36,0,60,Timer1_1s_delay
+ 288               	.global	Timer1_1s_delay
+ 289               		.type	Timer1_1s_delay, @function
+ 290               	Timer1_1s_delay:
+ 291               		.stabd	46,0,0
+  59:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  60:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** void Timer1_1s_delay() {
+ 292               		.stabn	68,0,60,.LM27-.LFBB7
+ 293               	.LM27:
+ 294               	.LFBB7:
+ 295               	/* prologue: function */
+ 296               	/* frame size = 0 */
+ 297               	/* stack size = 0 */
+ 298               	.L__stack_usage = 0
+ 299               		.stabn	68,0,60,.LM28-.LFBB7
+ 300               	.LM28:
+ 301 0068 84E6      		ldi r24,lo8(100)
+ 302               	.L20:
+  61:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     unsigned char count = 0;
+  62:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  63:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     count = 100;
+  64:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     while (count) {
+  65:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         while (!(TIFR1 & (1 << OCF1A)));
+ 303               		.stabn	68,0,65,.LM29-.LFBB7
+ 304               	.LM29:
+ 305 006a B19B      		sbis 0x16,1
+ 306 006c 00C0      		rjmp .L20
+  66:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         TIFR1 |= (1 << OCF1A); // Output Compare Flag 초기화
+ 307               		.stabn	68,0,66,.LM30-.LFBB7
+ 308               	.LM30:
+ 309 006e B19A      		sbi 0x16,1
+ 310 0070 8150      		subi r24,lo8(-(-1))
+  64:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         while (!(TIFR1 & (1 << OCF1A)));
+ 311               		.stabn	68,0,64,.LM31-.LFBB7
+ 312               	.LM31:
+ 313 0072 01F4      		brne .L20
+ 314               	/* epilogue start */
+  67:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         count--;
+  68:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     }
+  69:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+ 315               		.stabn	68,0,69,.LM32-.LFBB7
+ 316               	.LM32:
+ 317 0074 0895      		ret
+ 318               		.size	Timer1_1s_delay, .-Timer1_1s_delay
+ 319               	.Lscope7:
+ 320               		.stabs	"",36,0,0,.Lscope7-.LFBB7
+ 321               		.stabd	78,0,0
+ 322               		.stabs	"__vector_18:F(0,49)",36,0,71,__vector_18
+ 323               	.global	__vector_18
+ 324               		.type	__vector_18, @function
+ 325               	__vector_18:
+ 326               		.stabd	46,0,0
+  70:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  71:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** ISR(USART_RX_vect) { // 수신 인터럽트
+ 327               		.stabn	68,0,71,.LM33-.LFBB8
+ 328               	.LM33:
+ 329               	.LFBB8:
+ 330 0076 1F92      		push r1
+ 331 0078 0F92      		push r0
+ 332 007a 0FB6      		in r0,__SREG__
+ 333 007c 0F92      		push r0
+ 334 007e 1124      		clr __zero_reg__
+ 335 0080 2F93      		push r18
+ 336 0082 3F93      		push r19
+ 337 0084 4F93      		push r20
+ 338 0086 5F93      		push r21
+ 339 0088 6F93      		push r22
+ 340 008a 7F93      		push r23
+ 341 008c 8F93      		push r24
+ 342 008e 9F93      		push r25
+ 343 0090 AF93      		push r26
+ 344 0092 BF93      		push r27
+ 345               	/* prologue: Signal */
+ 346               	/* frame size = 0 */
+ 347               	/* stack size = 13 */
+ 348               	.L__stack_usage = 13
+ 349               		.stabn	68,0,71,.LM34-.LFBB8
+ 350               	.LM34:
+ 351 0094 20E0      		ldi r18,0
+ 352 0096 30E0      		ldi r19,0
+ 353               	.L26:
+ 354               	.LBB5:
+ 355               	.LBB6:
+ 356               	.LBB7:
+ 357               		.stabs	"/usr/lib/avr/include/util/delay.h",132,0,0,.Ltext1
+ 358               	.Ltext1:
+   1:/usr/lib/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/lib/avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/lib/avr/include/util/delay.h **** 
+   6:/usr/lib/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/lib/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/lib/avr/include/util/delay.h **** 
+   9:/usr/lib/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/lib/avr/include/util/delay.h **** 
+  12:/usr/lib/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/lib/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/lib/avr/include/util/delay.h ****      distribution.
+  16:/usr/lib/avr/include/util/delay.h **** 
+  17:/usr/lib/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/lib/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/lib/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/lib/avr/include/util/delay.h **** 
+  21:/usr/lib/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/lib/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/lib/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/lib/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/lib/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/lib/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/lib/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/lib/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/lib/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/lib/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/lib/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/lib/avr/include/util/delay.h **** 
+  33:/usr/lib/avr/include/util/delay.h **** /* $Id$ */
+  34:/usr/lib/avr/include/util/delay.h **** 
+  35:/usr/lib/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/lib/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/lib/avr/include/util/delay.h **** 
+  38:/usr/lib/avr/include/util/delay.h **** #ifndef __DOXYGEN__
+  39:/usr/lib/avr/include/util/delay.h **** #  ifndef __HAS_DELAY_CYCLES
+  40:/usr/lib/avr/include/util/delay.h **** #    define __HAS_DELAY_CYCLES 1
+  41:/usr/lib/avr/include/util/delay.h **** #  endif
+  42:/usr/lib/avr/include/util/delay.h **** #endif  /* __DOXYGEN__ */
+  43:/usr/lib/avr/include/util/delay.h **** 
+  44:/usr/lib/avr/include/util/delay.h **** #include <inttypes.h>
+  45:/usr/lib/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  46:/usr/lib/avr/include/util/delay.h **** #include <math.h>
+  47:/usr/lib/avr/include/util/delay.h **** 
+  48:/usr/lib/avr/include/util/delay.h **** /** \file */
+  49:/usr/lib/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  50:/usr/lib/avr/include/util/delay.h ****     \code
+  51:/usr/lib/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  52:/usr/lib/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  53:/usr/lib/avr/include/util/delay.h ****     #include <util/delay.h>
+  54:/usr/lib/avr/include/util/delay.h ****     \endcode
+  55:/usr/lib/avr/include/util/delay.h **** 
+  56:/usr/lib/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  57:/usr/lib/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  58:/usr/lib/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  59:/usr/lib/avr/include/util/delay.h ****     used.
+  60:/usr/lib/avr/include/util/delay.h **** 
+  61:/usr/lib/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  62:/usr/lib/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  63:/usr/lib/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  64:/usr/lib/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  65:/usr/lib/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  66:/usr/lib/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  67:/usr/lib/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  68:/usr/lib/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  69:/usr/lib/avr/include/util/delay.h **** 
+  70:/usr/lib/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  71:/usr/lib/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  72:/usr/lib/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  73:/usr/lib/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  74:/usr/lib/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  75:/usr/lib/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  76:/usr/lib/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  77:/usr/lib/avr/include/util/delay.h ****     routines linked into the application.
+  78:/usr/lib/avr/include/util/delay.h **** 
+  79:/usr/lib/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  80:/usr/lib/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  81:/usr/lib/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  82:/usr/lib/avr/include/util/delay.h **** 
+  83:/usr/lib/avr/include/util/delay.h **** */
+  84:/usr/lib/avr/include/util/delay.h **** 
+  85:/usr/lib/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  86:/usr/lib/avr/include/util/delay.h **** static __inline__ void _delay_us(double __us) __attribute__((__always_inline__));
+  87:/usr/lib/avr/include/util/delay.h **** static __inline__ void _delay_ms(double __ms) __attribute__((__always_inline__));
+  88:/usr/lib/avr/include/util/delay.h **** #endif
+  89:/usr/lib/avr/include/util/delay.h **** 
+  90:/usr/lib/avr/include/util/delay.h **** #ifndef F_CPU
+  91:/usr/lib/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  92:/usr/lib/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  93:/usr/lib/avr/include/util/delay.h **** /** \ingroup util_delay
+  94:/usr/lib/avr/include/util/delay.h ****     \def F_CPU
+  95:/usr/lib/avr/include/util/delay.h ****     \brief CPU frequency in Hz
+  96:/usr/lib/avr/include/util/delay.h **** 
+  97:/usr/lib/avr/include/util/delay.h ****     The macro F_CPU specifies the CPU frequency to be considered by
+  98:/usr/lib/avr/include/util/delay.h ****     the delay macros.  This macro is normally supplied by the
+  99:/usr/lib/avr/include/util/delay.h ****     environment (e.g. from within a project header, or the project's
+ 100:/usr/lib/avr/include/util/delay.h ****     Makefile).  The value 1 MHz here is only provided as a "vanilla"
+ 101:/usr/lib/avr/include/util/delay.h ****     fallback if no such user-provided definition could be found.
+ 102:/usr/lib/avr/include/util/delay.h **** 
+ 103:/usr/lib/avr/include/util/delay.h ****     In terms of the delay functions, the CPU frequency can be given as
+ 104:/usr/lib/avr/include/util/delay.h ****     a floating-point constant (e.g. 3.6864E6 for 3.6864 MHz).
+ 105:/usr/lib/avr/include/util/delay.h ****     However, the macros in <util/setbaud.h> require it to be an
+ 106:/usr/lib/avr/include/util/delay.h ****     integer value.
+ 107:/usr/lib/avr/include/util/delay.h ****  */
+ 108:/usr/lib/avr/include/util/delay.h **** # define F_CPU 1000000UL
+ 109:/usr/lib/avr/include/util/delay.h **** #endif
+ 110:/usr/lib/avr/include/util/delay.h **** 
+ 111:/usr/lib/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+ 112:/usr/lib/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+ 113:/usr/lib/avr/include/util/delay.h **** #endif
+ 114:/usr/lib/avr/include/util/delay.h **** 
+ 115:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 116:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 117:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 118:/usr/lib/avr/include/util/delay.h **** #  include <math.h>
+ 119:/usr/lib/avr/include/util/delay.h **** #endif
+ 120:/usr/lib/avr/include/util/delay.h **** 
+ 121:/usr/lib/avr/include/util/delay.h **** /**
+ 122:/usr/lib/avr/include/util/delay.h ****    \ingroup util_delay
+ 123:/usr/lib/avr/include/util/delay.h **** 
+ 124:/usr/lib/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 125:/usr/lib/avr/include/util/delay.h **** 
+ 126:/usr/lib/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 127:/usr/lib/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 128:/usr/lib/avr/include/util/delay.h **** 
+ 129:/usr/lib/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 130:/usr/lib/avr/include/util/delay.h **** 
+ 131:/usr/lib/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 132:/usr/lib/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 133:/usr/lib/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 134:/usr/lib/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 135:/usr/lib/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 136:/usr/lib/avr/include/util/delay.h **** 
+ 137:/usr/lib/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 138:/usr/lib/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 139:/usr/lib/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 140:/usr/lib/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 141:/usr/lib/avr/include/util/delay.h **** 
+ 142:/usr/lib/avr/include/util/delay.h ****    Conversion of \c __ms into clock cycles may not always result in
+ 143:/usr/lib/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 144:/usr/lib/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __ms
+ 145:/usr/lib/avr/include/util/delay.h ****    microseconds of delay.
+ 146:/usr/lib/avr/include/util/delay.h **** 
+ 147:/usr/lib/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 148:/usr/lib/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 149:/usr/lib/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 150:/usr/lib/avr/include/util/delay.h ****    respectively.
+ 151:/usr/lib/avr/include/util/delay.h **** 
+ 152:/usr/lib/avr/include/util/delay.h ****    \note
+ 153:/usr/lib/avr/include/util/delay.h **** 
+ 154:/usr/lib/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 155:/usr/lib/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 156:/usr/lib/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 157:/usr/lib/avr/include/util/delay.h ****    with previous versions, the macro \c "__DELAY_BACKWARD_COMPATIBLE__"
+ 158:/usr/lib/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 159:/usr/lib/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 160:/usr/lib/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 161:/usr/lib/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 162:/usr/lib/avr/include/util/delay.h ****    not available to the compiler then.
+ 163:/usr/lib/avr/include/util/delay.h **** 
+ 164:/usr/lib/avr/include/util/delay.h ****  */
+ 165:/usr/lib/avr/include/util/delay.h **** void
+ 166:/usr/lib/avr/include/util/delay.h **** _delay_ms(double __ms)
+ 167:/usr/lib/avr/include/util/delay.h **** {
+ 168:/usr/lib/avr/include/util/delay.h **** 	double __tmp ;
+ 169:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 170:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 171:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 172:/usr/lib/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 173:/usr/lib/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 174:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 175:/usr/lib/avr/include/util/delay.h **** 
+ 176:/usr/lib/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 177:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 178:/usr/lib/avr/include/util/delay.h **** 
+ 179:/usr/lib/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 180:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 181:/usr/lib/avr/include/util/delay.h **** 
+ 182:/usr/lib/avr/include/util/delay.h **** 	#else
+ 183:/usr/lib/avr/include/util/delay.h **** 		//round up by default
+ 184:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 185:/usr/lib/avr/include/util/delay.h **** 	#endif
+ 186:/usr/lib/avr/include/util/delay.h **** 
+ 187:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 188:/usr/lib/avr/include/util/delay.h **** 
+ 189:/usr/lib/avr/include/util/delay.h **** #else
+ 190:/usr/lib/avr/include/util/delay.h **** 	uint16_t __ticks;
+ 191:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 4e3) * __ms;
+ 192:/usr/lib/avr/include/util/delay.h **** 	if (__tmp < 1.0)
+ 193:/usr/lib/avr/include/util/delay.h **** 		__ticks = 1;
+ 194:/usr/lib/avr/include/util/delay.h **** 	else if (__tmp > 65535)
+ 195:/usr/lib/avr/include/util/delay.h **** 	{
+ 196:/usr/lib/avr/include/util/delay.h **** 		//	__ticks = requested delay in 1/10 ms
+ 197:/usr/lib/avr/include/util/delay.h **** 		__ticks = (uint16_t) (__ms * 10.0);
+ 198:/usr/lib/avr/include/util/delay.h **** 		while(__ticks)
+ 199:/usr/lib/avr/include/util/delay.h **** 		{
+ 200:/usr/lib/avr/include/util/delay.h **** 			// wait 1/10 ms
+ 201:/usr/lib/avr/include/util/delay.h **** 			_delay_loop_2(((F_CPU) / 4e3) / 10);
+ 202:/usr/lib/avr/include/util/delay.h **** 			__ticks --;
+ 203:/usr/lib/avr/include/util/delay.h **** 		}
+ 204:/usr/lib/avr/include/util/delay.h **** 		return;
+ 205:/usr/lib/avr/include/util/delay.h **** 	}
+ 206:/usr/lib/avr/include/util/delay.h **** 	else
+ 207:/usr/lib/avr/include/util/delay.h **** 		__ticks = (uint16_t)__tmp;
+ 208:/usr/lib/avr/include/util/delay.h **** 	_delay_loop_2(__ticks);
+ 209:/usr/lib/avr/include/util/delay.h **** #endif
+ 210:/usr/lib/avr/include/util/delay.h **** }
+ 211:/usr/lib/avr/include/util/delay.h **** 
+ 212:/usr/lib/avr/include/util/delay.h **** /**
+ 213:/usr/lib/avr/include/util/delay.h ****    \ingroup util_delay
+ 214:/usr/lib/avr/include/util/delay.h **** 
+ 215:/usr/lib/avr/include/util/delay.h ****    Perform a delay of \c __us microseconds, using _delay_loop_1().
+ 216:/usr/lib/avr/include/util/delay.h **** 
+ 217:/usr/lib/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 218:/usr/lib/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 219:/usr/lib/avr/include/util/delay.h **** 
+ 220:/usr/lib/avr/include/util/delay.h ****    The maximal possible delay is 768 us / F_CPU in MHz.
+ 221:/usr/lib/avr/include/util/delay.h **** 
+ 222:/usr/lib/avr/include/util/delay.h ****    If the user requests a delay greater than the maximal possible one,
+ 223:/usr/lib/avr/include/util/delay.h ****    _delay_us() will automatically call _delay_ms() instead.  The user
+ 224:/usr/lib/avr/include/util/delay.h ****    will not be informed about this case.
+ 225:/usr/lib/avr/include/util/delay.h **** 
+ 226:/usr/lib/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles()
+ 227:/usr/lib/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 us/ F_CPU in MHz. For
+ 228:/usr/lib/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflow results in
+ 229:/usr/lib/avr/include/util/delay.h ****    no delay i.e., 0us.
+ 230:/usr/lib/avr/include/util/delay.h **** 
+ 231:/usr/lib/avr/include/util/delay.h ****    Conversion of \c __us into clock cycles may not always result in
+ 232:/usr/lib/avr/include/util/delay.h ****    integer.  By default, the clock cycles rounded up to next
+ 233:/usr/lib/avr/include/util/delay.h ****    integer. This ensures that the user gets at least \c __us
+ 234:/usr/lib/avr/include/util/delay.h ****    microseconds of delay.
+ 235:/usr/lib/avr/include/util/delay.h **** 
+ 236:/usr/lib/avr/include/util/delay.h ****    Alternatively, by defining the macro \c __DELAY_ROUND_DOWN__, or
+ 237:/usr/lib/avr/include/util/delay.h ****    \c __DELAY_ROUND_CLOSEST__, before including this header file, the
+ 238:/usr/lib/avr/include/util/delay.h ****    algorithm can be made to round down, or round to closest integer,
+ 239:/usr/lib/avr/include/util/delay.h ****    respectively.
+ 240:/usr/lib/avr/include/util/delay.h **** 
+ 241:/usr/lib/avr/include/util/delay.h ****    \note
+ 242:/usr/lib/avr/include/util/delay.h **** 
+ 243:/usr/lib/avr/include/util/delay.h ****    The implementation of _delay_ms() based on
+ 244:/usr/lib/avr/include/util/delay.h ****    __builtin_avr_delay_cycles() is not backward compatible with older
+ 245:/usr/lib/avr/include/util/delay.h ****    implementations.  In order to get functionality backward compatible
+ 246:/usr/lib/avr/include/util/delay.h ****    with previous versions, the macro \c __DELAY_BACKWARD_COMPATIBLE__
+ 247:/usr/lib/avr/include/util/delay.h ****    must be defined before including this header file. Also, the
+ 248:/usr/lib/avr/include/util/delay.h ****    backward compatible algorithm will be chosen if the code is
+ 249:/usr/lib/avr/include/util/delay.h ****    compiled in a <em>freestanding environment</em> (GCC option
+ 250:/usr/lib/avr/include/util/delay.h ****    \c -ffreestanding), as the math functions required for rounding are
+ 251:/usr/lib/avr/include/util/delay.h ****    not available to the compiler then.
+ 252:/usr/lib/avr/include/util/delay.h **** 
+ 253:/usr/lib/avr/include/util/delay.h ****  */
+ 254:/usr/lib/avr/include/util/delay.h **** void
+ 255:/usr/lib/avr/include/util/delay.h **** _delay_us(double __us)
+ 256:/usr/lib/avr/include/util/delay.h **** {
+ 257:/usr/lib/avr/include/util/delay.h **** 	double __tmp ;
+ 258:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 259:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 260:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 261:/usr/lib/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 262:/usr/lib/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 263:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e6) * __us;
+ 264:/usr/lib/avr/include/util/delay.h **** 
+ 265:/usr/lib/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 266:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 267:/usr/lib/avr/include/util/delay.h **** 
+ 268:/usr/lib/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 269:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 270:/usr/lib/avr/include/util/delay.h **** 
+ 271:/usr/lib/avr/include/util/delay.h **** 	#else
+ 272:/usr/lib/avr/include/util/delay.h **** 		//round up by default
+ 273:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 274:/usr/lib/avr/include/util/delay.h **** 	#endif
+ 275:/usr/lib/avr/include/util/delay.h **** 
+ 276:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 359               		.stabn	68,0,276,.LM35-.LFBB8
+ 360               	.LM35:
+ 361 0098 85E3      		ldi r24,lo8(53)
+ 362 009a 8A95      	1:	dec r24
+ 363 009c 01F4      		brne 1b
+ 364 009e 0000      		nop
+ 365               	.LBE7:
+ 366               	.LBE6:
+ 367               		.stabs	"/home/cdm/Desktop/AVR/Object_detection_serial/main.c",132,0,0,.Ltext2
+ 368               	.Ltext2:
+  72:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     for (unsigned int i = 0; i < 4; ++i) {
+  73:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         _delay_us(10);
+  74:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         Data |= ((uint32_t)UDR0) << (i * 8);
+ 369               		.stabn	68,0,74,.LM36-.LFBB8
+ 370               	.LM36:
+ 371 00a0 9091 C600 		lds r25,198
+ 372 00a4 4091 0000 		lds r20,Data
+ 373 00a8 5091 0000 		lds r21,Data+1
+ 374 00ac 6091 0000 		lds r22,Data+2
+ 375 00b0 7091 0000 		lds r23,Data+3
+ 376 00b4 892F      		mov r24,r25
+ 377 00b6 90E0      		ldi r25,0
+ 378 00b8 A0E0      		ldi r26,0
+ 379 00ba B0E0      		ldi r27,0
+ 380 00bc 022E      		mov r0,r18
+ 381 00be 00C0      		rjmp 2f
+ 382               		1:
+ 383 00c0 880F      		lsl r24
+ 384 00c2 991F      		rol r25
+ 385 00c4 AA1F      		rol r26
+ 386 00c6 BB1F      		rol r27
+ 387               		2:
+ 388 00c8 0A94      		dec r0
+ 389 00ca 02F4      		brpl 1b
+ 390 00cc 842B      		or r24,r20
+ 391 00ce 952B      		or r25,r21
+ 392 00d0 A62B      		or r26,r22
+ 393 00d2 B72B      		or r27,r23
+ 394 00d4 8093 0000 		sts Data,r24
+ 395 00d8 9093 0000 		sts Data+1,r25
+ 396 00dc A093 0000 		sts Data+2,r26
+ 397 00e0 B093 0000 		sts Data+3,r27
+  75:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         Count_Data++;
+ 398               		.stabn	68,0,75,.LM37-.LFBB8
+ 399               	.LM37:
+ 400 00e4 8091 0000 		lds r24,Count_Data
+ 401 00e8 8F5F      		subi r24,lo8(-(1))
+ 402 00ea 8093 0000 		sts Count_Data,r24
+ 403 00ee 285F      		subi r18,-8
+ 404 00f0 3F4F      		sbci r19,-1
+  72:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     for (unsigned int i = 0; i < 4; ++i) {
+ 405               		.stabn	68,0,72,.LM38-.LFBB8
+ 406               	.LM38:
+ 407 00f2 2032      		cpi r18,32
+ 408 00f4 3105      		cpc r19,__zero_reg__
+ 409 00f6 01F4      		brne .L26
+ 410               	/* epilogue start */
+ 411               	.LBE5:
+  76:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     }
+  77:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  78:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** }
+ 412               		.stabn	68,0,78,.LM39-.LFBB8
+ 413               	.LM39:
+ 414 00f8 BF91      		pop r27
+ 415 00fa AF91      		pop r26
+ 416 00fc 9F91      		pop r25
+ 417 00fe 8F91      		pop r24
+ 418 0100 7F91      		pop r23
+ 419 0102 6F91      		pop r22
+ 420 0104 5F91      		pop r21
+ 421 0106 4F91      		pop r20
+ 422 0108 3F91      		pop r19
+ 423 010a 2F91      		pop r18
+ 424 010c 0F90      		pop r0
+ 425 010e 0FBE      		out __SREG__,r0
+ 426 0110 0F90      		pop r0
+ 427 0112 1F90      		pop r1
+ 428 0114 1895      		reti
+ 429               		.size	__vector_18, .-__vector_18
+ 430               	.Lscope8:
+ 431               		.stabs	"",36,0,0,.Lscope8-.LFBB8
+ 432               		.stabd	78,0,0
+ 433               		.section	.text.startup,"ax",@progbits
+ 434               		.stabs	"main:F(0,1)",36,0,81,main
+ 435               	.global	main
+ 436               		.type	main, @function
+ 437               	main:
+ 438               		.stabd	46,0,0
+  79:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  80:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** //////////////////////////////////////////////////////////////////////////
+  81:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** int main() {
+ 439               		.stabn	68,0,81,.LM40-.LFBB9
+ 440               	.LM40:
+ 441               	.LFBB9:
+ 442               	/* prologue: function */
+ 443               	/* frame size = 0 */
+ 444               	/* stack size = 0 */
+ 445               	.L__stack_usage = 0
+  82:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     setup();
+ 446               		.stabn	68,0,82,.LM41-.LFBB9
+ 447               	.LM41:
+ 448 0000 0E94 0000 		call setup
+  83:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     sei(); // 전역 인터럽트 활성화
+ 449               		.stabn	68,0,83,.LM42-.LFBB9
+ 450               	.LM42:
+ 451               	/* #APP */
+ 452               	 ;  83 "/home/cdm/Desktop/AVR/Object_detection_serial/main.c" 1
+ 453 0004 7894      		sei
+ 454               	 ;  0 "" 2
+  84:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     USART0_init();
+ 455               		.stabn	68,0,84,.LM43-.LFBB9
+ 456               	.LM43:
+ 457               	/* #NOAPP */
+ 458 0006 0E94 0000 		call USART0_init
+  85:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     Timer1_init();
+ 459               		.stabn	68,0,85,.LM44-.LFBB9
+ 460               	.LM44:
+ 461 000a 0E94 0000 		call Timer1_init
+  86:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     Timer1_1s_delay();
+ 462               		.stabn	68,0,86,.LM45-.LFBB9
+ 463               	.LM45:
+ 464 000e 0E94 0000 		call Timer1_1s_delay
+ 465               	.L30:
+  87:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     
+  88:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  89:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****     while (1) {
+  90:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         PORTB = 0x00;
+ 466               		.stabn	68,0,90,.LM46-.LFBB9
+ 467               	.LM46:
+ 468 0012 15B8      		out 0x5,__zero_reg__
+  91:/home/cdm/Desktop/AVR/Object_detection_serial/main.c **** 
+  92:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****         if (Count_Data % 4 == 0) {
+ 469               		.stabn	68,0,92,.LM47-.LFBB9
+ 470               	.LM47:
+ 471 0014 8091 0000 		lds r24,Count_Data
+ 472 0018 8370      		andi r24,lo8(3)
+ 473 001a 01F4      		brne .L30
+  93:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             if (Data > 0) { // 빨강
+ 474               		.stabn	68,0,93,.LM48-.LFBB9
+ 475               	.LM48:
+ 476 001c 8091 0000 		lds r24,Data
+ 477 0020 9091 0000 		lds r25,Data+1
+ 478 0024 A091 0000 		lds r26,Data+2
+ 479 0028 B091 0000 		lds r27,Data+3
+ 480 002c 892B      		or r24,r25
+ 481 002e 8A2B      		or r24,r26
+ 482 0030 8B2B      		or r24,r27
+ 483 0032 01F0      		breq .L31
+  94:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 PORTB |= RED;
+ 484               		.stabn	68,0,94,.LM49-.LFBB9
+ 485               	.LM49:
+ 486 0034 299A      		sbi 0x5,1
+ 487 0036 00C0      		rjmp .L37
+ 488               	.L31:
+  95:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 PORTB |= LED;
+  96:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 Timer1_1s_delay();
+  97:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             } else if (Data > 20000 && Data < 40000) { // 파랑
+ 489               		.stabn	68,0,97,.LM50-.LFBB9
+ 490               	.LM50:
+ 491 0038 8091 0000 		lds r24,Data
+ 492 003c 9091 0000 		lds r25,Data+1
+ 493 0040 A091 0000 		lds r26,Data+2
+ 494 0044 B091 0000 		lds r27,Data+3
+ 495 0048 8132      		cpi r24,33
+ 496 004a 9E44      		sbci r25,78
+ 497 004c A105      		cpc r26,__zero_reg__
+ 498 004e B105      		cpc r27,__zero_reg__
+ 499 0050 00F0      		brlo .L33
+ 500               		.stabn	68,0,97,.LM51-.LFBB9
+ 501               	.LM51:
+ 502 0052 8091 0000 		lds r24,Data
+ 503 0056 9091 0000 		lds r25,Data+1
+ 504 005a A091 0000 		lds r26,Data+2
+ 505 005e B091 0000 		lds r27,Data+3
+ 506 0062 8034      		cpi r24,64
+ 507 0064 9C49      		sbci r25,-100
+ 508 0066 A105      		cpc r26,__zero_reg__
+ 509 0068 B105      		cpc r27,__zero_reg__
+ 510 006a 00F4      		brsh .L33
+  98:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 PORTB |= BLUE;
+ 511               		.stabn	68,0,98,.LM52-.LFBB9
+ 512               	.LM52:
+ 513 006c 2B9A      		sbi 0x5,3
+ 514 006e 00C0      		rjmp .L37
+ 515               	.L33:
+  99:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 PORTB |= LED;
+ 100:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 Timer1_1s_delay();
+ 101:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             } else if (Data > 40000) { // 초록
+ 516               		.stabn	68,0,101,.LM53-.LFBB9
+ 517               	.LM53:
+ 518 0070 8091 0000 		lds r24,Data
+ 519 0074 9091 0000 		lds r25,Data+1
+ 520 0078 A091 0000 		lds r26,Data+2
+ 521 007c B091 0000 		lds r27,Data+3
+ 522 0080 8134      		cpi r24,65
+ 523 0082 9C49      		sbci r25,-100
+ 524 0084 A105      		cpc r26,__zero_reg__
+ 525 0086 B105      		cpc r27,__zero_reg__
+ 526 0088 00F0      		brlo .L34
+ 102:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 PORTB |= GREEN;
+ 527               		.stabn	68,0,102,.LM54-.LFBB9
+ 528               	.LM54:
+ 529 008a 2A9A      		sbi 0x5,2
+ 530               	.L37:
+ 103:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 PORTB |= LED;
+ 531               		.stabn	68,0,103,.LM55-.LFBB9
+ 532               	.LM55:
+ 533 008c 2D9A      		sbi 0x5,5
+ 104:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 Timer1_1s_delay();
+ 534               		.stabn	68,0,104,.LM56-.LFBB9
+ 535               	.LM56:
+ 536 008e 0E94 0000 		call Timer1_1s_delay
+ 105:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             } else {
+ 106:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 USART0_send('E'); // 입력 오류 전송
+ 107:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 continue;
+ 108:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             }
+ 109:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             USART0_send('C'); // 제어 완료 전송
+ 537               		.stabn	68,0,109,.LM57-.LFBB9
+ 538               	.LM57:
+ 539 0092 63E4      		ldi r22,lo8(67)
+ 540 0094 70E0      		ldi r23,0
+ 541 0096 80E0      		ldi r24,0
+ 542 0098 90E0      		ldi r25,0
+ 543 009a 0E94 0000 		call USART0_send
+ 110:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             Data = 0;        // 버퍼 초기화
+ 544               		.stabn	68,0,110,.LM58-.LFBB9
+ 545               	.LM58:
+ 546 009e 1092 0000 		sts Data,__zero_reg__
+ 547 00a2 1092 0000 		sts Data+1,__zero_reg__
+ 548 00a6 1092 0000 		sts Data+2,__zero_reg__
+ 549 00aa 1092 0000 		sts Data+3,__zero_reg__
+ 111:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             Count_Data = 0;   // 카운트 초기화
+ 550               		.stabn	68,0,111,.LM59-.LFBB9
+ 551               	.LM59:
+ 552 00ae 1092 0000 		sts Count_Data,__zero_reg__
+ 553 00b2 00C0      		rjmp .L30
+ 554               	.L34:
+ 106:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****                 continue;
+ 555               		.stabn	68,0,106,.LM60-.LFBB9
+ 556               	.LM60:
+ 557 00b4 65E4      		ldi r22,lo8(69)
+ 558 00b6 70E0      		ldi r23,0
+ 559 00b8 80E0      		ldi r24,0
+ 560 00ba 90E0      		ldi r25,0
+ 561 00bc 0E94 0000 		call USART0_send
+ 107:/home/cdm/Desktop/AVR/Object_detection_serial/main.c ****             }
+ 562               		.stabn	68,0,107,.LM61-.LFBB9
+ 563               	.LM61:
+ 564 00c0 00C0      		rjmp .L30
+ 565               		.size	main, .-main
+ 566               	.Lscope9:
+ 567               		.stabs	"",36,0,0,.Lscope9-.LFBB9
+ 568               		.stabd	78,0,0
+ 569               	.global	Count_Data
+ 570               		.section .bss
+ 571               		.type	Count_Data, @object
+ 572               		.size	Count_Data, 1
+ 573               	Count_Data:
+ 574 0000 00        		.zero	1
+ 575               	.global	Data
+ 576               		.type	Data, @object
+ 577               		.size	Data, 4
+ 578               	Data:
+ 579 0001 0000 0000 		.zero	4
+ 580               		.stabs	"Data:G(0,50)=B(5,6)",32,0,11,0
+ 581               		.stabs	"Count_Data:G(0,51)=B(0,13)",32,0,12,0
+ 582               		.text
+ 583               		.stabs	"",100,0,0,.Letext0
+ 584               	.Letext0:
+ 585               		.ident	"GCC: (GNU) 5.4.0"
+ 586               	.global __do_clear_bss
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccZSW3em.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccZSW3em.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccZSW3em.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccZSW3em.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccZSW3em.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccZSW3em.s:107    .text:0000000000000000 setup
+     /tmp/ccZSW3em.s:138    .text:000000000000000e USART0_init
+     /tmp/ccZSW3em.s:174    .text:000000000000002c USART0_send
+     /tmp/ccZSW3em.s:200    .text:000000000000003a Timer1_init
+     /tmp/ccZSW3em.s:230    .text:0000000000000052 Timer1_10ms_delay
+     /tmp/ccZSW3em.s:255    .text:000000000000005a Timer1_100ms_delay
+     /tmp/ccZSW3em.s:290    .text:0000000000000068 Timer1_1s_delay
+     /tmp/ccZSW3em.s:325    .text:0000000000000076 __vector_18
+     /tmp/ccZSW3em.s:578    .bss:0000000000000001 Data
+     /tmp/ccZSW3em.s:573    .bss:0000000000000000 Count_Data
+     /tmp/ccZSW3em.s:437    .text.startup:0000000000000000 main
+
+UNDEFINED SYMBOLS
+__do_clear_bss

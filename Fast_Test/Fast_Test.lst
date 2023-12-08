@@ -1,11 +1,11 @@
-   1               		.file	"main.c"
+   1               		.file	"Fast_Test.c"
    2               	__SP_H__ = 0x3e
    3               	__SP_L__ = 0x3d
    4               	__SREG__ = 0x3f
    5               	__tmp_reg__ = 0
    6               	__zero_reg__ = 1
    7               		.stabs	"/home/cdm/Desktop/",100,0,2,.Ltext0
-   8               		.stabs	"/home/cdm/Desktop/AVR/Timer+Interrupt/main.c",100,0,2,.Ltext0
+   8               		.stabs	"/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c",100,0,2,.Ltext0
    9               		.text
   10               	.Ltext0:
   11               		.stabs	"gcc2_compiled.",60,0,0,0
@@ -101,299 +101,271 @@
  101               		.stabs	"__fuse_t:t(6,1)=(6,2)=s3low:(0,13),0,8;high:(0,13),8,8;extended:(0,13),16,8;;",128,0,244,0
  102               		.stabn	162,0,0,0
  103               		.stabn	162,0,0,0
- 104               		.stabs	"setup:F(0,49)",36,0,18,setup
+ 104               		.stabs	"setup:F(0,49)",36,0,12,setup
  105               	.global	setup
  106               		.type	setup, @function
  107               	setup:
  108               		.stabd	46,0,0
-   1:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #ifndef F_CPU
-   2:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #define F_CPU 16000000UL
-   3:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #endif
-   4:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-   5:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #include <avr/io.h>
-   6:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #include <util/delay.h>
-   7:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #include <avr/interrupt.h>
-   8:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-   9:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #define BTN 0x01
-  10:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #define RED 0x02
-  11:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #define LED 0x20
-  12:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** #define input_value PINB
-  13:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  14:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** // volatile 지정 시 컴파일러가 최적화를 할 때 무시하지 않음.
-  15:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** volatile unsigned char Switch_flag = 0;
-  16:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** volatile unsigned char Timer_flag = 0;
-  17:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  18:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** void setup() {
- 109               		.stabn	68,0,18,.LM0-.LFBB1
+   1:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** #include <avr/io.h>
+   2:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** #include <util/delay.h>
+   3:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** #include <avr/interrupt.h>
+   4:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+   5:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** #define RED 0x02   // D9, PB1
+   6:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** #define BLUE 0x08  // D11, PB3
+   7:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** #define LED 0x20   // D13, PB5
+   8:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+   9:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** volatile uint32_t ReceivedNumber = 0;
+  10:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** volatile uint8_t NewDataReceived = 0;
+  11:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  12:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** void setup() {
+ 109               		.stabn	68,0,12,.LM0-.LFBB1
  110               	.LM0:
  111               	.LFBB1:
  112               	/* prologue: function */
  113               	/* frame size = 0 */
  114               	/* stack size = 0 */
  115               	.L__stack_usage = 0
-  19:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     DDRB = 0xFF;
- 116               		.stabn	68,0,19,.LM1-.LFBB1
+  13:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     DDRB = 0xFF;
+ 116               		.stabn	68,0,13,.LM1-.LFBB1
  117               	.LM1:
  118 0000 8FEF      		ldi r24,lo8(-1)
  119 0002 84B9      		out 0x4,r24
-  20:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     PORTB = 0xFF;
- 120               		.stabn	68,0,20,.LM2-.LFBB1
+  14:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     PORTB = 0x00;
+ 120               		.stabn	68,0,14,.LM2-.LFBB1
  121               	.LM2:
- 122 0004 85B9      		out 0x5,r24
-  21:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  22:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     DDRD = 0x04;
- 123               		.stabn	68,0,22,.LM3-.LFBB1
+ 122 0004 15B8      		out 0x5,__zero_reg__
+  15:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  16:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     DDRD = 0x02;  // PD0 = RXD 로 입력 설정, PD1 = TXD 로 출력 설정
+ 123               		.stabn	68,0,16,.LM3-.LFBB1
  124               	.LM3:
- 125 0006 84E0      		ldi r24,lo8(4)
- 126 0008 8AB9      		out 0xa,r24
- 127 000a 0895      		ret
- 128               		.size	setup, .-setup
- 129               	.Lscope1:
- 130               		.stabs	"",36,0,0,.Lscope1-.LFBB1
- 131               		.stabd	78,0,0
- 132               		.stabs	"Timer1_init:F(0,49)",36,0,25,Timer1_init
- 133               	.global	Timer1_init
- 134               		.type	Timer1_init, @function
- 135               	Timer1_init:
- 136               		.stabd	46,0,0
-  23:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** }
-  24:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  25:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** void Timer1_init() {
- 137               		.stabn	68,0,25,.LM4-.LFBB2
- 138               	.LM4:
- 139               	.LFBB2:
- 140               	/* prologue: function */
- 141               	/* frame size = 0 */
- 142               	/* stack size = 0 */
- 143               	.L__stack_usage = 0
-  26:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     TCCR1A = 0x00;        // WGM11, WGM10 -> 0
- 144               		.stabn	68,0,26,.LM5-.LFBB2
- 145               	.LM5:
- 146 000c 1092 8000 		sts 128,__zero_reg__
-  27:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     TCCR1B = (1 << WGM12) | (1<<CS12)|(1 << CS11) | (1 << CS10);  // WGM13, WGM12 -> 0100 (CTC 모�
- 147               		.stabn	68,0,27,.LM6-.LFBB2
+ 125 0006 92E0      		ldi r25,lo8(2)
+ 126 0008 9AB9      		out 0xa,r25
+  17:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     PORTD = 0xFF; // 포트 초기화
+ 127               		.stabn	68,0,17,.LM4-.LFBB1
+ 128               	.LM4:
+ 129 000a 8BB9      		out 0xb,r24
+ 130 000c 0895      		ret
+ 131               		.size	setup, .-setup
+ 132               	.Lscope1:
+ 133               		.stabs	"",36,0,0,.Lscope1-.LFBB1
+ 134               		.stabd	78,0,0
+ 135               		.stabs	"USART0_init:F(0,49)",36,0,20,USART0_init
+ 136               	.global	USART0_init
+ 137               		.type	USART0_init, @function
+ 138               	USART0_init:
+ 139               		.stabd	46,0,0
+  18:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** }
+  19:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  20:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** void USART0_init(void) {
+ 140               		.stabn	68,0,20,.LM5-.LFBB2
+ 141               	.LM5:
+ 142               	.LFBB2:
+ 143               	/* prologue: function */
+ 144               	/* frame size = 0 */
+ 145               	/* stack size = 0 */
+ 146               	.L__stack_usage = 0
+  21:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     UBRR0H = 0x00; // USART Baud Rate Register High, 9600 baud rate
+ 147               		.stabn	68,0,21,.LM6-.LFBB2
  148               	.LM6:
- 149 0010 8FE0      		ldi r24,lo8(15)
- 150 0012 8093 8100 		sts 129,r24
-  28:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     OCR1A = 0x3D09;        // 0x3D08 = 15624 (1초), 16MHz / 1024 / 15624 = 약 1Hz
- 151               		.stabn	68,0,28,.LM7-.LFBB2
- 152               	.LM7:
- 153 0016 89E0      		ldi r24,lo8(9)
- 154 0018 9DE3      		ldi r25,lo8(61)
- 155 001a 9093 8900 		sts 136+1,r25
- 156 001e 8093 8800 		sts 136,r24
-  29:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     TIMSK1 = (1 << OCIE1A);      // Timer 1 Output Compare A Interrupt Enable
- 157               		.stabn	68,0,29,.LM8-.LFBB2
- 158               	.LM8:
- 159 0022 82E0      		ldi r24,lo8(2)
- 160 0024 8093 6F00 		sts 111,r24
- 161 0028 0895      		ret
- 162               		.size	Timer1_init, .-Timer1_init
- 163               	.Lscope2:
- 164               		.stabs	"",36,0,0,.Lscope2-.LFBB2
- 165               		.stabd	78,0,0
- 166               		.stabs	"EXTINT_init:F(0,49)",36,0,32,EXTINT_init
- 167               	.global	EXTINT_init
- 168               		.type	EXTINT_init, @function
- 169               	EXTINT_init:
- 170               		.stabd	46,0,0
-  30:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** }
-  31:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  32:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** void EXTINT_init() {     // External interrupt 초기화
- 171               		.stabn	68,0,32,.LM9-.LFBB3
- 172               	.LM9:
- 173               	.LFBB3:
- 174               	/* prologue: function */
- 175               	/* frame size = 0 */
- 176               	/* stack size = 0 */
- 177               	.L__stack_usage = 0
-  33:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     EIMSK = 0x01;   // INTF0 허용
- 178               		.stabn	68,0,33,.LM10-.LFBB3
- 179               	.LM10:
- 180 002a 81E0      		ldi r24,lo8(1)
- 181 002c 8DBB      		out 0x1d,r24
-  34:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     EICRA = 0x02;   // falling edge 일 때 interrupt 발생
- 182               		.stabn	68,0,34,.LM11-.LFBB3
- 183               	.LM11:
- 184 002e 82E0      		ldi r24,lo8(2)
- 185 0030 8093 6900 		sts 105,r24
- 186 0034 0895      		ret
- 187               		.size	EXTINT_init, .-EXTINT_init
- 188               	.Lscope3:
- 189               		.stabs	"",36,0,0,.Lscope3-.LFBB3
- 190               		.stabd	78,0,0
- 191               		.stabs	"__vector_1:F(0,49)",36,0,37,__vector_1
- 192               	.global	__vector_1
- 193               		.type	__vector_1, @function
- 194               	__vector_1:
- 195               		.stabd	46,0,0
-  35:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** }
-  36:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  37:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** ISR(INT0_vect) {        // INT0이 falling edge일 때 인터럽트 발생
- 196               		.stabn	68,0,37,.LM12-.LFBB4
- 197               	.LM12:
- 198               	.LFBB4:
- 199 0036 1F92      		push r1
- 200 0038 0F92      		push r0
- 201 003a 0FB6      		in r0,__SREG__
- 202 003c 0F92      		push r0
- 203 003e 1124      		clr __zero_reg__
- 204 0040 8F93      		push r24
- 205               	/* prologue: Signal */
- 206               	/* frame size = 0 */
- 207               	/* stack size = 4 */
- 208               	.L__stack_usage = 4
-  38:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     Switch_flag = 1;
- 209               		.stabn	68,0,38,.LM13-.LFBB4
- 210               	.LM13:
- 211 0042 81E0      		ldi r24,lo8(1)
- 212 0044 8093 0000 		sts Switch_flag,r24
- 213               	/* epilogue start */
-  39:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** }
- 214               		.stabn	68,0,39,.LM14-.LFBB4
- 215               	.LM14:
- 216 0048 8F91      		pop r24
- 217 004a 0F90      		pop r0
- 218 004c 0FBE      		out __SREG__,r0
- 219 004e 0F90      		pop r0
- 220 0050 1F90      		pop r1
- 221 0052 1895      		reti
- 222               		.size	__vector_1, .-__vector_1
- 223               	.Lscope4:
- 224               		.stabs	"",36,0,0,.Lscope4-.LFBB4
- 225               		.stabd	78,0,0
- 226               		.stabs	"__vector_11:F(0,49)",36,0,41,__vector_11
- 227               	.global	__vector_11
- 228               		.type	__vector_11, @function
- 229               	__vector_11:
- 230               		.stabd	46,0,0
-  40:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  41:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** ISR(TIMER1_COMPA_vect){
- 231               		.stabn	68,0,41,.LM15-.LFBB5
- 232               	.LM15:
- 233               	.LFBB5:
- 234 0054 1F92      		push r1
- 235 0056 0F92      		push r0
- 236 0058 0FB6      		in r0,__SREG__
- 237 005a 0F92      		push r0
- 238 005c 1124      		clr __zero_reg__
- 239 005e 8F93      		push r24
- 240               	/* prologue: Signal */
- 241               	/* frame size = 0 */
- 242               	/* stack size = 4 */
- 243               	.L__stack_usage = 4
-  42:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     Timer_flag = 1;
- 244               		.stabn	68,0,42,.LM16-.LFBB5
+ 149 000e 1092 C500 		sts 197,__zero_reg__
+  22:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     UBRR0L = 103;  // USART Baud Rate Register Low, 9600 baud rate
+ 150               		.stabn	68,0,22,.LM7-.LFBB2
+ 151               	.LM7:
+ 152 0012 87E6      		ldi r24,lo8(103)
+ 153 0014 8093 C400 		sts 196,r24
+  23:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  24:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     UCSR0A = 0x20;                                      // 0b00100000, USART Data Reister Empty, �
+ 154               		.stabn	68,0,24,.LM8-.LFBB2
+ 155               	.LM8:
+ 156 0018 80E2      		ldi r24,lo8(32)
+ 157 001a 8093 C000 		sts 192,r24
+  25:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     UCSR0B = (1 << RXEN0) | (1 << RXCIE0); // 수신 인터럽트 설정
+ 158               		.stabn	68,0,25,.LM9-.LFBB2
+ 159               	.LM9:
+ 160 001e 80E9      		ldi r24,lo8(-112)
+ 161 0020 8093 C100 		sts 193,r24
+  26:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     UCSR0C = 0x06;                                      // 0b00000110, UCSZ01, UCSZ00 '1' 설정
+ 162               		.stabn	68,0,26,.LM10-.LFBB2
+ 163               	.LM10:
+ 164 0024 86E0      		ldi r24,lo8(6)
+ 165 0026 8093 C200 		sts 194,r24
+ 166 002a 0895      		ret
+ 167               		.size	USART0_init, .-USART0_init
+ 168               	.Lscope2:
+ 169               		.stabs	"",36,0,0,.Lscope2-.LFBB2
+ 170               		.stabd	78,0,0
+ 171               		.stabs	"__vector_18:F(0,49)",36,0,30,__vector_18
+ 172               	.global	__vector_18
+ 173               		.type	__vector_18, @function
+ 174               	__vector_18:
+ 175               		.stabd	46,0,0
+  27:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****                                                         ///////////// 한 번에 8bit를 보내야 
+  28:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** }
+  29:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  30:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** ISR(USART_RX_vect) {
+ 176               		.stabn	68,0,30,.LM11-.LFBB3
+ 177               	.LM11:
+ 178               	.LFBB3:
+ 179 002c 1F92      		push r1
+ 180 002e 0F92      		push r0
+ 181 0030 0FB6      		in r0,__SREG__
+ 182 0032 0F92      		push r0
+ 183 0034 1124      		clr __zero_reg__
+ 184 0036 0F93      		push r16
+ 185 0038 1F93      		push r17
+ 186 003a 2F93      		push r18
+ 187 003c 3F93      		push r19
+ 188 003e 4F93      		push r20
+ 189 0040 5F93      		push r21
+ 190 0042 6F93      		push r22
+ 191 0044 7F93      		push r23
+ 192 0046 8F93      		push r24
+ 193 0048 9F93      		push r25
+ 194 004a AF93      		push r26
+ 195 004c BF93      		push r27
+ 196 004e EF93      		push r30
+ 197               	/* prologue: Signal */
+ 198               	/* frame size = 0 */
+ 199               	/* stack size = 16 */
+ 200               	.L__stack_usage = 16
+  31:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     char receivedChar = UDR0;
+ 201               		.stabn	68,0,31,.LM12-.LFBB3
+ 202               	.LM12:
+ 203 0050 E091 C600 		lds r30,198
+  32:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  33:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     if (receivedChar >= '0' && receivedChar <= '9') {
+ 204               		.stabn	68,0,33,.LM13-.LFBB3
+ 205               	.LM13:
+ 206 0054 80ED      		ldi r24,lo8(-48)
+ 207 0056 8E0F      		add r24,r30
+ 208 0058 8A30      		cpi r24,lo8(10)
+ 209 005a 00F4      		brsh .L4
+  34:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         ReceivedNumber = ReceivedNumber * 10 + (receivedChar - '0');
+ 210               		.stabn	68,0,34,.LM14-.LFBB3
+ 211               	.LM14:
+ 212 005c 2091 0000 		lds r18,ReceivedNumber
+ 213 0060 3091 0000 		lds r19,ReceivedNumber+1
+ 214 0064 4091 0000 		lds r20,ReceivedNumber+2
+ 215 0068 5091 0000 		lds r21,ReceivedNumber+3
+ 216 006c AAE0      		ldi r26,lo8(10)
+ 217 006e B0E0      		ldi r27,0
+ 218 0070 0E94 0000 		call __muluhisi3
+ 219 0074 2E2F      		mov r18,r30
+ 220 0076 EE0F      		lsl r30
+ 221 0078 330B      		sbc r19,r19
+ 222 007a 2053      		subi r18,48
+ 223 007c 3109      		sbc r19,__zero_reg__
+ 224 007e 8901      		movw r16,r18
+ 225 0080 330F      		lsl r19
+ 226 0082 220B      		sbc r18,r18
+ 227 0084 330B      		sbc r19,r19
+ 228 0086 DC01      		movw r26,r24
+ 229 0088 CB01      		movw r24,r22
+ 230 008a 800F      		add r24,r16
+ 231 008c 911F      		adc r25,r17
+ 232 008e A21F      		adc r26,r18
+ 233 0090 B31F      		adc r27,r19
+ 234 0092 8093 0000 		sts ReceivedNumber,r24
+ 235 0096 9093 0000 		sts ReceivedNumber+1,r25
+ 236 009a A093 0000 		sts ReceivedNumber+2,r26
+ 237 009e B093 0000 		sts ReceivedNumber+3,r27
+ 238 00a2 00C0      		rjmp .L3
+ 239               	.L4:
+  35:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     } else if (receivedChar == '\n') {
+ 240               		.stabn	68,0,35,.LM15-.LFBB3
+ 241               	.LM15:
+ 242 00a4 EA30      		cpi r30,lo8(10)
+ 243 00a6 01F4      		brne .L3
+  36:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         NewDataReceived = 1;
+ 244               		.stabn	68,0,36,.LM16-.LFBB3
  245               	.LM16:
- 246 0060 81E0      		ldi r24,lo8(1)
- 247 0062 8093 0000 		sts Timer_flag,r24
- 248               	/* epilogue start */
-  43:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** }
- 249               		.stabn	68,0,43,.LM17-.LFBB5
- 250               	.LM17:
- 251 0066 8F91      		pop r24
- 252 0068 0F90      		pop r0
- 253 006a 0FBE      		out __SREG__,r0
- 254 006c 0F90      		pop r0
- 255 006e 1F90      		pop r1
- 256 0070 1895      		reti
- 257               		.size	__vector_11, .-__vector_11
- 258               	.Lscope5:
- 259               		.stabs	"",36,0,0,.Lscope5-.LFBB5
- 260               		.stabd	78,0,0
- 261               		.section	.text.startup,"ax",@progbits
- 262               		.stabs	"main:F(0,1)",36,0,46,main
- 263               	.global	main
- 264               		.type	main, @function
- 265               	main:
- 266               		.stabd	46,0,0
-  44:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  45:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  46:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** int main() {
- 267               		.stabn	68,0,46,.LM18-.LFBB6
- 268               	.LM18:
- 269               	.LFBB6:
- 270               	/* prologue: function */
- 271               	/* frame size = 0 */
- 272               	/* stack size = 0 */
- 273               	.L__stack_usage = 0
-  47:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     setup();    // PORT 초기화
- 274               		.stabn	68,0,47,.LM19-.LFBB6
- 275               	.LM19:
- 276 0000 0E94 0000 		call setup
-  48:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     Timer1_init();      // 타이머 초기화
- 277               		.stabn	68,0,48,.LM20-.LFBB6
- 278               	.LM20:
- 279 0004 0E94 0000 		call Timer1_init
-  49:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     EXTINT_init();      // 외부 인터럽트 초기화
- 280               		.stabn	68,0,49,.LM21-.LFBB6
- 281               	.LM21:
- 282 0008 0E94 0000 		call EXTINT_init
-  50:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     sei();      // 모든 interrupt 허용
- 283               		.stabn	68,0,50,.LM22-.LFBB6
- 284               	.LM22:
- 285               	/* #APP */
- 286               	 ;  50 "/home/cdm/Desktop/AVR/Timer+Interrupt/main.c" 1
- 287 000c 7894      		sei
- 288               	 ;  0 "" 2
- 289               	/* #NOAPP */
- 290               	.L8:
-  51:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  52:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****     while (1) {
-  53:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****         PORTB = 0x00;
- 291               		.stabn	68,0,53,.LM23-.LFBB6
- 292               	.LM23:
- 293 000e 15B8      		out 0x5,__zero_reg__
-  54:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c **** 
-  55:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****         if(Timer_flag){
- 294               		.stabn	68,0,55,.LM24-.LFBB6
- 295               	.LM24:
- 296 0010 8091 0000 		lds r24,Timer_flag
- 297 0014 8823      		tst r24
- 298 0016 01F0      		breq .L7
-  56:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             Timer_flag = 0; // 타이머 인터럽트 상태 초기화
- 299               		.stabn	68,0,56,.LM25-.LFBB6
- 300               	.LM25:
- 301 0018 1092 0000 		sts Timer_flag,__zero_reg__
-  57:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             PORTB |= LED;
- 302               		.stabn	68,0,57,.LM26-.LFBB6
- 303               	.LM26:
- 304 001c 2D9A      		sbi 0x5,5
- 305               	.L7:
-  58:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             //_delay_ms(1000);
-  59:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****         }
-  60:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****            
-  61:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****         if ((input_value & BTN) == BTN) {  // 버튼이 눌렸을 때
- 306               		.stabn	68,0,61,.LM27-.LFBB6
- 307               	.LM27:
- 308 001e 189B      		sbis 0x3,0
- 309 0020 00C0      		rjmp .L8
-  62:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             PORTB = 0x00;
- 310               		.stabn	68,0,62,.LM28-.LFBB6
- 311               	.LM28:
- 312 0022 15B8      		out 0x5,__zero_reg__
-  63:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             PORTD |= (1 << PORTD2);  // PD2, INT0 인터럽트 발생
- 313               		.stabn	68,0,63,.LM29-.LFBB6
- 314               	.LM29:
- 315 0024 5A9A      		sbi 0xb,2
-  64:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             if(Switch_flag == 1){
- 316               		.stabn	68,0,64,.LM30-.LFBB6
- 317               	.LM30:
- 318 0026 8091 0000 		lds r24,Switch_flag
- 319 002a 8130      		cpi r24,lo8(1)
- 320 002c 01F4      		brne .L9
-  65:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****                 Switch_flag = 0;  // 상태 초기화
- 321               		.stabn	68,0,65,.LM31-.LFBB6
- 322               	.LM31:
- 323 002e 1092 0000 		sts Switch_flag,__zero_reg__
-  66:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****                 PORTB |= RED;  // RED만 켜기
- 324               		.stabn	68,0,66,.LM32-.LFBB6
- 325               	.LM32:
- 326 0032 299A      		sbi 0x5,1
- 327               	.LBB4:
- 328               	.LBB5:
- 329               		.stabs	"/usr/lib/avr/include/util/delay.h",132,0,0,.Ltext1
- 330               	.Ltext1:
+ 246 00a8 81E0      		ldi r24,lo8(1)
+ 247 00aa 8093 0000 		sts NewDataReceived,r24
+ 248               	.L3:
+ 249               	/* epilogue start */
+  37:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     }
+  38:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** }
+ 250               		.stabn	68,0,38,.LM17-.LFBB3
+ 251               	.LM17:
+ 252 00ae EF91      		pop r30
+ 253 00b0 BF91      		pop r27
+ 254 00b2 AF91      		pop r26
+ 255 00b4 9F91      		pop r25
+ 256 00b6 8F91      		pop r24
+ 257 00b8 7F91      		pop r23
+ 258 00ba 6F91      		pop r22
+ 259 00bc 5F91      		pop r21
+ 260 00be 4F91      		pop r20
+ 261 00c0 3F91      		pop r19
+ 262 00c2 2F91      		pop r18
+ 263 00c4 1F91      		pop r17
+ 264 00c6 0F91      		pop r16
+ 265 00c8 0F90      		pop r0
+ 266 00ca 0FBE      		out __SREG__,r0
+ 267 00cc 0F90      		pop r0
+ 268 00ce 1F90      		pop r1
+ 269 00d0 1895      		reti
+ 270               		.size	__vector_18, .-__vector_18
+ 271               	.Lscope3:
+ 272               		.stabs	"",36,0,0,.Lscope3-.LFBB3
+ 273               		.stabd	78,0,0
+ 274               		.stabs	"loop:F(0,49)",36,0,40,loop
+ 275               	.global	loop
+ 276               		.type	loop, @function
+ 277               	loop:
+ 278               		.stabd	46,0,0
+  39:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  40:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** void loop() {
+ 279               		.stabn	68,0,40,.LM18-.LFBB4
+ 280               	.LM18:
+ 281               	.LFBB4:
+ 282               	/* prologue: function */
+ 283               	/* frame size = 0 */
+ 284               	/* stack size = 0 */
+ 285               	.L__stack_usage = 0
+  41:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     if (NewDataReceived) {
+ 286               		.stabn	68,0,41,.LM19-.LFBB4
+ 287               	.LM19:
+ 288 00d2 8091 0000 		lds r24,NewDataReceived
+ 289 00d6 8823      		tst r24
+ 290 00d8 01F0      		breq .L7
+ 291               	.LBB16:
+  42:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         // 적절한 동작을 위한 ReceivedNumber 값 비교
+  43:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         if (ReceivedNumber == 1) {
+ 292               		.stabn	68,0,43,.LM20-.LFBB4
+ 293               	.LM20:
+ 294 00da 8091 0000 		lds r24,ReceivedNumber
+ 295 00de 9091 0000 		lds r25,ReceivedNumber+1
+ 296 00e2 A091 0000 		lds r26,ReceivedNumber+2
+ 297 00e6 B091 0000 		lds r27,ReceivedNumber+3
+ 298 00ea 0197      		sbiw r24,1
+ 299 00ec A105      		cpc r26,__zero_reg__
+ 300 00ee B105      		cpc r27,__zero_reg__
+ 301 00f0 01F4      		brne .L9
+  44:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             // 빨간색 LED를 켬
+  45:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             PORTB |= RED;
+ 302               		.stabn	68,0,45,.LM21-.LFBB4
+ 303               	.LM21:
+ 304 00f2 299A      		sbi 0x5,1
+ 305 00f4 00C0      		rjmp .L14
+ 306               	.L9:
+  46:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             PORTB |= LED;
+  47:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             _delay_ms(1000);
+  48:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         } else {
+  49:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             // 파란색 LED를 켬
+  50:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             PORTB |= BLUE;
+ 307               		.stabn	68,0,50,.LM22-.LFBB4
+ 308               	.LM22:
+ 309 00f6 2B9A      		sbi 0x5,3
+ 310               	.L14:
+  51:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             PORTB |= LED;
+ 311               		.stabn	68,0,51,.LM23-.LFBB4
+ 312               	.LM23:
+ 313 00f8 2D9A      		sbi 0x5,5
+ 314               	.LBB17:
+ 315               	.LBB18:
+ 316               		.stabs	"/usr/lib/avr/include/util/delay.h",132,0,0,.Ltext1
+ 317               	.Ltext1:
    1:/usr/lib/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
    2:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
    3:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
@@ -581,70 +553,121 @@
  185:/usr/lib/avr/include/util/delay.h **** 	#endif
  186:/usr/lib/avr/include/util/delay.h **** 
  187:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
- 331               		.stabn	68,0,187,.LM33-.LFBB6
- 332               	.LM33:
- 333 0034 2FEF      		ldi r18,lo8(3199999)
- 334 0036 83ED      		ldi r24,hi8(3199999)
- 335 0038 90E3      		ldi r25,hlo8(3199999)
- 336 003a 2150      	1:	subi r18,1
- 337 003c 8040      		sbci r24,0
- 338 003e 9040      		sbci r25,0
- 339 0040 01F4      		brne 1b
- 340 0042 00C0      		rjmp .
- 341 0044 0000      		nop
- 342               	.L9:
- 343               	.LBE5:
- 344               	.LBE4:
- 345               		.stabs	"/home/cdm/Desktop/AVR/Timer+Interrupt/main.c",132,0,0,.Ltext2
- 346               	.Ltext2:
-  67:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****                 _delay_ms(1000);
-  68:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             }
-  69:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             PORTD &= ~(1 << PORTD2);  // PD2, INT0 다시 LOW로 설정
- 347               		.stabn	68,0,69,.LM34-.LFBB6
- 348               	.LM34:
- 349 0046 5A98      		cbi 0xb,2
-  70:/home/cdm/Desktop/AVR/Timer+Interrupt/main.c ****             Switch_flag = 0;  // 스위치 인터럽트 상태 초기화
- 350               		.stabn	68,0,70,.LM35-.LFBB6
- 351               	.LM35:
- 352 0048 1092 0000 		sts Switch_flag,__zero_reg__
- 353 004c 00C0      		rjmp .L8
- 354               		.size	main, .-main
- 355               	.Lscope6:
- 356               		.stabs	"",36,0,0,.Lscope6-.LFBB6
- 357               		.stabd	78,0,0
- 358               	.global	Timer_flag
- 359               		.section .bss
- 360               		.type	Timer_flag, @object
- 361               		.size	Timer_flag, 1
- 362               	Timer_flag:
- 363 0000 00        		.zero	1
- 364               	.global	Switch_flag
- 365               		.type	Switch_flag, @object
- 366               		.size	Switch_flag, 1
- 367               	Switch_flag:
- 368 0001 00        		.zero	1
- 369               		.stabs	"Switch_flag:G(0,50)=B(0,13)",32,0,15,0
- 370               		.stabs	"Timer_flag:G(0,50)",32,0,16,0
- 371               		.text
- 372               		.stabs	"",100,0,0,.Letext0
- 373               	.Letext0:
- 374               		.ident	"GCC: (GNU) 5.4.0"
- 375               	.global __do_clear_bss
+ 318               		.stabn	68,0,187,.LM24-.LFBB4
+ 319               	.LM24:
+ 320 00fa 2FEF      		ldi r18,lo8(3199999)
+ 321 00fc 83ED      		ldi r24,hi8(3199999)
+ 322 00fe 90E3      		ldi r25,hlo8(3199999)
+ 323 0100 2150      	1:	subi r18,1
+ 324 0102 8040      		sbci r24,0
+ 325 0104 9040      		sbci r25,0
+ 326 0106 01F4      		brne 1b
+ 327 0108 00C0      		rjmp .
+ 328 010a 0000      		nop
+ 329               	.LBE18:
+ 330               	.LBE17:
+ 331               		.stabs	"/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c",132,0,0,.Ltext2
+ 332               	.Ltext2:
+  52:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****             _delay_ms(1000);
+  53:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         }
+  54:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  55:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         // 수신 및 처리가 끝난 후 초기화
+  56:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         ReceivedNumber = 0;
+ 333               		.stabn	68,0,56,.LM25-.LFBB4
+ 334               	.LM25:
+ 335 010c 1092 0000 		sts ReceivedNumber,__zero_reg__
+ 336 0110 1092 0000 		sts ReceivedNumber+1,__zero_reg__
+ 337 0114 1092 0000 		sts ReceivedNumber+2,__zero_reg__
+ 338 0118 1092 0000 		sts ReceivedNumber+3,__zero_reg__
+  57:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         NewDataReceived = 0;
+ 339               		.stabn	68,0,57,.LM26-.LFBB4
+ 340               	.LM26:
+ 341 011c 1092 0000 		sts NewDataReceived,__zero_reg__
+ 342               	.L7:
+ 343 0120 0895      		ret
+ 344               	.LBE16:
+ 345               		.size	loop, .-loop
+ 346               	.Lscope4:
+ 347               		.stabs	"",36,0,0,.Lscope4-.LFBB4
+ 348               		.stabd	78,0,0
+ 349               		.section	.text.startup,"ax",@progbits
+ 350               		.stabs	"main:F(0,1)",36,0,61,main
+ 351               	.global	main
+ 352               		.type	main, @function
+ 353               	main:
+ 354               		.stabd	46,0,0
+  58:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     }
+  59:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** }
+  60:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  61:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** int main() {
+ 355               		.stabn	68,0,61,.LM27-.LFBB5
+ 356               	.LM27:
+ 357               	.LFBB5:
+ 358               	/* prologue: function */
+ 359               	/* frame size = 0 */
+ 360               	/* stack size = 0 */
+ 361               	.L__stack_usage = 0
+  62:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     setup();
+ 362               		.stabn	68,0,62,.LM28-.LFBB5
+ 363               	.LM28:
+ 364 0000 0E94 0000 		call setup
+  63:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     USART0_init();
+ 365               		.stabn	68,0,63,.LM29-.LFBB5
+ 366               	.LM29:
+ 367 0004 0E94 0000 		call USART0_init
+  64:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     sei(); // 전역 인터럽트 활성화
+ 368               		.stabn	68,0,64,.LM30-.LFBB5
+ 369               	.LM30:
+ 370               	/* #APP */
+ 371               	 ;  64 "/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c" 1
+ 372 0008 7894      		sei
+ 373               	 ;  0 "" 2
+ 374               	/* #NOAPP */
+ 375               	.L16:
+  65:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c **** 
+  66:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****     while (1) {
+  67:/home/cdm/Desktop/AVR/Fast_Test/Fast_Test.c ****         loop();
+ 376               		.stabn	68,0,67,.LM31-.LFBB5
+ 377               	.LM31:
+ 378 000a 0E94 0000 		call loop
+ 379 000e 00C0      		rjmp .L16
+ 380               		.size	main, .-main
+ 381               	.Lscope5:
+ 382               		.stabs	"",36,0,0,.Lscope5-.LFBB5
+ 383               		.stabd	78,0,0
+ 384               	.global	NewDataReceived
+ 385               		.section .bss
+ 386               		.type	NewDataReceived, @object
+ 387               		.size	NewDataReceived, 1
+ 388               	NewDataReceived:
+ 389 0000 00        		.zero	1
+ 390               	.global	ReceivedNumber
+ 391               		.type	ReceivedNumber, @object
+ 392               		.size	ReceivedNumber, 4
+ 393               	ReceivedNumber:
+ 394 0001 0000 0000 		.zero	4
+ 395               		.stabs	"ReceivedNumber:G(0,50)=B(5,6)",32,0,9,0
+ 396               		.stabs	"NewDataReceived:G(0,51)=B(5,2)",32,0,10,0
+ 397               		.text
+ 398               		.stabs	"",100,0,0,.Letext0
+ 399               	.Letext0:
+ 400               		.ident	"GCC: (GNU) 5.4.0"
+ 401               	.global __do_clear_bss
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 main.c
-     /tmp/ccJYBMp4.s:2      *ABS*:000000000000003e __SP_H__
-     /tmp/ccJYBMp4.s:3      *ABS*:000000000000003d __SP_L__
-     /tmp/ccJYBMp4.s:4      *ABS*:000000000000003f __SREG__
-     /tmp/ccJYBMp4.s:5      *ABS*:0000000000000000 __tmp_reg__
-     /tmp/ccJYBMp4.s:6      *ABS*:0000000000000001 __zero_reg__
-     /tmp/ccJYBMp4.s:107    .text:0000000000000000 setup
-     /tmp/ccJYBMp4.s:135    .text:000000000000000c Timer1_init
-     /tmp/ccJYBMp4.s:169    .text:000000000000002a EXTINT_init
-     /tmp/ccJYBMp4.s:194    .text:0000000000000036 __vector_1
-     /tmp/ccJYBMp4.s:367    .bss:0000000000000001 Switch_flag
-     /tmp/ccJYBMp4.s:229    .text:0000000000000054 __vector_11
-     /tmp/ccJYBMp4.s:362    .bss:0000000000000000 Timer_flag
-     /tmp/ccJYBMp4.s:265    .text.startup:0000000000000000 main
+                            *ABS*:0000000000000000 Fast_Test.c
+     /tmp/ccZLTWqN.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccZLTWqN.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccZLTWqN.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccZLTWqN.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccZLTWqN.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccZLTWqN.s:107    .text:0000000000000000 setup
+     /tmp/ccZLTWqN.s:138    .text:000000000000000e USART0_init
+     /tmp/ccZLTWqN.s:174    .text:000000000000002c __vector_18
+     /tmp/ccZLTWqN.s:393    .bss:0000000000000001 ReceivedNumber
+     /tmp/ccZLTWqN.s:388    .bss:0000000000000000 NewDataReceived
+     /tmp/ccZLTWqN.s:277    .text:00000000000000d2 loop
+     /tmp/ccZLTWqN.s:353    .text.startup:0000000000000000 main
 
 UNDEFINED SYMBOLS
+__muluhisi3
 __do_clear_bss

@@ -22,7 +22,7 @@ void setup() {
     DDRD = 0x04;
 }
 
-void Timer1_init() {
+void Timer1_init() {        // 분주비가 1024로 설정하고 1초로 설정하려고 하면 제대로 인식하지 않음.
     TCCR1A = 0x00;        // WGM11, WGM10 -> 0
     TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);  // WGM13, WGM12 -> 0100 (CTC 모드), CS12, CS11, CS10 -> 011 (분주비 64)
     OCR1A = 0x3D08;        // 0x3D08 = 15624 (1초), 16MHz / 1024 / 15624 = 약 1Hz
@@ -46,27 +46,28 @@ ISR(TIMER1_COMPA_vect){
 int main() {
     setup();    // PORT 초기화
     Timer1_init();      // 타이머 초기화
-    EXTINT_init();
+    EXTINT_init();      // 외부 인터럽트 초기화
     sei();      // 모든 interrupt 허용
 
     while (1) {
         PORTB = 0x00;
 
         if(Timer_flag){
+            Timer_flag = 0; // 타이머 인터럽트 상태 초기화
             PORTB |= LED;
-            _delay_ms(1000);
-            Timer_flag = 0;
+            //_delay_ms(1000);
         }
            
         if ((input_value & BTN) == BTN) {  // 버튼이 눌렸을 때
             PORTB = 0x00;
             PORTD |= (1 << PORTD2);  // PD2, INT0 인터럽트 발생
             if(Switch_flag == 1){
+                Switch_flag = 0;  // 상태 초기화
                 PORTB |= RED;  // RED만 켜기
-            _delay_ms(1000);
+                _delay_ms(1000);
             }
             PORTD &= ~(1 << PORTD2);  // PD2, INT0 다시 LOW로 설정
-            Switch_flag = 0;  // 상태 초기화
+            Switch_flag = 0;  // 스위치 인터럽트 상태 초기화
         }
         
     }
