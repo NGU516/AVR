@@ -1,4 +1,3 @@
-#define F_CPU 16000000UL
 #include <avr/io.h>
 
 #define BTN 0x01
@@ -19,12 +18,11 @@ void USART0_init(void){
 	UCSR0A = 0x20;	// 0b00100000, USART Data Reister Empty, 초기화시 비어있음.
 	UCSR0B = 0x18;	// 0b00011000, RXEN TXEN '1' 설정 및 UCSZ02 '0' 설정
 	UCSR0C = 0x06;	// 0b00000110, UCSZ01, UCSZ00 '1' 설정
-	///////////// 한 번에 8bit를 보내야 함 {UCSZ02, UCSZ01, UCSZ00} = {0, 1, 1} 설정, 쓰게되면 100 -> 8bit
 }
 
 void USART0_send(unsigned char Data){
 	while(!( UCSR0A & (1<<UDRE0)) );
-	while(!(UCSR0A & 0x20));
+	//while(!(UCSR0A & 0x20));
 	UDR0 = Data;
 }
 
