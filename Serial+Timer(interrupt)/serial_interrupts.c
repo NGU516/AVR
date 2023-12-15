@@ -25,8 +25,10 @@ void USART0_init(void) {
     UBRR0L = 103;  // USART Baud Rate Register Low, 9600 baud rate
 
     UCSR0A = 0x20;  // 0b00100000, USART Data Register Empty, 초기화시 비어있음.
-    UCSR0B = (1 << RXEN0) | (1 << RXCIE0) | (0 << UCSZ02); // 수신 인터럽트 설정
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8-bit 데이터 포맷
+    UCSR0B = 0x98;	// 0b00011000, RXEN TXEN '1' 설정 및 UCSZ02 '0' 설정
+	UCSR0C = 0x06;	// 0b00000110, UCSZ01, UCSZ00 '1' 설정
+    // UCSR0B = (1 << RXEN0) | (1 << RXCIE0) | (0 << UCSZ02); // 수신 인터럽트 설정
+    // UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // 8-bit 데이터 포맷
 }
 
 void USART0_send(unsigned char Data) {
@@ -41,8 +43,7 @@ void Timer1_init() {
 }
 
 void Timer1_10ms_delay() {
-    while (!(TIFR1 & (1 << OCF1A)))
-        ;
+    while (!(TIFR1 & (1 << OCF1A)));
     TIFR1 |= (1 << OCF1A); // Output Compare Flag 초기화
 }
 
@@ -92,7 +93,6 @@ int main() {
     while (1) {
         PORTB = 0x00;
         Data = 0;
-        USART0_send('A');
         
         if ((input_value & BTN) == BTN)
         {
