@@ -1,18 +1,31 @@
 /*
  * Tilt_sensor.c
  *
- * Created: 2023-12-26 ì˜¤ì „ 11:50:03
+ * Created: 2023-12-26 ¿ÀÀü 11:50:03
  * Author : cdm05
  */ 
-#define F_CPU 16000000UL
+#define F_CPU 16000000UL	// 16MHz,Å©¸®½ºÅ» ÁÖÆÄ¼ö¸¦ ÁöÁ¤ÇØÁÖ¾î¾ß ¿Ã¹Ù¸¥ ½Ã°£ »ç¿ë °¡´É
 #include <avr/io.h>
+#include <util/delay.h>
 
+#define input 0x10   // D12, PB4
+#define LED   0x20   // D13, PB5
+#define input_value PINB
 
-int main(void)
-{
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+void setup(){
+	PORTB = 0x00;		
+	DDRB = (1 << DDB5);		// PB5¸¸ Ãâ·Â
 }
 
+int main(){
+	setup();
+	
+	while(1){
+		PORTB = 0x00;
+		
+		if(input_value & input){		// Tilt sensor data 1
+			PORTB |= LED;	//	 		
+			_delay_ms(100);	
+		}
+	}
+}
