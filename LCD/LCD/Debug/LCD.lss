@@ -3,31 +3,31 @@ LCD.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000020  00800100  000002f0  00000384  2**0
+  0 .data         00000022  00800100  000002d6  0000036a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000002f0  00000000  00000000  00000094  2**1
+  1 .text         000002d6  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000001  00800120  00800120  000003a4  2**0
+  2 .bss          00000001  00800122  00800122  0000038c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003a4  2**0
+  3 .comment      00000030  00000000  00000000  0000038c  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003d4  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003bc  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000b0  00000000  00000000  00000414  2**0
+  5 .debug_aranges 000000b0  00000000  00000000  000003fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000f83  00000000  00000000  000004c4  2**0
+  6 .debug_info   00000f55  00000000  00000000  000004ac  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000008eb  00000000  00000000  00001447  2**0
+  7 .debug_abbrev 000008fa  00000000  00000000  00001401  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000068f  00000000  00000000  00001d32  2**0
+  8 .debug_line   00000682  00000000  00000000  00001cfb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000138  00000000  00000000  000023c4  2**2
+  9 .debug_frame  00000138  00000000  00000000  00002380  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000044c  00000000  00000000  000024fc  2**0
+ 10 .debug_str    00000458  00000000  00000000  000024b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000669  00000000  00000000  00002948  2**0
+ 11 .debug_loc    000005ea  00000000  00000000  00002910  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000080  00000000  00000000  00002fb1  2**0
+ 12 .debug_ranges 00000080  00000000  00000000  00002efa  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e0 ef       	ldi	r30, 0xF0	; 240
+  7a:	e6 ed       	ldi	r30, 0xD6	; 214
   7c:	f2 e0       	ldi	r31, 0x02	; 2
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a0 32       	cpi	r26, 0x20	; 32
+  84:	a2 32       	cpi	r26, 0x22	; 34
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
   8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	a0 e2       	ldi	r26, 0x20	; 32
+  8c:	a2 e2       	ldi	r26, 0x22	; 34
   8e:	b1 e0       	ldi	r27, 0x01	; 1
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,11 +91,11 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a1 32       	cpi	r26, 0x21	; 33
+  94:	a3 32       	cpi	r26, 0x23	; 35
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 1f 01 	call	0x23e	; 0x23e <main>
-  9e:	0c 94 76 01 	jmp	0x2ec	; 0x2ec <_exit>
+  9a:	0e 94 12 01 	call	0x224	; 0x224 <main>
+  9e:	0c 94 69 01 	jmp	0x2d2	; 0x2d2 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -114,12 +114,12 @@ void sendHalfByte(unsigned char c) { // 4 bit
   aa:	c2 95       	swap	r28
   ac:	c0 7f       	andi	r28, 0xF0	; 240
 	
-	TWI_Transmit_Addr(PortLCD |= 0x04, 0x4E); // Enable E(0x04)
-  ae:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+	TWI_Transmit_Addr(PortLCD |= 0x04, 0x4E); // Enable E(0x04), 0x4E(address)
+  ae:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
   b2:	84 60       	ori	r24, 0x04	; 4
-  b4:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+  b4:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <__data_end>
   b8:	6e e4       	ldi	r22, 0x4E	; 78
-  ba:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
+  ba:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
@@ -135,17 +135,17 @@ void sendHalfByte(unsigned char c) { // 4 bit
 	_delay_us(50);
 
 	TWI_Transmit_Addr(PortLCD | c, 0x4E);
-  ca:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+  ca:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
   ce:	6e e4       	ldi	r22, 0x4E	; 78
   d0:	8c 2b       	or	r24, r28
-  d2:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
+  d2:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
 
 	TWI_Transmit_Addr(PortLCD &= ~0x04, 0x4E); // Disable E(0x04)
-  d6:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+  d6:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
   da:	8b 7f       	andi	r24, 0xFB	; 251
-  dc:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+  dc:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <__data_end>
   e0:	6e e4       	ldi	r22, 0x4E	; 78
-  e2:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
+  e2:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
   e6:	87 ec       	ldi	r24, 0xC7	; 199
   e8:	90 e0       	ldi	r25, 0x00	; 0
   ea:	01 97       	sbiw	r24, 0x01	; 1
@@ -162,24 +162,24 @@ void sendHalfByte(unsigned char c) { // 4 bit
 void sendByte(unsigned char c, unsigned char mode) {
   f6:	cf 93       	push	r28
   f8:	c8 2f       	mov	r28, r24
-	if(mode == 0) TWI_Transmit_Addr(PortLCD &= ~0x01, 0x4E);
+	if(mode == 0) TWI_Transmit_Addr(PortLCD &= ~0x01, 0x4E);	// PortLCD : 0xX0, RS
   fa:	61 11       	cpse	r22, r1
   fc:	09 c0       	rjmp	.+18     	; 0x110 <sendByte+0x1a>
-  fe:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+  fe:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
  102:	8e 7f       	andi	r24, 0xFE	; 254
- 104:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+ 104:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <__data_end>
  108:	6e e4       	ldi	r22, 0x4E	; 78
- 10a:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
+ 10a:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
  10e:	08 c0       	rjmp	.+16     	; 0x120 <sendByte+0x2a>
-	else TWI_Transmit_Addr(PortLCD |= 0x01, 0x4E);
- 110:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+	else TWI_Transmit_Addr(PortLCD |= 0x01, 0x4E);				// PortLCD : 0xX1, RS
+ 110:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
  114:	81 60       	ori	r24, 0x01	; 1
- 116:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+ 116:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <__data_end>
  11a:	6e e4       	ldi	r22, 0x4E	; 78
- 11c:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
-	unsigned char hc = 0;
-	hc = c >> 4;
-	sendHalfByte(hc);
+ 11c:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
+	unsigned char half_c = 0;
+	half_c = c >> 4;
+	sendHalfByte(half_c);
  120:	8c 2f       	mov	r24, r28
  122:	82 95       	swap	r24
  124:	8f 70       	andi	r24, 0x0F	; 15
@@ -192,344 +192,327 @@ void sendByte(unsigned char c, unsigned char mode) {
  132:	08 95       	ret
 
 00000134 <LCD_Init>:
-#include "twi.h"
 
-volatile unsigned char PortLCD = 0;
+volatile unsigned char PortLCD = 0;		// Higher 4bit(0xF0) == data bit, Lower 4bit(0x0F) == Control bit
 
 void LCD_Init(void) {
-	sendByte(0b00110011, 0);
- 134:	60 e0       	ldi	r22, 0x00	; 0
- 136:	83 e3       	ldi	r24, 0x33	; 51
- 138:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 13c:	8f e1       	ldi	r24, 0x1F	; 31
- 13e:	9e e4       	ldi	r25, 0x4E	; 78
- 140:	01 97       	sbiw	r24, 0x01	; 1
- 142:	f1 f7       	brne	.-4      	; 0x140 <LCD_Init+0xc>
- 144:	00 c0       	rjmp	.+0      	; 0x146 <LCD_Init+0x12>
- 146:	00 00       	nop
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 148:	8f e8       	ldi	r24, 0x8F	; 143
- 14a:	91 e0       	ldi	r25, 0x01	; 1
- 14c:	01 97       	sbiw	r24, 0x01	; 1
- 14e:	f1 f7       	brne	.-4      	; 0x14c <LCD_Init+0x18>
- 150:	00 c0       	rjmp	.+0      	; 0x152 <LCD_Init+0x1e>
- 152:	00 00       	nop
-	//sendHalfByte(0b00000011);
-	_delay_ms(5);
-	//sendHalfByte(0b00000011);
-	_delay_us(100);
+	// sendByte(0b00110011, 0);
 	sendHalfByte(0b00000011);
- 154:	83 e0       	ldi	r24, 0x03	; 3
- 156:	0e 94 53 00 	call	0xa6	; 0xa6 <sendHalfByte>
+ 134:	83 e0       	ldi	r24, 0x03	; 3
+ 136:	0e 94 53 00 	call	0xa6	; 0xa6 <sendHalfByte>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 15a:	8f e9       	ldi	r24, 0x9F	; 159
- 15c:	9f e0       	ldi	r25, 0x0F	; 15
- 15e:	01 97       	sbiw	r24, 0x01	; 1
- 160:	f1 f7       	brne	.-4      	; 0x15e <LCD_Init+0x2a>
- 162:	00 c0       	rjmp	.+0      	; 0x164 <LCD_Init+0x30>
- 164:	00 00       	nop
+ 13a:	8f e1       	ldi	r24, 0x1F	; 31
+ 13c:	9e e4       	ldi	r25, 0x4E	; 78
+ 13e:	01 97       	sbiw	r24, 0x01	; 1
+ 140:	f1 f7       	brne	.-4      	; 0x13e <LCD_Init+0xa>
+ 142:	00 c0       	rjmp	.+0      	; 0x144 <LCD_Init+0x10>
+ 144:	00 00       	nop
+	_delay_ms(5);
+	sendHalfByte(0b00000011);
+ 146:	83 e0       	ldi	r24, 0x03	; 3
+ 148:	0e 94 53 00 	call	0xa6	; 0xa6 <sendHalfByte>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 14c:	8f e8       	ldi	r24, 0x8F	; 143
+ 14e:	91 e0       	ldi	r25, 0x01	; 1
+ 150:	01 97       	sbiw	r24, 0x01	; 1
+ 152:	f1 f7       	brne	.-4      	; 0x150 <LCD_Init+0x1c>
+ 154:	00 c0       	rjmp	.+0      	; 0x156 <LCD_Init+0x22>
+ 156:	00 00       	nop
+	_delay_us(100);
+	// sendByte(0b00110010, 0);
+	sendHalfByte(0b00000011);
+ 158:	83 e0       	ldi	r24, 0x03	; 3
+ 15a:	0e 94 53 00 	call	0xa6	; 0xa6 <sendHalfByte>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 15e:	8f e9       	ldi	r24, 0x9F	; 159
+ 160:	9f e0       	ldi	r25, 0x0F	; 15
+ 162:	01 97       	sbiw	r24, 0x01	; 1
+ 164:	f1 f7       	brne	.-4      	; 0x162 <LCD_Init+0x2e>
+ 166:	00 c0       	rjmp	.+0      	; 0x168 <LCD_Init+0x34>
+ 168:	00 00       	nop
 	_delay_ms(1);
 	sendHalfByte(0b00000010);
- 166:	82 e0       	ldi	r24, 0x02	; 2
- 168:	0e 94 53 00 	call	0xa6	; 0xa6 <sendHalfByte>
- 16c:	8f e9       	ldi	r24, 0x9F	; 159
- 16e:	9f e0       	ldi	r25, 0x0F	; 15
- 170:	01 97       	sbiw	r24, 0x01	; 1
- 172:	f1 f7       	brne	.-4      	; 0x170 <LCD_Init+0x3c>
- 174:	00 c0       	rjmp	.+0      	; 0x176 <LCD_Init+0x42>
- 176:	00 00       	nop
+ 16a:	82 e0       	ldi	r24, 0x02	; 2
+ 16c:	0e 94 53 00 	call	0xa6	; 0xa6 <sendHalfByte>
+ 170:	8f e9       	ldi	r24, 0x9F	; 159
+ 172:	9f e0       	ldi	r25, 0x0F	; 15
+ 174:	01 97       	sbiw	r24, 0x01	; 1
+ 176:	f1 f7       	brne	.-4      	; 0x174 <LCD_Init+0x40>
+ 178:	00 c0       	rjmp	.+0      	; 0x17a <LCD_Init+0x46>
+ 17a:	00 00       	nop
 	_delay_ms(1);
+	
 	sendByte(0b00101000, 0); // Data 4bit, Line 2, Font 5x8
- 178:	60 e0       	ldi	r22, 0x00	; 0
- 17a:	88 e2       	ldi	r24, 0x28	; 40
- 17c:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
- 180:	8f e9       	ldi	r24, 0x9F	; 159
- 182:	9f e0       	ldi	r25, 0x0F	; 15
- 184:	01 97       	sbiw	r24, 0x01	; 1
- 186:	f1 f7       	brne	.-4      	; 0x184 <LCD_Init+0x50>
- 188:	00 c0       	rjmp	.+0      	; 0x18a <LCD_Init+0x56>
- 18a:	00 00       	nop
+ 17c:	60 e0       	ldi	r22, 0x00	; 0
+ 17e:	88 e2       	ldi	r24, 0x28	; 40
+ 180:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
+ 184:	8f e9       	ldi	r24, 0x9F	; 159
+ 186:	9f e0       	ldi	r25, 0x0F	; 15
+ 188:	01 97       	sbiw	r24, 0x01	; 1
+ 18a:	f1 f7       	brne	.-4      	; 0x188 <LCD_Init+0x54>
+ 18c:	00 c0       	rjmp	.+0      	; 0x18e <LCD_Init+0x5a>
+ 18e:	00 00       	nop
 	_delay_ms(1);
 	sendByte(0b00001110, 0); //Display ON, Cursor ON, Blink OFF
- 18c:	60 e0       	ldi	r22, 0x00	; 0
- 18e:	8e e0       	ldi	r24, 0x0E	; 14
- 190:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
- 194:	8f e9       	ldi	r24, 0x9F	; 159
- 196:	9f e0       	ldi	r25, 0x0F	; 15
- 198:	01 97       	sbiw	r24, 0x01	; 1
- 19a:	f1 f7       	brne	.-4      	; 0x198 <LCD_Init+0x64>
- 19c:	00 c0       	rjmp	.+0      	; 0x19e <LCD_Init+0x6a>
- 19e:	00 00       	nop
+ 190:	60 e0       	ldi	r22, 0x00	; 0
+ 192:	8e e0       	ldi	r24, 0x0E	; 14
+ 194:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
+ 198:	8f e9       	ldi	r24, 0x9F	; 159
+ 19a:	9f e0       	ldi	r25, 0x0F	; 15
+ 19c:	01 97       	sbiw	r24, 0x01	; 1
+ 19e:	f1 f7       	brne	.-4      	; 0x19c <LCD_Init+0x68>
+ 1a0:	00 c0       	rjmp	.+0      	; 0x1a2 <LCD_Init+0x6e>
+ 1a2:	00 00       	nop
 	_delay_ms(1);
 
 	TWI_Transmit_Addr(PortLCD |= 0x08, 0x4E);	// BackLight ON
- 1a0:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
- 1a4:	88 60       	ori	r24, 0x08	; 8
- 1a6:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
- 1aa:	6e e4       	ldi	r22, 0x4E	; 78
- 1ac:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
+ 1a4:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
+ 1a8:	88 60       	ori	r24, 0x08	; 8
+ 1aa:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <__data_end>
+ 1ae:	6e e4       	ldi	r22, 0x4E	; 78
+ 1b0:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
 	
 	TWI_Transmit_Addr(PortLCD &= ~0x02, 0x4E);	// LCD Write ON
- 1b0:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
- 1b4:	8d 7f       	andi	r24, 0xFD	; 253
- 1b6:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
- 1ba:	6e e4       	ldi	r22, 0x4E	; 78
- 1bc:	0e 94 65 01 	call	0x2ca	; 0x2ca <TWI_Transmit_Addr>
- 1c0:	08 95       	ret
+ 1b4:	80 91 22 01 	lds	r24, 0x0122	; 0x800122 <__data_end>
+ 1b8:	8d 7f       	andi	r24, 0xFD	; 253
+ 1ba:	80 93 22 01 	sts	0x0122, r24	; 0x800122 <__data_end>
+ 1be:	6e e4       	ldi	r22, 0x4E	; 78
+ 1c0:	0e 94 58 01 	call	0x2b0	; 0x2b0 <TWI_Transmit_Addr>
+ 1c4:	08 95       	ret
 
-000001c2 <LCD_sendString>:
-	hc = c >> 4;
-	sendHalfByte(hc);
+000001c6 <LCD_sendString>:
+	half_c = c >> 4;
+	sendHalfByte(half_c);
 	sendHalfByte(c);
 }
 
 void LCD_sendString(char s[]) {
- 1c2:	0f 93       	push	r16
- 1c4:	1f 93       	push	r17
- 1c6:	cf 93       	push	r28
- 1c8:	8c 01       	movw	r16, r24
+ 1c6:	0f 93       	push	r16
+ 1c8:	1f 93       	push	r17
+ 1ca:	cf 93       	push	r28
+ 1cc:	8c 01       	movw	r16, r24
 	char n;
 	for(n=0; s[n]!='\0'; n++)
- 1ca:	c0 e0       	ldi	r28, 0x00	; 0
- 1cc:	04 c0       	rjmp	.+8      	; 0x1d6 <LCD_sendString+0x14>
+ 1ce:	c0 e0       	ldi	r28, 0x00	; 0
+ 1d0:	04 c0       	rjmp	.+8      	; 0x1da <LCD_sendString+0x14>
 		sendByte(s[n], 1);
- 1ce:	61 e0       	ldi	r22, 0x01	; 1
- 1d0:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
+ 1d2:	61 e0       	ldi	r22, 0x01	; 1
+ 1d4:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
 	sendHalfByte(c);
 }
 
 void LCD_sendString(char s[]) {
 	char n;
 	for(n=0; s[n]!='\0'; n++)
- 1d4:	cf 5f       	subi	r28, 0xFF	; 255
- 1d6:	f8 01       	movw	r30, r16
- 1d8:	ec 0f       	add	r30, r28
- 1da:	f1 1d       	adc	r31, r1
- 1dc:	80 81       	ld	r24, Z
- 1de:	81 11       	cpse	r24, r1
- 1e0:	f6 cf       	rjmp	.-20     	; 0x1ce <LCD_sendString+0xc>
+ 1d8:	cf 5f       	subi	r28, 0xFF	; 255
+ 1da:	f8 01       	movw	r30, r16
+ 1dc:	ec 0f       	add	r30, r28
+ 1de:	f1 1d       	adc	r31, r1
+ 1e0:	80 81       	ld	r24, Z
+ 1e2:	81 11       	cpse	r24, r1
+ 1e4:	f6 cf       	rjmp	.-20     	; 0x1d2 <LCD_sendString+0xc>
 		sendByte(s[n], 1);
 }
- 1e2:	cf 91       	pop	r28
- 1e4:	1f 91       	pop	r17
- 1e6:	0f 91       	pop	r16
- 1e8:	08 95       	ret
+ 1e6:	cf 91       	pop	r28
+ 1e8:	1f 91       	pop	r17
+ 1ea:	0f 91       	pop	r16
+ 1ec:	08 95       	ret
 
-000001ea <LCD_setPosition>:
+000001ee <LCD_setPosition>:
 
-void LCD_setPosition(unsigned char x, unsigned char y) {
-	switch(y) {
- 1ea:	61 30       	cpi	r22, 0x01	; 1
- 1ec:	59 f0       	breq	.+22     	; 0x204 <LCD_setPosition+0x1a>
- 1ee:	28 f0       	brcs	.+10     	; 0x1fa <LCD_setPosition+0x10>
- 1f0:	62 30       	cpi	r22, 0x02	; 2
- 1f2:	71 f0       	breq	.+28     	; 0x210 <LCD_setPosition+0x26>
- 1f4:	63 30       	cpi	r22, 0x03	; 3
- 1f6:	91 f0       	breq	.+36     	; 0x21c <LCD_setPosition+0x32>
- 1f8:	08 95       	ret
+void LCD_setPosition(unsigned char x, unsigned char line) {	// HD44780 data sheet for reference
+	switch(line) {
+ 1ee:	66 23       	and	r22, r22
+ 1f0:	19 f0       	breq	.+6      	; 0x1f8 <LCD_setPosition+0xa>
+ 1f2:	61 30       	cpi	r22, 0x01	; 1
+ 1f4:	31 f0       	breq	.+12     	; 0x202 <LCD_setPosition+0x14>
+ 1f6:	08 95       	ret
 		case 0: 
 			sendByte(x | 0x80, 0);
- 1fa:	60 e0       	ldi	r22, 0x00	; 0
- 1fc:	80 68       	ori	r24, 0x80	; 128
- 1fe:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
+ 1f8:	60 e0       	ldi	r22, 0x00	; 0
+ 1fa:	80 68       	ori	r24, 0x80	; 128
+ 1fc:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
 			break;
- 202:	08 95       	ret
+ 200:	08 95       	ret
 		case 1: 
-			sendByte((0x40+ x) | 0x80, 0);
- 204:	80 5c       	subi	r24, 0xC0	; 192
- 206:	60 e0       	ldi	r22, 0x00	; 0
- 208:	80 68       	ori	r24, 0x80	; 128
- 20a:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
-			break;
- 20e:	08 95       	ret
-		case 2: 
-			sendByte((0x10+ x) | 0x80, 0);
- 210:	80 5f       	subi	r24, 0xF0	; 240
- 212:	60 e0       	ldi	r22, 0x00	; 0
- 214:	80 68       	ori	r24, 0x80	; 128
- 216:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
-			break;
- 21a:	08 95       	ret
-		case 3: 
-			sendByte((0x50+ x) | 0x80, 0);
- 21c:	80 5b       	subi	r24, 0xB0	; 176
- 21e:	60 e0       	ldi	r22, 0x00	; 0
- 220:	80 68       	ori	r24, 0x80	; 128
- 222:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
- 226:	08 95       	ret
+			sendByte((x+0x40) | 0x80, 0);
+ 202:	80 5c       	subi	r24, 0xC0	; 192
+ 204:	60 e0       	ldi	r22, 0x00	; 0
+ 206:	80 68       	ori	r24, 0x80	; 128
+ 208:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
+ 20c:	08 95       	ret
 
-00000228 <LCD_clear>:
+0000020e <LCD_clear>:
 			break;
 	}
 }
 
 void LCD_clear(void) {
 	sendByte(0x01, 0);
- 228:	60 e0       	ldi	r22, 0x00	; 0
- 22a:	81 e0       	ldi	r24, 0x01	; 1
- 22c:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
- 230:	8f e1       	ldi	r24, 0x1F	; 31
- 232:	9e e4       	ldi	r25, 0x4E	; 78
- 234:	01 97       	sbiw	r24, 0x01	; 1
- 236:	f1 f7       	brne	.-4      	; 0x234 <LCD_clear+0xc>
- 238:	00 c0       	rjmp	.+0      	; 0x23a <LCD_clear+0x12>
- 23a:	00 00       	nop
- 23c:	08 95       	ret
+ 20e:	60 e0       	ldi	r22, 0x00	; 0
+ 210:	81 e0       	ldi	r24, 0x01	; 1
+ 212:	0e 94 7b 00 	call	0xf6	; 0xf6 <sendByte>
+ 216:	8f e1       	ldi	r24, 0x1F	; 31
+ 218:	9e e4       	ldi	r25, 0x4E	; 78
+ 21a:	01 97       	sbiw	r24, 0x01	; 1
+ 21c:	f1 f7       	brne	.-4      	; 0x21a <LCD_clear+0xc>
+ 21e:	00 c0       	rjmp	.+0      	; 0x220 <LCD_clear+0x12>
+ 220:	00 00       	nop
+ 222:	08 95       	ret
 
-0000023e <main>:
+00000224 <main>:
 #include "main.h"
-#include "twi.h"
-#include "lcd.h" 
+#include "TWI.h"
+#include "LCD.h" 
 
 int main(void) {
 	DDRC |= 0b00110000;
- 23e:	87 b1       	in	r24, 0x07	; 7
- 240:	80 63       	ori	r24, 0x30	; 48
- 242:	87 b9       	out	0x07, r24	; 7
+ 224:	87 b1       	in	r24, 0x07	; 7
+ 226:	80 63       	ori	r24, 0x30	; 48
+ 228:	87 b9       	out	0x07, r24	; 7
 	
 	TWI_Init();
- 244:	0e 94 4b 01 	call	0x296	; 0x296 <TWI_Init>
- 248:	2f ef       	ldi	r18, 0xFF	; 255
- 24a:	80 e7       	ldi	r24, 0x70	; 112
- 24c:	92 e0       	ldi	r25, 0x02	; 2
- 24e:	21 50       	subi	r18, 0x01	; 1
- 250:	80 40       	sbci	r24, 0x00	; 0
- 252:	90 40       	sbci	r25, 0x00	; 0
- 254:	e1 f7       	brne	.-8      	; 0x24e <main+0x10>
- 256:	00 c0       	rjmp	.+0      	; 0x258 <main+0x1a>
- 258:	00 00       	nop
+ 22a:	0e 94 3e 01 	call	0x27c	; 0x27c <TWI_Init>
+ 22e:	2f ef       	ldi	r18, 0xFF	; 255
+ 230:	80 e7       	ldi	r24, 0x70	; 112
+ 232:	92 e0       	ldi	r25, 0x02	; 2
+ 234:	21 50       	subi	r18, 0x01	; 1
+ 236:	80 40       	sbci	r24, 0x00	; 0
+ 238:	90 40       	sbci	r25, 0x00	; 0
+ 23a:	e1 f7       	brne	.-8      	; 0x234 <main+0x10>
+ 23c:	00 c0       	rjmp	.+0      	; 0x23e <main+0x1a>
+ 23e:	00 00       	nop
 	_delay_ms(50);
 	LCD_Init();
- 25a:	0e 94 9a 00 	call	0x134	; 0x134 <LCD_Init>
+ 240:	0e 94 9a 00 	call	0x134	; 0x134 <LCD_Init>
 	
 	while (1) {
 		LCD_clear();
- 25e:	0e 94 14 01 	call	0x228	; 0x228 <LCD_clear>
+ 244:	0e 94 07 01 	call	0x20e	; 0x20e <LCD_clear>
 		LCD_setPosition(0,0);
- 262:	60 e0       	ldi	r22, 0x00	; 0
- 264:	80 e0       	ldi	r24, 0x00	; 0
- 266:	0e 94 f5 00 	call	0x1ea	; 0x1ea <LCD_setPosition>
-		LCD_sendString("TestLCD 23.12.29");
- 26a:	80 e0       	ldi	r24, 0x00	; 0
- 26c:	91 e0       	ldi	r25, 0x01	; 1
- 26e:	0e 94 e1 00 	call	0x1c2	; 0x1c2 <LCD_sendString>
-		LCD_setPosition(1,1);
- 272:	61 e0       	ldi	r22, 0x01	; 1
- 274:	81 e0       	ldi	r24, 0x01	; 1
- 276:	0e 94 f5 00 	call	0x1ea	; 0x1ea <LCD_setPosition>
-		LCD_sendString(" code review ");
- 27a:	81 e1       	ldi	r24, 0x11	; 17
- 27c:	91 e0       	ldi	r25, 0x01	; 1
- 27e:	0e 94 e1 00 	call	0x1c2	; 0x1c2 <LCD_sendString>
- 282:	2f ef       	ldi	r18, 0xFF	; 255
- 284:	83 e2       	ldi	r24, 0x23	; 35
- 286:	94 ef       	ldi	r25, 0xF4	; 244
- 288:	21 50       	subi	r18, 0x01	; 1
- 28a:	80 40       	sbci	r24, 0x00	; 0
- 28c:	90 40       	sbci	r25, 0x00	; 0
- 28e:	e1 f7       	brne	.-8      	; 0x288 <main+0x4a>
- 290:	00 c0       	rjmp	.+0      	; 0x292 <main+0x54>
- 292:	00 00       	nop
- 294:	e4 cf       	rjmp	.-56     	; 0x25e <main+0x20>
+ 248:	60 e0       	ldi	r22, 0x00	; 0
+ 24a:	80 e0       	ldi	r24, 0x00	; 0
+ 24c:	0e 94 f7 00 	call	0x1ee	; 0x1ee <LCD_setPosition>
+		LCD_sendString("TestLCD 24.01.02");
+ 250:	80 e0       	ldi	r24, 0x00	; 0
+ 252:	91 e0       	ldi	r25, 0x01	; 1
+ 254:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <LCD_sendString>
+		LCD_setPosition(0,1);
+ 258:	61 e0       	ldi	r22, 0x01	; 1
+ 25a:	80 e0       	ldi	r24, 0x00	; 0
+ 25c:	0e 94 f7 00 	call	0x1ee	; 0x1ee <LCD_setPosition>
+		LCD_sendString(" Code Test 9999");
+ 260:	81 e1       	ldi	r24, 0x11	; 17
+ 262:	91 e0       	ldi	r25, 0x01	; 1
+ 264:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <LCD_sendString>
+ 268:	2f ef       	ldi	r18, 0xFF	; 255
+ 26a:	83 e2       	ldi	r24, 0x23	; 35
+ 26c:	94 ef       	ldi	r25, 0xF4	; 244
+ 26e:	21 50       	subi	r18, 0x01	; 1
+ 270:	80 40       	sbci	r24, 0x00	; 0
+ 272:	90 40       	sbci	r25, 0x00	; 0
+ 274:	e1 f7       	brne	.-8      	; 0x26e <main+0x4a>
+ 276:	00 c0       	rjmp	.+0      	; 0x278 <main+0x54>
+ 278:	00 00       	nop
+ 27a:	e4 cf       	rjmp	.-56     	; 0x244 <main+0x20>
 
-00000296 <TWI_Init>:
+0000027c <TWI_Init>:
 #include "main.h"
 
 void TWI_Init(void){
 	// TWI Bit Rate Register
 	// TWBR = 0x48;		// 0b01001000
 	TWBR = (1<<TWBR5) | (1<<TWBR3);		// SCL Frequency, Datasheet for reference
- 296:	88 e2       	ldi	r24, 0x28	; 40
- 298:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7f80b8>
- 29c:	08 95       	ret
+ 27c:	88 e2       	ldi	r24, 0x28	; 40
+ 27e:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7f80b8>
+ 282:	08 95       	ret
 
-0000029e <TWI_Start>:
+00000284 <TWI_Start>:
 }
 
 void TWI_Start(void) {
 	// TWI Control Register
 	// Interrupt, Start bit, Enable Set
 	TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
- 29e:	84 ea       	ldi	r24, 0xA4	; 164
- 2a0:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 284:	84 ea       	ldi	r24, 0xA4	; 164
+ 286:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
 	while(!(TWCR & (1<<TWINT)));		// TWI Setup complete -> Interrupt flag set
- 2a4:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
- 2a8:	88 23       	and	r24, r24
- 2aa:	e4 f7       	brge	.-8      	; 0x2a4 <TWI_Start+0x6>
+ 28a:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 28e:	88 23       	and	r24, r24
+ 290:	e4 f7       	brge	.-8      	; 0x28a <TWI_Start+0x6>
 }
- 2ac:	08 95       	ret
+ 292:	08 95       	ret
 
-000002ae <TWI_Transmit>:
+00000294 <TWI_Transmit>:
 
 void TWI_Transmit(unsigned char data) {
 	// TWI Data Register(Data buffer, 8bit)
 	TWDR = data;
- 2ae:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+ 294:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
 	TWCR = (1<<TWINT) | (1<<TWEN);		// Transmit -> Interrupt
- 2b2:	84 e8       	ldi	r24, 0x84	; 132
- 2b4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 298:	84 e8       	ldi	r24, 0x84	; 132
+ 29a:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
 	while(!(TWCR & (1<<TWINT)));
- 2b8:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
- 2bc:	88 23       	and	r24, r24
- 2be:	e4 f7       	brge	.-8      	; 0x2b8 <TWI_Transmit+0xa>
+ 29e:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 2a2:	88 23       	and	r24, r24
+ 2a4:	e4 f7       	brge	.-8      	; 0x29e <TWI_Transmit+0xa>
 }
- 2c0:	08 95       	ret
+ 2a6:	08 95       	ret
 
-000002c2 <TWI_Stop>:
+000002a8 <TWI_Stop>:
 	TWI_Stop();
 }
 
 void TWI_Stop(void) {
 	// TWCR Register init
 	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
- 2c2:	84 e9       	ldi	r24, 0x94	; 148
- 2c4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
- 2c8:	08 95       	ret
+ 2a8:	84 e9       	ldi	r24, 0x94	; 148
+ 2aa:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 2ae:	08 95       	ret
 
-000002ca <TWI_Transmit_Addr>:
+000002b0 <TWI_Transmit_Addr>:
 	TWDR = data;
 	TWCR = (1<<TWINT) | (1<<TWEN);		// Transmit -> Interrupt
 	while(!(TWCR & (1<<TWINT)));
 }
 
 void TWI_Transmit_Addr(unsigned char data, unsigned char addr){
- 2ca:	cf 93       	push	r28
- 2cc:	df 93       	push	r29
- 2ce:	c8 2f       	mov	r28, r24
- 2d0:	d6 2f       	mov	r29, r22
+ 2b0:	cf 93       	push	r28
+ 2b2:	df 93       	push	r29
+ 2b4:	c8 2f       	mov	r28, r24
+ 2b6:	d6 2f       	mov	r29, r22
 	TWI_Start();
- 2d2:	0e 94 4f 01 	call	0x29e	; 0x29e <TWI_Start>
+ 2b8:	0e 94 42 01 	call	0x284	; 0x284 <TWI_Start>
 	TWI_Transmit(addr);
- 2d6:	8d 2f       	mov	r24, r29
- 2d8:	0e 94 57 01 	call	0x2ae	; 0x2ae <TWI_Transmit>
+ 2bc:	8d 2f       	mov	r24, r29
+ 2be:	0e 94 4a 01 	call	0x294	; 0x294 <TWI_Transmit>
 	TWI_Transmit(data);
- 2dc:	8c 2f       	mov	r24, r28
- 2de:	0e 94 57 01 	call	0x2ae	; 0x2ae <TWI_Transmit>
+ 2c2:	8c 2f       	mov	r24, r28
+ 2c4:	0e 94 4a 01 	call	0x294	; 0x294 <TWI_Transmit>
 	TWI_Stop();
- 2e2:	0e 94 61 01 	call	0x2c2	; 0x2c2 <TWI_Stop>
+ 2c8:	0e 94 54 01 	call	0x2a8	; 0x2a8 <TWI_Stop>
 }
- 2e6:	df 91       	pop	r29
- 2e8:	cf 91       	pop	r28
- 2ea:	08 95       	ret
+ 2cc:	df 91       	pop	r29
+ 2ce:	cf 91       	pop	r28
+ 2d0:	08 95       	ret
 
-000002ec <_exit>:
- 2ec:	f8 94       	cli
+000002d2 <_exit>:
+ 2d2:	f8 94       	cli
 
-000002ee <__stop_program>:
- 2ee:	ff cf       	rjmp	.-2      	; 0x2ee <__stop_program>
+000002d4 <__stop_program>:
+ 2d4:	ff cf       	rjmp	.-2      	; 0x2d4 <__stop_program>

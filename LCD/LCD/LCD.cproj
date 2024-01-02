@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -120,7 +120,7 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="lcd.c">
+    <Compile Include="LCD.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LCD.h">
@@ -132,10 +132,10 @@
     <Compile Include="main.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="twi.c">
+    <Compile Include="TWI.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="twi.h">
+    <Compile Include="TWI.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

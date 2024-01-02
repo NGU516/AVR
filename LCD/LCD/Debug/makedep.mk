@@ -2,9 +2,9 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-lcd.c
+LCD.c
 
 main.c
 
-twi.c
+TWI.c
 

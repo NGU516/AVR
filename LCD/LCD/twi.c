@@ -1,4 +1,4 @@
-#include "twi.h"
+#include "TWI.h"
 #include "main.h"
 
 void TWI_Init(void){

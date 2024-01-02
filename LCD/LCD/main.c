@@ -1,9 +1,9 @@
 #include "main.h"
-#include "twi.h"
-#include "lcd.h" 
+#include "TWI.h"
+#include "LCD.h" 
 
 int main(void) {
-	DDRC |= 0b00110000;
+	DDRC |= 0b00110000;		// A4(SDA), A5(SCL)
 	
 	TWI_Init();
 	_delay_ms(50);
@@ -12,9 +12,9 @@ int main(void) {
 	while (1) {
 		LCD_clear();
 		LCD_setPosition(0,0);
-		LCD_sendString("TestLCD 23.12.29");
-		LCD_setPosition(1,1);
-		LCD_sendString(" Code Test ");
+		LCD_sendString("TestLCD 24.01.02");
+		LCD_setPosition(0,1);
+		LCD_sendString(" Code Test 9999");
 		_delay_ms(5000);
 	}
 

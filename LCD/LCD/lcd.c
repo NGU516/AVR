@@ -1,8 +1,8 @@
-#include "lcd.h"
+#include "LCD.h"
 #include "main.h"
-#include "twi.h"
+#include "TWI.h"
 
-volatile unsigned char PortLCD = 0;
+volatile unsigned char PortLCD = 0;		// Higher 4bit(0xF0) == data bit, Lower 4bit(0x0F) == Control bit
 
 void LCD_Init(void) {
 	// sendByte(0b00110011, 0);
@@ -15,6 +15,7 @@ void LCD_Init(void) {
 	_delay_ms(1);
 	sendHalfByte(0b00000010);
 	_delay_ms(1);
+	
 	sendByte(0b00101000, 0); // Data 4bit, Line 2, Font 5x8
 	_delay_ms(1);
 	sendByte(0b00001110, 0); //Display ON, Cursor ON, Blink OFF
@@ -40,7 +41,7 @@ void sendHalfByte(unsigned char c) { // 4 bit
 	// current Higher 4 Bit = data lower 4bit
 	c <<= 4;
 	
-	TWI_Transmit_Addr(PortLCD |= 0x04, 0x4E); // Enable E(0x04)
+	TWI_Transmit_Addr(PortLCD |= 0x04, 0x4E); // Enable E(0x04), 0x4E(address)
 	_delay_us(50);
 
 	TWI_Transmit_Addr(PortLCD | c, 0x4E);
@@ -50,11 +51,11 @@ void sendHalfByte(unsigned char c) { // 4 bit
 }
 
 void sendByte(unsigned char c, unsigned char mode) {
-	if(mode == 0) TWI_Transmit_Addr(PortLCD &= ~0x01, 0x4E);
-	else TWI_Transmit_Addr(PortLCD |= 0x01, 0x4E);
-	unsigned char hc = 0;
-	hc = c >> 4;
-	sendHalfByte(hc);
+	if(mode == 0) TWI_Transmit_Addr(PortLCD &= ~0x01, 0x4E);	// PortLCD : 0xX0, RS
+	else TWI_Transmit_Addr(PortLCD |= 0x01, 0x4E);				// PortLCD : 0xX1, RS
+	unsigned char half_c = 0;
+	half_c = c >> 4;
+	sendHalfByte(half_c);
 	sendHalfByte(c);
 }
 
@@ -64,19 +65,13 @@ void LCD_sendString(char s[]) {
 		sendByte(s[n], 1);
 }
 
-void LCD_setPosition(unsigned char x, unsigned char y) {
-	switch(y) {
+void LCD_setPosition(unsigned char x, unsigned char line) {	// HD44780 data sheet for reference
+	switch(line) {
 		case 0: 
 			sendByte(x | 0x80, 0);
 			break;
 		case 1: 
-			sendByte((0x40+ x) | 0x80, 0);
-			break;
-		case 2: 
-			sendByte((0x10+ x) | 0x80, 0);
-			break;
-		case 3: 
-			sendByte((0x50+ x) | 0x80, 0);
+			sendByte((x+0x40) | 0x80, 0);
 			break;
 	}
 }
