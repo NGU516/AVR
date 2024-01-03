@@ -18,7 +18,7 @@ void LCD_Init(void) {
 	
 	sendByte(0b00101000, 0); // Data 4bit, Line 2, Font 5x8
 	_delay_ms(1);
-	sendByte(0b00001110, 0); //Display ON, Cursor ON, Blink OFF
+	sendByte(0b00001111, 0); //Display ON, Cursor ON, Blink ON
 	_delay_ms(1);
 
 	TWI_Transmit_Addr(PortLCD |= 0x08, 0x4E);	// BackLight ON
@@ -53,6 +53,7 @@ void sendHalfByte(unsigned char c) { // 4 bit
 void sendByte(unsigned char c, unsigned char mode) {
 	if(mode == 0) TWI_Transmit_Addr(PortLCD &= ~0x01, 0x4E);	// PortLCD : 0xX0, RS
 	else TWI_Transmit_Addr(PortLCD |= 0x01, 0x4E);				// PortLCD : 0xX1, RS
+		
 	unsigned char half_c = 0;
 	half_c = c >> 4;
 	sendHalfByte(half_c);
