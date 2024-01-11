@@ -60,8 +60,8 @@ void UART_Transmit_data(const char* label, int16_t data) {
 }
 
 void I2C_INIT() {
-	TWSR = 0;  // Set prescaler to 1
-	TWBR = ((F_CPU / 100000UL) - 16) / 2;  // Set bit rate to 100kHz
+	TWSR = 0;  // Set prescaler 1
+	TWBR = ((F_CPU / 100000UL) - 16) / 2;  // Set bit rate 100kHz
 }
 
 void I2C_START() {
@@ -83,13 +83,13 @@ void I2C_WRITE(uint8_t data) {
 uint8_t I2C_READ_ACK() {
 	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA);
 	while (!(TWCR & (1 << TWINT)));
-	return TWDR;
+	return TWDR;	// Higher 8bit
 }
 
 uint8_t I2C_READ_NACK() {
 	TWCR = (1 << TWINT) | (1 << TWEN);
 	while (!(TWCR & (1 << TWINT)));
-	return TWDR;
+	return TWDR;	// Lower 8bit
 }
 
 int16_t read_mpu9250_register16(uint8_t reg_addr) {
