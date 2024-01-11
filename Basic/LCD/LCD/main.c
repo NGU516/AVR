@@ -58,6 +58,7 @@ ISR(USART_RX_vect) { // 수신 인터럽트
 	if (ReceivedData == 0x08) { // loof 진입 안됨
 		USART0_send('a');
 		sendByte(0x10, 0);
+		
 
 		if (BufferIndex > 0) {
 			BufferIndex--;
@@ -106,5 +107,11 @@ int main() {
 	sei();
 	
 	while (1) {
+		LCD_clear();
+		_delay_ms(20);
+		LCD_setPosition(0, 0);
+		LCD_sendString("2024.01.08");
+		LCD_setPosition(0, 1);
+		LCD_sendString("99999999");
 	}
 }
