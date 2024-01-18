@@ -143,6 +143,7 @@ int main(void) {
 	_delay_ms(20);
 	sei();
 
+<<<<<<< HEAD
 	while (1) {
 		// MPU9250 raw data Print LCD
 		LCD_setPosition(0, 0);
@@ -186,4 +187,35 @@ int main(void) {
 		}
 		_delay_ms(500);
 	}
+=======
+    while (1) {
+	    // MPU9250 raw data Print LCD
+	    LCD_setPosition(0, 0);
+	    int16_t gyro_x_raw = read_mpu9250_register16(GYRO_XOUT);
+	    float gyro_x_data = gyro_x_raw / 250.0;  // set scale ¡¾250¡Æ/sec
+	    char gyro_x_str[7];
+	    sprintf(gyro_x_str, "%+05d", gyro_x_data);
+	    LCD_sendString(gyro_x_str);
+
+	    LCD_setPosition(8, 0);
+	    int16_t gyro_y_raw = read_mpu9250_register16(GYRO_YOUT);
+	    float gyro_y_data = gyro_y_raw / 250.0;
+	    char gyro_y_str[7];
+	    sprintf(gyro_y_str, "%+05d", gyro_y_data);
+	    LCD_sendString(gyro_y_str);
+
+	    LCD_setPosition(0, 1);
+	    int16_t gyro_z_raw = read_mpu9250_register16(GYRO_ZOUT);
+	    float gyro_z_data = gyro_z_raw / 250.0;
+	    char gyro_z_str[7];
+	    sprintf(gyro_z_str, "%+05d", gyro_z_data);
+	    LCD_sendString(gyro_z_str);
+		
+	    LCD_setPosition(8, 1);
+	    LCD_sendString("GYRO_XYZ");
+	    
+	    _delay_ms(500);
+    }
+
+>>>>>>> 0141be009de18a9f51cb386f28a244ad1709806b
 }
