@@ -874,7 +874,7 @@ int main(void) {
      53c:	38 8f       	std	Y+24, r19	; 0x18
      53e:	2f 8b       	std	Y+23, r18	; 0x17
      540:	ce 01       	movw	r24, r28
-	
+		
 		LCD_setPosition(8, 0);
 		int16_t gyro_y_raw = read_mpu9250_register16(GYRO_YOUT);
 		float gyro_y_data = gyro_y_raw / 250.0;
@@ -932,7 +932,7 @@ int main(void) {
      58e:	40 96       	adiw	r24, 0x10	; 16
      590:	91 de       	rcall	.-734    	; 0x2b4 <LCD_sendString>
 
-	
+		
 		LCD_setPosition(8, 0);
      592:	60 e0       	ldi	r22, 0x00	; 0
      594:	88 e0       	ldi	r24, 0x08	; 8
