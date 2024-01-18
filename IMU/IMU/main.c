@@ -1,6 +1,7 @@
 #include "main.h"
 #include "LCD.h"
 #include "TWI.h"
+#include <avr/interrupt.h>
 
 #define BAUD_RATE 9600
 #define UBRR_VALUE ((F_CPU / (BAUD_RATE * 16UL)) - 1)
@@ -29,9 +30,12 @@ void I2C_WRITE(uint8_t data);
 uint8_t I2C_READ_ACK(void);
 uint8_t I2C_READ_NACK(void);
 int16_t read_mpu9250_register16(uint8_t reg_addr);
+void handleCommunicationError(void);
 
 ISR(USART_RX_vect);
+
 //////////////////////////////////////////////////////////////////////////
+
 void UART_INIT() {
 	UBRR0H = (uint8_t)(UBRR_VALUE >> 8);
 	UBRR0L = (uint8_t)UBRR_VALUE;
@@ -52,21 +56,22 @@ void UART_Transmit_string(const char* str) {
 }
 
 void UART_Transmit_data(const char* label, int16_t data) {
-	char buffer[17];	// register length 16bit
-	sprintf(buffer, "%s %d", label, data);
+	char buffer[20];
+	float float_data = (float)data;
+	snprintf(buffer, sizeof(buffer), "%s %.3f\n", label, float_data);
 	UART_Transmit_string(buffer);
 }
 
 void I2C_INIT() {
 	TWSR = 0;  // Set prescaler 1
 	TWBR = ((F_CPU / 100000UL) - 16) / 2;  // Set bit rate 100kHz
-
+	TWCR |= (1 << TWEN);
 }
 
-
 void I2C_START() {
-	TWCR = (1 << TWSTA) | (1 << TWINT) | (1 << TWEN);
+	TWCR = (1 << TWSTA) | (1 << TWINT) | (1 << TWEN);	// | (1 << TWIE), if use TWI interrupt(통신 완료마다 인터럽트 발생)
 	while (!(TWCR & (1 << TWINT)));
+	TWCR &= ~(1 << TWINT);
 }
 
 void I2C_STOP() {
@@ -82,36 +87,46 @@ void I2C_WRITE(uint8_t data) {
 
 uint8_t I2C_READ_ACK() {
 	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA);
-	while (!(TWCR & (1 << TWINT)));
-	UART_Transmit_char('A');
+
+	TCNT1 = 0;  // Time out Counter
+	TCCR1B |= (1 << CS12) | (1 << CS10);  // Timer 1024 prescaler
+
+	while (!(TWCR & (1 << TWINT))) {
+		if (TCNT1 > 1000) {	// 1sec
+			break;
+		}
+	}
+	
+	TCCR1B = 0;
 	return TWDR;    // Higher 8bit
 }
 
 uint8_t I2C_READ_NACK() {
 	TWCR = (1 << TWINT) | (1 << TWEN);
-	while (!(TWCR & (1 << TWINT)));
-	UART_Transmit_char('B');
+	
+	TCNT1 = 0;
+	TCCR1B |= (1 << CS12) | (1 << CS10);
+
+	while (!(TWCR & (1 << TWINT))) {
+		if (TCNT1 > 1000) {
+			break;
+		}
+	}
+
+	TCCR1B = 0;
 	return TWDR;    // Lower 8bit
 }
 
-
 int16_t read_mpu9250_register16(uint8_t reg_addr) {
-	UART_Transmit_char('1');
 	I2C_START();
 	I2C_WRITE((MPU9250_ADDRESS << 1) | 0);    // LSB 0: WRITE
 	I2C_WRITE(reg_addr);
-	UART_Transmit_char('2');
 	I2C_START();
-	UART_Transmit_char('3');
 	I2C_WRITE((MPU9250_ADDRESS << 1) | 1);    // LSB 1: READ
-	UART_Transmit_char('4');
 	int16_t data = (I2C_READ_ACK() << 8) | I2C_READ_NACK();
-	UART_Transmit_char('5');
 	I2C_STOP();
-	UART_Transmit_char('6');
 	return data;
 }
-
 
 ISR(USART_RX_vect) {
 	Received_char = UDR0;
@@ -122,40 +137,53 @@ int main(void) {
 	sei();
 	UART_INIT();
 	I2C_INIT();
-	_delay_ms(20);
 	LCD_Init();
 	cli();
 	LCD_clear();
 	_delay_ms(20);
 	sei();
 
-    while (1) {
-	    // MPU9250 raw data Print LCD
-	    LCD_setPosition(0, 0);
-	    int16_t gyro_x_raw = read_mpu9250_register16(GYRO_XOUT);
-	    float gyro_x_data = gyro_x_raw / 250.0;  // set scale ±250°/sec
-	    char gyro_x_str[7];
-	    sprintf(gyro_x_str, "%+05d", gyro_x_data);
-	    LCD_sendString(gyro_x_str);
+	while (1) {
+		// MPU9250 raw data Print LCD
+		LCD_setPosition(0, 0);
+		int16_t gyro_x_raw = read_mpu9250_register16(GYRO_XOUT);
+		float gyro_x_data = gyro_x_raw / 250.0;  // set scale ±250°/sec
+		char gyro_x_str[7];
+		snprintf(gyro_x_str, sizeof(gyro_x_str), "%+05.3f", gyro_x_data);
+		LCD_sendString(gyro_x_str);
 
-	    LCD_setPosition(8, 0);
-	    int16_t gyro_y_raw = read_mpu9250_register16(GYRO_YOUT);
+	
+		LCD_setPosition(8, 0);
+		int16_t gyro_y_raw = read_mpu9250_register16(GYRO_YOUT);
 		float gyro_y_data = gyro_y_raw / 250.0;
-	    char gyro_y_str[7];
-	    sprintf(gyro_y_str, "%+05d", gyro_y_data);
-	    LCD_sendString(gyro_y_str);
-
-	    LCD_setPosition(0, 1);
-	    int16_t gyro_z_raw = read_mpu9250_register16(GYRO_ZOUT);
-	    float gyro_z_data = gyro_z_raw / 250.0;
-	    char gyro_z_str[7];
-	    sprintf(gyro_z_str, "%+05d", gyro_z_data);
-	    LCD_sendString(gyro_z_str);
+		char gyro_y_str[7];
+		snprintf(gyro_y_str, sizeof(gyro_y_str), "%+05.3f", gyro_y_data);
+		LCD_sendString(gyro_y_str);
+		
+		LCD_setPosition(0, 1);
+		int16_t gyro_z_raw = read_mpu9250_register16(GYRO_ZOUT);
+		float gyro_z_data = gyro_z_raw / 250.0;
+		char gyro_z_str[8];
+		snprintf(gyro_z_str, sizeof(gyro_z_str),"%+05.3f", gyro_z_data);
+		LCD_sendString(gyro_z_str);
 		
 		LCD_setPosition(8, 1);
-	    LCD_sendString("GYRO_XYZ");
-	    
-	    _delay_ms(500);
-    }
+		LCD_sendString("GYRO_XYZ");
 
+		if (Data_Received) {
+			UART_Transmit_data("GYRO_X_RAW: ", gyro_x_raw);UART_Transmit_char('\t');
+			UART_Transmit_data("GYRO_X_Data: ", gyro_x_data);UART_Transmit_char('\t');
+			UART_Transmit_char('\n');
+
+			UART_Transmit_data("GYRO_Y_RAW: ", gyro_y_raw);UART_Transmit_char('\t');
+			UART_Transmit_data("GYRO_Y_Data: ", gyro_y_data);UART_Transmit_char('\t');
+			UART_Transmit_char('\n');
+
+			UART_Transmit_data("GYRO_Z_RAW: ", gyro_z_raw);UART_Transmit_char('\t');
+			UART_Transmit_data("GYRO_Z_Data: ", gyro_z_data);UART_Transmit_char('\t');
+			UART_Transmit_char('\n');
+			Data_Received = 0;
+		}
+		_delay_ms(500);
+	}
 }

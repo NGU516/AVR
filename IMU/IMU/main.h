@@ -6,6 +6,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <util/twi.h>	// TW_MT_SLA_NACK
 #include <stdio.h>
 
 
