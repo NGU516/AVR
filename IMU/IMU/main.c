@@ -54,10 +54,11 @@ void UART_Transmit_string(const char* str) {
 }
 
 void UART_Transmit_data(const char* label, int16_t data) {
-	char buffer[20];
+	char buffer[7];
 	float float_data = (float)data;
 	snprintf(buffer, sizeof(buffer), "%s %.3f\n", label, float_data);
 	UART_Transmit_string(buffer);
+	UART_Transmit_char(' ');	// split purpose
 }
 
 void I2C_INIT() {
@@ -161,27 +162,23 @@ int main(void) {
 		LCD_setPosition(0, 1);
 		int16_t gyro_z_raw = read_mpu9250_register16(GYRO_ZOUT);
 		float gyro_z_data = gyro_z_raw / 250.0;
-		char gyro_z_str[8];
+		char gyro_z_str[7];
 		snprintf(gyro_z_str, sizeof(gyro_z_str),"%+05.3f", gyro_z_data);
 		LCD_sendString(gyro_z_str);
 		
 		LCD_setPosition(8, 1);
 		LCD_sendString("GYRO_XYZ");
 
+
 		if (Data_Received) {
-			UART_Transmit_data("GYRO_X_RAW: ", gyro_x_raw);UART_Transmit_char('\t');
-			UART_Transmit_data("GYRO_X_Data: ", gyro_x_data);UART_Transmit_char('\t');
-			UART_Transmit_char('\n');
-
-			UART_Transmit_data("GYRO_Y_RAW: ", gyro_y_raw);UART_Transmit_char('\t');
-			UART_Transmit_data("GYRO_Y_Data: ", gyro_y_data);UART_Transmit_char('\t');
-			UART_Transmit_char('\n');
-
-			UART_Transmit_data("GYRO_Z_RAW: ", gyro_z_raw);UART_Transmit_char('\t');
-			UART_Transmit_data("GYRO_Z_Data: ", gyro_z_data);UART_Transmit_char('\t');
-			UART_Transmit_char('\n');
+			//_delay_ms(20);
+			UART_Transmit_data("gx", gyro_x_data);
+			UART_Transmit_data("gy", gyro_y_data);
+			UART_Transmit_data("gz", gyro_z_data);
+			UART_Transmit_char('\n');	// if no line break, looping
 			Data_Received = 0;
 		}
-		_delay_ms(500);
+		
+		//_delay_ms(300);
 	}
 }
