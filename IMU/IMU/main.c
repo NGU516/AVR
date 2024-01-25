@@ -1,6 +1,7 @@
 #include "main.h"
 #include "LCD.h"
 #include "TWI.h"
+#include <math.h>
 #include <avr/interrupt.h>
 
 #define BAUD_RATE 9600
@@ -18,6 +19,13 @@
 volatile uint8_t Data_Received = 0;
 volatile char Received_char;
 
+float roll = 0.0;
+float pitch = 0.0;
+float yaw = 0.0;
+
+float accel_scale = 2.0;    // set accel scale ¡¾2g
+float gyro_scale = 2000.0; // set gyro scale ¡¾250¡Æ/sec
+float dt = 0.01;	// Time interval(PC)
 //////////////////////////////////////////////////////////////////////////
 void UART_INIT(void);
 void UART_Transmit_char(char data);
@@ -30,6 +38,7 @@ void I2C_WRITE(uint8_t data);
 uint8_t I2C_READ_ACK(void);
 uint8_t I2C_READ_NACK(void);
 int16_t read_mpu9250_register16(uint8_t reg_addr);
+void ComplementaryFilter(float accel_x, float accel_y, float accel_z, float gyro_x, float gyro_y, float gyro_z, float dt);
 
 ISR(USART_RX_vect);
 //////////////////////////////////////////////////////////////////////////
@@ -54,9 +63,9 @@ void UART_Transmit_string(const char* str) {
 }
 
 void UART_Transmit_data(const char* label, int16_t data) {
-	char buffer[7];
+	char buffer[20];
 	float float_data = (float)data;
-	snprintf(buffer, sizeof(buffer), "%s %.3f\n", label, float_data);
+	snprintf(buffer, sizeof(buffer), "%s %.3f", label, float_data);
 	UART_Transmit_string(buffer);
 	UART_Transmit_char(' ');	// split purpose
 }
@@ -127,6 +136,13 @@ int16_t read_mpu9250_register16(uint8_t reg_addr) {
 	return data;
 }
 
+void ComplementaryFilter(float accel_x, float accel_y, float accel_z, float gyro_x, float gyro_y, float gyro_z, float dt) {
+	roll = atan2(accel_y, accel_z) * (180.0 / M_PI);
+	pitch = atan(-accel_x / sqrt(accel_y * accel_y + accel_z * accel_z)) * (180.0 / M_PI);
+
+	yaw += gyro_z * dt;
+}
+
 ISR(USART_RX_vect) {
 	Received_char = UDR0;
 	Data_Received = 1;
@@ -143,42 +159,50 @@ int main(void) {
 	sei();
 
 	while (1) {
+		int16_t accel_x_raw = read_mpu9250_register16(ACCEL_XOUT);
+		int16_t accel_y_raw = read_mpu9250_register16(ACCEL_YOUT);
+		int16_t accel_z_raw = read_mpu9250_register16(ACCEL_ZOUT);
+		int16_t gyro_x_raw = read_mpu9250_register16(GYRO_XOUT);
+		int16_t gyro_y_raw = read_mpu9250_register16(GYRO_YOUT);
+		int16_t gyro_z_raw = read_mpu9250_register16(GYRO_ZOUT);
+		
+		float gyro_x_data = gyro_x_raw / gyro_scale;
+		float gyro_y_data = gyro_y_raw / gyro_scale;
+		float gyro_z_data = gyro_z_raw / gyro_scale;
+		float accel_x_data = accel_x_raw / accel_scale;
+		float accel_y_data = accel_y_raw / accel_scale;
+		float accel_z_data = accel_z_raw / accel_scale;
+		// pass to filter
+		ComplementaryFilter(accel_x_data, accel_y_data, accel_z_data, gyro_x_data, gyro_y_data, gyro_z_data, dt);
+		
 		// MPU9250 raw data Print LCD
 		LCD_setPosition(0, 0);
-		int16_t gyro_x_raw = read_mpu9250_register16(GYRO_XOUT);
-		float gyro_x_data = gyro_x_raw / 250.0;  // set scale ¡¾250¡Æ/sec
-		char gyro_x_str[7];
-		snprintf(gyro_x_str, sizeof(gyro_x_str), "%+05.3f", gyro_x_data);
-		LCD_sendString(gyro_x_str);
+		char IMU_Roll_str[7];
+		snprintf(IMU_Roll_str, sizeof(IMU_Roll_str), "%+05.3f", roll);
+		LCD_sendString(IMU_Roll_str);
 
 		
 		LCD_setPosition(8, 0);
-		int16_t gyro_y_raw = read_mpu9250_register16(GYRO_YOUT);
-		float gyro_y_data = gyro_y_raw / 250.0;
-		char gyro_y_str[7];
-		snprintf(gyro_y_str, sizeof(gyro_y_str), "%+05.3f", gyro_y_data);
-		LCD_sendString(gyro_y_str);
+		char IMU_Pitch_str[7];
+		snprintf(IMU_Pitch_str, sizeof(IMU_Pitch_str), "%+05.3f", pitch);
+		LCD_sendString(IMU_Pitch_str);
 		
 		LCD_setPosition(0, 1);
-		int16_t gyro_z_raw = read_mpu9250_register16(GYRO_ZOUT);
-		float gyro_z_data = gyro_z_raw / 250.0;
-		char gyro_z_str[7];
-		snprintf(gyro_z_str, sizeof(gyro_z_str),"%+05.3f", gyro_z_data);
-		LCD_sendString(gyro_z_str);
+		char IMU_Yaw_str[7];
+		snprintf(IMU_Yaw_str, sizeof(IMU_Yaw_str),"%+05.3f", yaw);
+		LCD_sendString(IMU_Yaw_str);
 		
 		LCD_setPosition(8, 1);
-		LCD_sendString("GYRO_XYZ");
-
-
+		LCD_sendString("IMU_XYZ");
+		
 		if (Data_Received) {
 			//_delay_ms(20);
-			UART_Transmit_data("gx", gyro_x_data);
-			UART_Transmit_data("gy", gyro_y_data);
-			UART_Transmit_data("gz", gyro_z_data);
+			UART_Transmit_data("Roll", roll);
+			UART_Transmit_data("Pitch", pitch);
+			UART_Transmit_data("Yaw", yaw);
 			UART_Transmit_char('\n');	// if no line break, looping
 			Data_Received = 0;
 		}
 		
-		//_delay_ms(300);
 	}
 }
